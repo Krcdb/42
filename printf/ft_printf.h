@@ -20,8 +20,8 @@ typedef struct  s_struct
 	char	type;
 	va_list	ap;
 
-	int		width;
-	int		precision;
+	size_t	width;
+	size_t	precision;
 	int		h_mod;
 	int		hh_mod;
 	int		l_mod;
@@ -36,7 +36,7 @@ typedef struct  s_struct
 }			t_moche;
 
 int		ft_printf(const char *format, ...);
-void	ft_data_init(t_moche *data, const char *form);
+void	ft_data_init(t_moche *data);
 void	ft_data_reset(t_moche *data);
 void	ft_print_buff(t_moche *data);
 void	ft_putchar_buff(t_moche *data, const char *form);
@@ -46,4 +46,10 @@ void	ft_conv_s(t_moche *data);
 void	ft_conv_c(t_moche *data);
 char	*ft_imtoa(intmax_t n);
 size_t	ft_intsize(intmax_t n);
+size_t	ft_strlen(const char *s);
+int		ft_isdigit(int c);
+char	*ft_strchr(const char *s, int c);
+int		ft_atoi(const char *str);
+void	ft_putstr(const char *s);
+void	ft_bzero(void *s, size_t n);
 #endif

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_conv_c.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/27 00:35:01 by mmartine          #+#    #+#             */
+/*   Updated: 2018/03/27 00:56:58 by mmartine         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 static char	*ft_set_width_minus(t_moche *data, char *tmp, char c)
@@ -35,7 +47,7 @@ void		ft_conv_c(t_moche *data)
 	else
 	{
 		if (!(tmp = (char*)malloc((sizeof *tmp) * data->width + 1)))
-			exit;
+			return;;
 		tmp = ft_set_width_minus(data, tmp, c);
 		while (*tmp)
 		{

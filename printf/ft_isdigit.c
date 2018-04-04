@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/27 02:02:16 by mmartine          #+#    #+#             */
-/*   Updated: 2018/03/27 22:29:39 by mmartine         ###   ########.fr       */
+/*   Created: 2017/11/08 22:55:12 by mmartine          #+#    #+#             */
+/*   Updated: 2018/03/27 01:23:48 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int		main(void)
+int		ft_isdigit(int c)
 {
-	ft_printf("ble lbe %% {%-10.2s} {%-3c}\n", "Michel", 'c');
-	printf("ble lbe %% {%-10.2s} {%-3c}\n", "Michel", 'c');
-	return (0);
+	if (c >= '0' && c <= '9')
+		return (1);
+	else
+		return (0);
 }

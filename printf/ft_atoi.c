@@ -1,20 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/27 02:02:16 by mmartine          #+#    #+#             */
-/*   Updated: 2018/03/27 22:29:39 by mmartine         ###   ########.fr       */
+/*   Created: 2017/11/08 22:02:42 by mmartine          #+#    #+#             */
+/*   Updated: 2018/03/27 01:33:36 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int		main(void)
+int		ft_atoi(const char *str)
 {
-	ft_printf("ble lbe %% {%-10.2s} {%-3c}\n", "Michel", 'c');
-	printf("ble lbe %% {%-10.2s} {%-3c}\n", "Michel", 'c');
-	return (0);
+	int neg;
+	int result;
+
+	result = 0;
+	neg = 1;
+	while ((*str == ' ' || *str == '\n' || *str == '\t' || *str == '\v' ||
+				*str == '\f' || *str == '\r') && *str)
+		str++;
+	if (*str == '-' || *str == '+')
+	{
+		if (*str == '-')
+			neg = -1;
+		str++;
+	}
+	while (*str >= '0' && *str <= '9' && *str)
+		result = (result * 10) + (*str++ - 48);
+	return (result * neg);
 }

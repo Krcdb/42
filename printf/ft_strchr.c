@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/27 02:02:16 by mmartine          #+#    #+#             */
-/*   Updated: 2018/03/27 22:29:39 by mmartine         ###   ########.fr       */
+/*   Created: 2017/11/08 19:56:49 by mmartine          #+#    #+#             */
+/*   Updated: 2018/03/27 01:24:19 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <string.h>
 
-int		main(void)
+char	*ft_strchr(const char *s, int c)
 {
-	ft_printf("ble lbe %% {%-10.2s} {%-3c}\n", "Michel", 'c');
-	printf("ble lbe %% {%-10.2s} {%-3c}\n", "Michel", 'c');
-	return (0);
+	char	*tmp;
+
+	tmp = (char*)s;
+	while (*tmp)
+	{
+		if (*tmp == (unsigned char)c)
+			return (tmp);
+		tmp++;
+	}
+	if (*tmp == '\0' && (unsigned char)c == '\0')
+		return (tmp);
+	return (NULL);
 }

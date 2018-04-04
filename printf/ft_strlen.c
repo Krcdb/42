@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/27 02:02:16 by mmartine          #+#    #+#             */
-/*   Updated: 2018/03/27 22:29:39 by mmartine         ###   ########.fr       */
+/*   Created: 2017/11/08 19:40:06 by mmartine          #+#    #+#             */
+/*   Updated: 2018/03/27 01:23:12 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <string.h>
 
-int		main(void)
+size_t		ft_strlen(const char *s)
 {
-	ft_printf("ble lbe %% {%-10.2s} {%-3c}\n", "Michel", 'c');
-	printf("ble lbe %% {%-10.2s} {%-3c}\n", "Michel", 'c');
-	return (0);
+	int l;
+
+	l = 0;
+	while (*s)
+	{
+		l++;
+		s++;
+	}
+	return (l);
 }

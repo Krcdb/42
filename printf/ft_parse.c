@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_parse.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/27 00:31:28 by mmartine          #+#    #+#             */
+/*   Updated: 2018/03/27 00:37:05 by mmartine         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int		ft_check_flag(t_moche *data, const char *form)
@@ -26,9 +38,9 @@ int		ft_check_flag(t_moche *data, const char *form)
 
 int		ft_check_width(t_moche *data, const char *form)
 {
-	if (isdigit(form[data->i_form]))
+	if (ft_isdigit(form[data->i_form]))
 	{
-		data->width = atoi(form + data->i_form);
+		data->width = ft_atoi(form + data->i_form);
 		data->i_form += ft_intsize(data->width);
 		return (1);
 	}
@@ -37,10 +49,10 @@ int		ft_check_width(t_moche *data, const char *form)
 
 int		ft_check_pre(t_moche *data, const char *form)
 {
-	if (form[data->i_form] == '.' && isdigit(form[data->i_form + 1]))
+	if (form[data->i_form] == '.' && ft_isdigit(form[data->i_form + 1]))
 	{
 		data->i_form++;
-		data->precision = atoi(form + data->i_form);
+		data->precision = ft_atoi(form + data->i_form);
 		data->i_form += ft_intsize(data->precision);
 		return (1);
 	}
@@ -93,7 +105,7 @@ void	ft_parse(t_moche *data, const char *form)
 			continue;
 		if (ft_check_mod(data, form))
 			continue;
-		if (strchr("sSpdDioOuUxXcC", form[data->i_form]))
+		if (ft_strchr("sSpdDioOuUxXcC", form[data->i_form]))
 		{
 			data->type = form[data->i_form];
 			data->i_form++;
