@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_conv.c                                          :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/27 00:34:55 by mmartine          #+#    #+#             */
-/*   Updated: 2018/04/25 22:15:07 by mmartine         ###   ########.fr       */
+/*   Created: 2017/11/09 19:11:40 by mmartine          #+#    #+#             */
+/*   Updated: 2018/04/25 00:25:13 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <string.h>
+#include <stdlib.h>
 
-void		ft_conv(t_moche *data)
+char	*ft_strnew(size_t size)
 {
-	if (data->type == 's')
-		ft_conv_s(data);
-	else if (data->type == 'c')
-		ft_conv_c(data);
-	else if (data->type == 'o' || data->type =='O' || data->type == 'u' || data->type == 'x' || 
-			data->type == 'X')
-		ft_conv_oux(data);
+	char	*str;
+	int		len;
+
+	len = size;
+	if (!(str = (char*)malloc(sizeof(*str) * size + 1)))
+		return (NULL);
+	while (len--)
+		*str++ = '\0';
+	*str = '\0';
+	str -= size;
+	return (str);
 }

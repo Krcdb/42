@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 01:01:03 by mmartine          #+#    #+#             */
-/*   Updated: 2018/03/27 02:08:21 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/04/25 22:16:35 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 
 void	ft_putchar_buff(t_moche *data, const char *form)
 {
+	if (data->i_buff >= BUFF_SIZE)
+	{
+		ft_print_buff(data);
+		ft_bzero(data->buff, BUFF_SIZE);
+		data->i_buff = 0;
+	}
 	data->buff[data->i_buff] = form[data->i_form];
 	data->i_buff++;
 	data->i_form++;

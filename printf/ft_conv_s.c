@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 00:35:09 by mmartine          #+#    #+#             */
-/*   Updated: 2018/03/27 22:29:32 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/04/25 22:20:53 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,12 @@
 static char	*ft_set(t_moche *data, char *tmp, char *s, int just)
 {
 	while (just--)
-		*tmp++ = ' ';
+	{
+		if (data->zero_flag)
+			*tmp++ = '0';
+		else
+			*tmp++ = ' ';
+	}
 	if (data->precision)
 	{
 		while (data->precision--)
@@ -80,9 +85,5 @@ void		ft_conv_s(t_moche *data)
 
 	tmp = va_arg(data->ap, char *);
 	tmp = ft_set_width_pre(data, tmp);
-	while (*tmp)
-	{
-		data->buff[data->i_buff++] = *tmp++;
-		data->ret++;
-	}
+	ft_put_conv(data, tmp);
 }

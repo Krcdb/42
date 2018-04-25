@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 00:35:01 by mmartine          #+#    #+#             */
-/*   Updated: 2018/03/27 00:56:58 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/04/25 22:20:08 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,12 @@ static char	*ft_set_width_minus(t_moche *data, char *tmp, char c)
 	else
 	{
 		while (size--)
-			*tmp++ = ' ';
+		{
+			if (data->zero_flag)
+				*tmp++ = '0';
+			else
+				*tmp++ = ' ';
+		}
 		*tmp++ = c;
 	}
 	return (tmp - data->width);
@@ -37,7 +42,7 @@ void		ft_conv_c(t_moche *data)
 {
 	char	*tmp;
 	char	c;
-	
+
 	c = va_arg(data->ap, int);
 	if (data->width <= 1)
 	{
@@ -49,10 +54,6 @@ void		ft_conv_c(t_moche *data)
 		if (!(tmp = (char*)malloc((sizeof *tmp) * data->width + 1)))
 			return;;
 		tmp = ft_set_width_minus(data, tmp, c);
-		while (*tmp)
-		{
-			data->buff[data->i_buff++] = *tmp++;
-			data->ret++;
-		}
+		ft_put_conv(data, tmp);
 	}
 }

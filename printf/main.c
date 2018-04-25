@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 02:02:16 by mmartine          #+#    #+#             */
-/*   Updated: 2018/03/27 22:29:39 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/04/25 21:38:17 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		main(void)
 {
-	ft_printf("ble lbe %% {%-10.2s} {%-3c}\n", "Michel", 'c');
-	printf("ble lbe %% {%-10.2s} {%-3c}\n", "Michel", 'c');
+	ft_printf("ble lbe %% {%#-10.8O} {%#01.6x}\n", 123, 123);
+	printf("ble lbe %% {%#010.1O} {%#010x}\n", 123, 123);
 	return (0);
 }

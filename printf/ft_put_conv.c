@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_conv.c                                          :+:      :+:    :+:   */
+/*   ft_put_conv.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/27 00:34:55 by mmartine          #+#    #+#             */
-/*   Updated: 2018/04/25 22:15:07 by mmartine         ###   ########.fr       */
+/*   Created: 2018/04/25 22:14:09 by mmartine          #+#    #+#             */
+/*   Updated: 2018/04/25 22:24:00 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		ft_conv(t_moche *data)
+void	ft_put_conv(t_moche *d, char *s)
 {
-	if (data->type == 's')
-		ft_conv_s(data);
-	else if (data->type == 'c')
-		ft_conv_c(data);
-	else if (data->type == 'o' || data->type =='O' || data->type == 'u' || data->type == 'x' || 
-			data->type == 'X')
-		ft_conv_oux(data);
+	while (*s)
+	{
+		if (d->i_buff >= BUFF_SIZE)
+			ft_print_buff(d);
+		d->buff[d->i_buff++] = *s++;
+		d->ret++;
+	}
 }
