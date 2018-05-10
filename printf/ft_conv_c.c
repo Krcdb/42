@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 00:35:01 by mmartine          #+#    #+#             */
-/*   Updated: 2018/04/25 22:20:08 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/05/10 02:00:22 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,56 @@ static char	*ft_set_width_minus(t_moche *data, char *tmp, char c)
 	return (tmp - data->width);
 }
 
+static void	set_c(t_moche *data, char *tmp)
+{
+	int		size;
+
+	size = data->width - 1;
+	while (size--)
+		*tmp++ = ' ';
+	tmp -= data->width - 1;
+	if (data->minus_flag)
+	{
+		ft_print_buff(data);
+		write(1, "\0", 1);
+		ft_put_conv(data, tmp);
+	}
+	else
+	{
+		data->ret += data->width;
+		ft_putstr(tmp);
+		write(1, "\0", 1);
+	}
+	data->ret++;
+}
+
 void		ft_conv_c(t_moche *data)
 {
 	char	*tmp;
 	char	c;
 
 	c = va_arg(data->ap, int);
-	if (data->width <= 1)
+	if (data->width <= 1 && c != '\0')
 	{
 		data->buff[data->i_buff++] = c;
 		data->ret++;
 	}
-	else
+	else if ((c == '\0' || c == 0) && data->width <= 1)
+	{
+		ft_print_buff(data);
+		write(1, "\0", 1);
+		data->ret++;
+	}
+	else 
 	{
 		if (!(tmp = (char*)malloc((sizeof *tmp) * data->width + 1)))
-			return;;
-		tmp = ft_set_width_minus(data, tmp, c);
-		ft_put_conv(data, tmp);
+			return;
+		if (c == '\0' || c == 0)
+			set_c(data, tmp);
+		else
+		{
+			tmp = ft_set_width_minus(data, tmp, c);
+			ft_put_conv(data, tmp);
+		}
 	}
 }

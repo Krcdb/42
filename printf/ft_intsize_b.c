@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 02:33:38 by mmartine          #+#    #+#             */
-/*   Updated: 2018/04/24 22:00:52 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/05/09 02:27:52 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ size_t		ft_intsize_b(intmax_t n, int base)
 
 	size = 0;
 	if (n == 0)
-		return (0);
+		return (1);
 	if (n < 0)
 		size++;
 	while (n != 0)
