@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utoa_b.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/24 21:11:30 by mmartine          #+#    #+#             */
-/*   Updated: 2018/05/13 00:17:20 by mmartine         ###   ########.fr       */
+/*   Created: 2017/11/09 20:43:17 by mmartine          #+#    #+#             */
+/*   Updated: 2018/05/13 03:06:53 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char		*ft_utoa_b(unsigned long long n, int base)
+char	*ft_strjoin(const char *s1, const char *s2)
 {
-	size_t	size;
-	char	*res;
+	char	*fresh;
+	int		len;
 
-	size = ft_intsize_b(n, base);
-	if (!(res = (char*)malloc((sizeof *res) * size + 1)))
+	if (s1 == NULL || s2 == NULL)
 		return (NULL);
-	if (n == 0)
-		return("0");
-	while (n > 0)
-	{
-		if ((n % base) > 9)
-			res[--size] = (n % base) + 'W';
-		else
-			res[--size] = (n % base) + '0';
-		n /= base;
-	}
-	return (res);
+	len = ft_strlen(s1) + ft_strlen(s2);
+	if (!(fresh = (char*)malloc(sizeof(*fresh) * (len + 1))))
+		return (NULL);
+	while (*s1)
+		*fresh++ = *s1++;
+	while (*s2)
+		*fresh++ = *s2++;
+	*fresh = '\0';
+	fresh -= len;
+	return (fresh);
 }

@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 00:31:28 by mmartine          #+#    #+#             */
-/*   Updated: 2018/04/25 01:21:06 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/05/13 02:07:16 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int		ft_check_flag(t_moche *data, const char *form)
 		data->sp_flag = 0;
 		data->plus_flag = 1;
 	}
-	else if (form[data->i_form] == '0')
+	else if (form[data->i_form] == '0' && !data->minus_flag)
 		data->zero_flag = 1;
-	else if (form[data->i_form] == ' ')
+	else if (form[data->i_form] == ' ' && !data->plus_flag)
 		data->sp_flag = 1;
 	else
 		return (0);
@@ -54,6 +54,13 @@ int		ft_check_pre(t_moche *data, const char *form)
 		data->i_form++;
 		data->precision = ft_atoi(form + data->i_form);
 		data->i_form += ft_intsize(data->precision);
+		data->pre_flag = 1;
+		return (1);
+	}
+	else if (form[data->i_form] == '.')
+	{
+		data->i_form++;
+		data->pre_flag = 1;
 		return (1);
 	}
 	return (0);

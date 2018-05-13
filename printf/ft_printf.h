@@ -22,6 +22,7 @@ typedef struct  s_struct
 
 	size_t	width;
 	size_t	precision;
+	int		pre_flag;
 	int		h_mod;
 	int		hh_mod;
 	int		l_mod;
@@ -46,9 +47,11 @@ void	ft_conv(t_moche *data);
 void	ft_conv_s(t_moche *data);
 void	ft_conv_c(t_moche *data);
 void	ft_conv_oux(t_moche *data);
+void	ft_conv_di(t_moche *data);
 char	*ft_imtoa(intmax_t n);
 size_t	ft_intsize(intmax_t n);
 size_t	ft_intsize_b(intmax_t n, int base);
+char	*ft_strjoin(const char *s1, const char *s2);
 size_t	ft_strlen(const char *s);
 char	*ft_strnew(size_t n);
 int		ft_isdigit(int c);

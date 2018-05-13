@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 02:02:16 by mmartine          #+#    #+#             */
-/*   Updated: 2018/05/10 02:00:25 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/05/13 03:34:40 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 int		main(void)
 {
-	
-	printf("\nres = %d", printf("phello ca{%----4c} {%1c} va {%10c}{%-c} ??\n", '\0', '\n', (char)564, 0));
-	printf("\nres = %d", ft_printf("fhello ca{%----4c} {%1c} va {%10c}{%-c} ??\n", '\0', '\n', (char)564, 0));
+//	printf("\np res = %d\n", printf("p u{%4.2s}s {%-10.s}\n {%---5.3s}\n" , "coco", NULL, "yooo"));
+//	printf("\nf res = %d\n", ft_printf("f u{%4.2s}s {%-10.s}\n {%---5.3s}\n", "coco", NULL, "yooo"));
+	printf("p res = %d\n", printf("{%1.4D} et {%-10.10d} et {%+010d}\n", 123456, -123456, 123456));
+	printf("f res = %d\n", ft_printf("{%1.4D} et {%-10.10d} et {%+010d}\n", 123456, -123456, 123456));
 //	ft_printf("ble lbe %% {%#-10.8O} {%#01.6x}\n", 123, 123);
 //	printf("ble lbe %% {%#010.1O} {%#010x}\n", 123, 123);
 	return (0);

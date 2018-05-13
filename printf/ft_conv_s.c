@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 00:35:09 by mmartine          #+#    #+#             */
-/*   Updated: 2018/04/25 22:20:53 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/05/13 02:19:38 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static char	*ft_set(t_moche *data, char *tmp, char *s, int just)
 
 static char	*ft_set_minus(t_moche *data, char *tmp, char *s, int just)
 {
-	if (data->precision)
+	if (data->precision < ft_strlen(s) && data->pre_flag)
 	{
 		while (data->precision--)
 			*tmp++ = *s++;
@@ -51,8 +51,7 @@ static char	*ft_set_minus(t_moche *data, char *tmp, char *s, int just)
 	return (tmp);
 }
 
-
-static char	*ft_set_width_pre(t_moche *data, char *s)
+static char	*ft_set_width_pre(t_moche *d, char *s)
 {
 	char	*tmp;
 	int		size;
@@ -60,30 +59,42 @@ static char	*ft_set_width_pre(t_moche *data, char *s)
 
 	size = 0;
 	just = 0;
-	if (data->width > ft_strlen(s) && data->width > data->precision)
-		size = data->width;
-	else if (data->precision && data->precision < ft_strlen(s))
-		size = data->precision;
+	if (d->width >= ft_strlen(s) && (d->width > d->precision || d->precision > ft_strlen(s)))
+		size = d->width;
+	else if (d->pre_flag)
+		size = d->precision;
 	else
 		size = ft_strlen(s);
 	if (!(tmp = (char*)malloc((sizeof *tmp) * size + 1)))
 		return (NULL);
-	if (data->width > ft_strlen(s) && data->precision)
-		just = data->width - data->precision;
-	else if (data->width > ft_strlen(s))
-		just = data->width - ft_strlen(s);
-	if (data->minus_flag)
-		tmp = ft_set_minus(data, tmp, s, just);
+	if (d->width >= ft_strlen(s) && d->pre_flag && d->precision < ft_strlen(s))
+		just = d->width - d->precision;
+	else if (d->width > ft_strlen(s))
+		just = d->width - ft_strlen(s);
+	if (d->minus_flag)
+		tmp = ft_set_minus(d, tmp, s, just);
 	else
-		tmp = ft_set(data, tmp, s, just);
+		tmp = ft_set(d, tmp, s, just);
 	return (tmp - size);
 }
 
 void		ft_conv_s(t_moche *data)
 {
 	char	*tmp;
+	size_t	i;
 
+	i = 0;
 	tmp = va_arg(data->ap, char *);
-	tmp = ft_set_width_pre(data, tmp);
+	if (tmp == NULL)
+		tmp = "(null)";
+	if (data->pre_flag && data->precision == 0)
+	{
+		if (!(tmp = (char*)malloc((sizeof *tmp) * data->width + 1)))
+			return;
+		while (i < data->width)
+			tmp[i++] = ' ';
+	}
+	else
+		tmp = ft_set_width_pre(data, tmp);
 	ft_put_conv(data, tmp);
 }
