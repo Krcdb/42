@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/13 00:42:58 by mmartine          #+#    #+#             */
-/*   Updated: 2018/05/13 03:34:37 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/05/14 01:06:01 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,10 @@ static char *set_z(t_moche *d, char *s, int neg)
 
 	i = 0;
 	size = 0;
-	printf("z\n");
-	if (d->precision >= d->width)
+	if (d->pre_flag)
 		size = d->precision - ft_strlen(s);
-	else
-		size = d->width - ft_strlen(s) - d->plus_flag - neg;
+	else if (d->zero_flag && d->width)
+		size = d->width - ft_strlen(s) - d->sp_flag - d->plus_flag - neg;
 	tmp = ft_strnew(size);
 	while (i < size)
 		tmp[i++] = '0';
@@ -52,7 +51,7 @@ static char	*set_pre(t_moche *d, char *s)
 		else if (d->sp_flag)
 			tmp[0] = ' ';
 	}
-	if (d->zero_flag && (ft_strlen(s) < d->width) && (ft_strlen(s) < d->precision))
+	if (d->zero_flag || (ft_strlen(s) < d->precision))
 		tmp = ft_strjoin(tmp, set_z(d, s, neg));
 	return (ft_strjoin(tmp, s));
 }
@@ -76,6 +75,11 @@ static char	*set(t_moche *d, char *s)
 
 	size = 0;
 	tmp = set_pre(d, s);
+	if (tmp[0] == '0' && ft_strlen(tmp) == 1 && d->pre_flag)
+		tmp[0] = '\0';
+	else if ((tmp[0] == ' ' || tmp[0] == '+') && tmp[1] == '0' 
+			&& ft_strlen(tmp) == 2 && d->pre_flag)
+		tmp[1] = '\0';
 	if (ft_strlen(tmp) < d->width)
 	{
 		size = d->width - ft_strlen(tmp);
@@ -90,7 +94,7 @@ static char	*set(t_moche *d, char *s)
 void		ft_conv_di(t_moche *d)
 {
 	char *tmp;
-	
+
 	if (d->h_mod)
 		tmp = ft_imtoa((short)va_arg(d->ap, int));
 	else if (d->hh_mod)
