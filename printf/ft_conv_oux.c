@@ -6,13 +6,13 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 22:44:29 by mmartine          #+#    #+#             */
-/*   Updated: 2018/05/13 02:17:09 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/05/14 23:32:58 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int		ft_setbase(t_moche *d)
+static int		setbase(t_moche *d)
 {
 	if (d->type == 'o' || d->type == 'O')
 		return (8);
@@ -21,41 +21,72 @@ static int		ft_setbase(t_moche *d)
 	return (10);
 }
 
-static char		*ft_set_pre(t_moche *d)
+static char		*set_z(t_moche *d, char *s)
 {
-	char	*pre;
+	char	*tmp;
+	int		size;
+	int		i;
 
-	if (d->type == 'x' || d->type == 'X')
-	{
-		pre = ft_strnew(2);
-		pre[0] = '0';
-		pre[1] = 'x';
-	}
-	else if (d->type == 'o' || d->type == 'O')
-	{
-		pre = ft_strnew(1);
-		pre[0] = '0';
-	}
-	else
-		return (NULL);
-	return (pre);
+	i = 0;
+	size = 0;
+	if (d->pre_flag)
+		size = d->precision - ft_strlen(s);
+	else if (d->zero_flag && d->width)
+		size = d->width - ft_strlen(s) - d->hash_flag;
+	tmp = ft_strnew(size);
+	while (i < size)
+		tmp[i++] = '0';
+	return (tmp);
 }
 
+static char		*set_pre(t_moche *d, char *s)
+{
+	char	*tmp;
 
-static char		*ft_set(t_moche *d, char *s)
+	tmp = ft_strnew(2);
+	if ((d->type == 'x' || d->type == 'X') && d->hash_flag)
+	{
+		tmp[0] = '0';
+		tmp[1] = d->type;
+		d->hash_flag++;
+	}
+	else if ((d->type == 'o' || d->type == 'O') && d->hash_flag)
+	{
+		d->hash_flag++;
+		tmp[0] = '0';
+	}
+	if (d->zero_flag || (ft_strlen(s) < d->precision))
+		tmp = ft_strjoin(tmp, set_z(d, s));
+	return (ft_strjoin(tmp, s));
+}
+
+static char		*set_sp(int size)
+{
+	char	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = ft_strnew(size);
+	while (i < size)
+		tmp[i++] = ' ';
+	return (tmp);
+}
+
+static char		*set(t_moche *d, char *s)
 {
 	int		size;
 	char	*tmp;
-	char	*pre;
 
-	pre = ft_set_pre(d);
-	size = ft_strlen(pre) + ft_strlen(s);
-	tmp = ft_strnew(size);
-	while (*pre)
-		*tmp++ = *pre++;
-	while (*s)
-		*tmp++ = *s++;
-	return (tmp - size);
+	tmp = set_pre(d, s);
+	if (ft_strlen(tmp) < d->width)
+	{
+		size = d->width - ft_strlen(tmp);
+		if (d->minus_flag)
+			tmp = ft_strjoin(tmp, set_sp(size));
+		else
+			tmp = ft_strjoin(set_sp(size), tmp);
+	}
+	return (tmp);
 }
 
 
@@ -64,7 +95,7 @@ void			ft_conv_oux(t_moche *d)
 	int		base;
 	char	*tmp;
 
-	base = ft_setbase(d);
+	base = setbase(d);
 	if (d->hh_mod)
 		tmp = ft_utoa_b((unsigned char)va_arg(d->ap, unsigned int), base);
 	else if (d->h_mod)
@@ -79,6 +110,6 @@ void			ft_conv_oux(t_moche *d)
 		tmp = ft_utoa_b(va_arg(d->ap, size_t), base);
 	else
 		tmp = ft_utoa_b(va_arg(d->ap, unsigned int), base);
-	tmp = ft_set(d, tmp);
+	tmp = set(d, tmp);
 	ft_put_conv(d, tmp);
 }
