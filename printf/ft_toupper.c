@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnew.c                                        :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/09 19:11:40 by mmartine          #+#    #+#             */
-/*   Updated: 2018/05/17 22:43:35 by mmartine         ###   ########.fr       */
+/*   Created: 2018/05/18 00:19:36 by mmartine          #+#    #+#             */
+/*   Updated: 2018/05/18 00:24:04 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <stdlib.h>
+#include "ft_printf.h"
 
-char	*ft_strnew(size_t size)
+char	*ft_toupper(char *s)
 {
-	char	*str;
-	size_t	len;
+	int i;
 
-	len = size;
-	if (!(str = (char*)malloc(sizeof(*str) * size + 1)))
-		return (NULL);
-	while (len--)
-		*str++ = '\0';
-	*str = '\0';
-	str -= size;
-	return (str);
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] >= 'a' && s[i] <= 'z')
+			s[i] -= 32;
+		i++;
+	}
+	return (s);
 }

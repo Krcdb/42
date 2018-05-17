@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 22:44:29 by mmartine          #+#    #+#             */
-/*   Updated: 2018/05/14 23:32:58 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/05/18 00:46:59 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,14 @@ static char		*set_z(t_moche *d, char *s)
 		size = d->precision - ft_strlen(s);
 	else if (d->zero_flag && d->width)
 		size = d->width - ft_strlen(s) - d->hash_flag;
-	tmp = ft_strnew(size);
-	while (i < size)
-		tmp[i++] = '0';
+	if (size > 0)
+	{
+		tmp = ft_strnew(size);
+		while (i < size)
+			tmp[i++] = '0';
+	}
+	else
+		tmp = ft_strnew(0);
 	return (tmp);
 }
 
@@ -53,6 +58,7 @@ static char		*set_pre(t_moche *d, char *s)
 	else if ((d->type == 'o' || d->type == 'O') && d->hash_flag)
 	{
 		d->hash_flag++;
+		d->precision--;
 		tmp[0] = '0';
 	}
 	if (d->zero_flag || (ft_strlen(s) < d->precision))
@@ -76,8 +82,15 @@ static char		*set(t_moche *d, char *s)
 {
 	int		size;
 	char	*tmp;
-
+	
 	tmp = set_pre(d, s);
+	if (tmp[0] == '0' && ft_strlen(tmp) == 1 && d->pre_flag)
+		tmp[0] = '\0';
+	else if (tmp[0] == '0' && tmp[1] == '0' && ft_strlen(tmp) == 2 && d->hash_flag && d->precision != 1)
+		tmp[1] = '\0';
+	else if ((tmp[0] == ' ' || tmp[0] == '+') && tmp[1] == '0'
+			&& ft_strlen(tmp) == 2 && d->pre_flag)
+		tmp[1] = '\0';
 	if (ft_strlen(tmp) < d->width)
 	{
 		size = d->width - ft_strlen(tmp);
@@ -86,6 +99,8 @@ static char		*set(t_moche *d, char *s)
 		else
 			tmp = ft_strjoin(set_sp(size), tmp);
 	}
+	if (d->type == 'X')
+		tmp = ft_toupper(tmp);
 	return (tmp);
 }
 
@@ -94,16 +109,16 @@ void			ft_conv_oux(t_moche *d)
 {
 	int		base;
 	char	*tmp;
-
+	
 	base = setbase(d);
 	if (d->hh_mod)
 		tmp = ft_utoa_b((unsigned char)va_arg(d->ap, unsigned int), base);
 	else if (d->h_mod)
 		tmp = ft_utoa_b((unsigned short)va_arg(d->ap, unsigned int), base);
-	else if (d->l_mod || d->type == 'O')
-		tmp = ft_utoa_b(va_arg(d->ap, long unsigned int), base);
+	else if (d->l_mod || d->type == 'O' || d->type == 'U')
+		tmp = ft_utoa_b(va_arg(d->ap, unsigned long), base);
 	else if (d->ll_mod)
-		tmp = ft_utoa_b(va_arg(d->ap, long long unsigned int), base);
+		tmp = ft_utoa_b(va_arg(d->ap, unsigned long long), base);
 	else if (d->j_mod)
 		tmp = ft_utoa_b(va_arg(d->ap, intmax_t), base);
 	else if (d->z_mod)

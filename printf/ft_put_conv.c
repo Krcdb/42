@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 22:14:09 by mmartine          #+#    #+#             */
-/*   Updated: 2018/05/10 01:58:06 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/05/17 22:27:08 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,5 @@ void	ft_put_conv(t_moche *d, char *s)
 		d->buff[d->i_buff++] = *s++;
 		d->ret++;
 	}
+	d->buff[d->i_buff] = '\0';
 }

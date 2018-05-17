@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 00:35:38 by mmartine          #+#    #+#             */
-/*   Updated: 2018/05/10 02:49:34 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/05/18 00:02:23 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,5 @@ void	ft_data_reset(t_moche *data)
 	data->plus_flag = 0;
 	data->minus_flag = 0;
 	data->sp_flag = 0;
+	data->pre_flag = 0;
 }

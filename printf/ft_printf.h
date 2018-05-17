@@ -34,6 +34,7 @@ typedef struct  s_struct
 	int		plus_flag;
 	int		minus_flag;
 	int		sp_flag;
+	int		per_flag;
 }			t_moche;
 
 int		ft_printf(const char *format, ...);
@@ -50,8 +51,8 @@ void	ft_conv_oux(t_moche *data);
 void	ft_conv_di(t_moche *data);
 char	*ft_imtoa(intmax_t n);
 size_t	ft_intsize(intmax_t n);
-size_t	ft_intsize_b(intmax_t n, int base);
-char	*ft_strjoin(const char *s1, const char *s2);
+size_t	ft_intsize_b(uintmax_t n, int base);
+char	*ft_strjoin(char *s1, char *s2);
 size_t	ft_strlen(const char *s);
 char	*ft_strnew(size_t n);
 int		ft_isdigit(int c);
@@ -60,4 +61,5 @@ int		ft_atoi(const char *str);
 void	ft_putstr(const char *s);
 void	ft_bzero(void *s, size_t n);
 char	*ft_utoa_b(unsigned long long n, int base);
+char	*ft_toupper(char *s);
 #endif

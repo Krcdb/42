@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 00:35:01 by mmartine          #+#    #+#             */
-/*   Updated: 2018/05/13 02:22:30 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/05/18 00:23:31 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,11 @@ void		ft_conv_c(t_moche *data)
 {
 	char	*tmp;
 	char	c;
-
-	c = va_arg(data->ap, int);
+	
+	if (data->type == 'c')
+		c = va_arg(data->ap, int);
+	else
+		c = '%';
 	if (data->width <= 1 && c != '\0')
 	{
 		data->buff[data->i_buff++] = c;
