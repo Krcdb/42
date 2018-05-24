@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 00:31:28 by mmartine          #+#    #+#             */
-/*   Updated: 2018/05/18 00:03:20 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/05/24 16:26:41 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,11 +105,20 @@ void	ft_parse(t_moche *data, const char *form)
 	while (form[data->i_form] && data->type == '0')
 	{
 		if (ft_check_flag(data, form))
+		{
+			data->flag = 1;
 			continue;
+		}
 		if (ft_check_width(data, form))
+		{
+			data->flag = 1;
 			continue;
+		}
 		if (ft_check_pre(data, form))
+		{
+			data->flag = 1;
 			continue;
+		}
 		if (ft_check_mod(data, form))
 			continue;
 		if (ft_strchr("sSpdDioOuUxXcC%", form[data->i_form]))

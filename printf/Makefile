@@ -6,7 +6,7 @@
 #    By: mmartine <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/28 16:32:39 by mmartine          #+#    #+#              #
-#    Updated: 2018/05/18 00:47:05 by mmartine         ###   ########.fr        #
+#    Updated: 2018/05/24 15:47:29 by mmartine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,9 @@ SRC_FILE = ft_conv.c\
 		   ft_conv_s.c\
 		   ft_conv_oux.c\
 		   ft_conv_di.c\
+		   ft_conv_p.c\
+		   ft_conv_majc.c\
+		   ft_conv_uni.c\
 		   ft_data_init.c\
 		   ft_data_reset.c\
 		   ft_imtoa.c\
@@ -34,13 +37,15 @@ SRC_FILE = ft_conv.c\
 		   ft_put_conv.c\
 		   ft_printf.c\
 		   ft_atoi.c\
+		   ft_strdel.c\
 		   ft_strlen.c\
 		   ft_strchr.c\
-		   ft_strjoin.c\
+		   ft_strjoinfree.c\
 		   ft_strnew.c\
 		   ft_isdigit.c\
 		   ft_bzero.c\
 		   ft_utoa_b.c\
+		   ft_strdup.c\
 		   ft_intsize_b.c\
 		   ft_toupper.c\
 

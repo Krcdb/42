@@ -1,41 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_imtoa.c                                         :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/27 00:35:56 by mmartine          #+#    #+#             */
-/*   Updated: 2018/05/21 16:41:44 by mmartine         ###   ########.fr       */
+/*   Created: 2017/11/07 20:22:44 by mmartine          #+#    #+#             */
+/*   Updated: 2018/05/21 16:04:03 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-char		*ft_imtoa(intmax_t n)
+char	*ft_strdup(const char *src)
 {
-	size_t	size;
-	char	*res;
-	int		neg;
+	int		l;
+	char	*dest;
 
-	size = ft_intsize(n);
-	neg = 0;
-	if (n == LONG_MIN)
-		return (ft_strdup("-9223372036854775808"));
-	if (n < 0)
+	l = 0;
+	while (*src)
 	{
-		n *= -1;
-		neg = 1;
+		l++;
+		src++;
 	}
-	if (!(res = (char*)malloc((sizeof *res) * size + 1)))
+	src -= l;
+	if (!(dest = (char*)malloc(sizeof(char) * l + 1)))
 		return (NULL);
-	res[size] = '\0';
-	while (size)
-	{
-		res[--size] = (n % 10) + 48;
-		n /= 10;
-	}
-	if (neg)
-		res[0] = '-';
-	return (res);
+	while (*src)
+		*dest++ = *src++;
+	*dest = '\0';
+	dest -= l;
+	return (dest);
 }

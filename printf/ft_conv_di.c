@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/13 00:42:58 by mmartine          #+#    #+#             */
-/*   Updated: 2018/05/17 23:00:53 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/05/24 16:46:37 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static char *set_z(t_moche *d, char *s, int neg)
 		size = d->precision - ft_strlen(s);
 	else if (d->zero_flag && d->width)
 		size = d->width - ft_strlen(s) - d->sp_flag - d->plus_flag - neg;
+	if (size < 1)
+		return ("");
 	tmp = ft_strnew(size);
 	while (i < size)
 		tmp[i++] = '0';
@@ -52,8 +54,8 @@ static char	*set_pre(t_moche *d, char *s)
 			tmp[0] = ' ';
 	}
 	if (d->zero_flag || (ft_strlen(s) < d->precision))
-		tmp = ft_strjoin(tmp, set_z(d, s, neg));
-	return (ft_strjoin(tmp, s));
+		tmp = ft_strjoinfree(tmp, set_z(d, s, neg), 0);
+	return (ft_strjoinfree(tmp, s, 0));
 }
 
 static char	*set_sp(int size)
@@ -84,9 +86,9 @@ static char	*set(t_moche *d, char *s)
 	{
 		size = d->width - ft_strlen(tmp);
 		if (d->minus_flag)
-			tmp = ft_strjoin(tmp, set_sp(size));
+			tmp = ft_strjoinfree(tmp, set_sp(size), 0);
 		else
-			tmp = ft_strjoin(set_sp(size), tmp);
+			tmp = ft_strjoinfree(set_sp(size), tmp, 0);
 	}
 	return (tmp);
 }
@@ -99,9 +101,9 @@ void		ft_conv_di(t_moche *d)
 		tmp = ft_imtoa((short)va_arg(d->ap, int));
 	else if (d->hh_mod)
 		tmp = ft_imtoa((char)va_arg(d->ap, int));
-	else if (d->ll_mod || d->type == 'D')
+	else if (d->ll_mod)
 		tmp = ft_imtoa(va_arg(d->ap, long long int));
-	else if (d->l_mod)
+	else if (d->l_mod || d->type == 'D')
 		tmp = ft_imtoa(va_arg(d->ap, long int));
 	else if (d->j_mod)
 		tmp = ft_imtoa(va_arg(d->ap, size_t));

@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 00:33:56 by mmartine          #+#    #+#             */
-/*   Updated: 2018/05/10 01:02:54 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/05/24 16:31:10 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int ft_printf(const char *form, ...)
 		}
 		else if(form[data.i_form] == '%')
 			ft_parse(&data, form);
+		if (data.err)
+			return (-1);
 		ft_data_reset(&data);
 	}
 	ft_print_buff(&data);

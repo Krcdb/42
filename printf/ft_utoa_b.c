@@ -6,13 +6,13 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 21:11:30 by mmartine          #+#    #+#             */
-/*   Updated: 2018/05/17 22:06:17 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/05/21 12:28:44 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char		*ft_utoa_b(unsigned long long n, int base)
+char		*ft_utoa_b(uintmax_t n, int base)
 {
 	size_t	size;
 	char	*res;
@@ -22,6 +22,7 @@ char		*ft_utoa_b(unsigned long long n, int base)
 		return (NULL);
 	if (n == 0)
 		return("0");
+	res[size] = '\0';
 	while (n > 0)
 	{
 		if ((n % base) > 9)

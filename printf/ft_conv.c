@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 00:34:55 by mmartine          #+#    #+#             */
-/*   Updated: 2018/05/18 00:03:56 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/05/24 16:46:18 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,16 @@
 void		ft_conv(t_moche *data)
 {
 	if (data->type == 's')
-	{
 		ft_conv_s(data);
-	}
+	else if (data->type == 'C' || (data->type == 'c' && data->l_mod == 1))
+		ft_conv_majc(data);
 	else if (data->type == 'c' || data->type == '%')
-		ft_conv_c(data);
+		ft_conv_c(data, 0);
 	else if (data->type == 'd' || data->type =='D' || data->type == 'i')
 		ft_conv_di(data);
 	else if (data->type == 'o' || data->type == 'O' || data->type == 'u' || data->type == 'x' || 
 			data->type == 'X' || data->type == 'U')
 		ft_conv_oux(data);
+	else if (data->type == 'p')
+		ft_conv_p(data);
 }

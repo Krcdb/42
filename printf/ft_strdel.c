@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_data_init.c                                     :+:      :+:    :+:   */
+/*   ft_strdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/27 00:35:29 by mmartine          #+#    #+#             */
-/*   Updated: 2018/05/21 12:23:40 by mmartine         ###   ########.fr       */
+/*   Created: 2017/11/09 19:19:07 by mmartine          #+#    #+#             */
+/*   Updated: 2018/05/21 11:35:08 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <string.h>
+#include <stdlib.h>
 
-void	ft_data_init(t_moche *data)
+void	ft_strdel(char **as)
 {
-	data->i_buff = 0;
-	data->ret = 0;
-	data->i_form = 0;
-	data->type = '0';
-	ft_data_reset(data);
+	if (as == NULL)
+		return ;
+	free(*as);
+	*as = NULL;
 }
