@@ -1,36 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_data_reset.c                                    :+:      :+:    :+:   */
+/*   ft_set_flag.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/27 00:35:38 by mmartine          #+#    #+#             */
-/*   Updated: 2018/05/29 14:06:54 by mmartine         ###   ########.fr       */
+/*   Created: 2018/05/29 12:32:21 by mmartine          #+#    #+#             */
+/*   Updated: 2018/05/29 14:13:04 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_data_reset(t_moche *data)
+void		ft_set_flag(t_moche *d)
 {
-	data->type = '0';
-	data->width = 0;
-	data->precision = 0;
-	data->pre_flag = 0;
-	data->h_mod = 0;
-	data->hh_mod = 0;
-	data->l_mod = 0;
-	data->ll_mod = 0;
-	data->j_mod = 0;
-	data->z_mod = 0;
-	data->zero_flag = 0;
-	data->hash_flag = 0;
-	data->plus_flag = 0;
-	data->minus_flag = 0;
-	data->sp_flag = 0;
-	data->pre_flag = 0;
-	data->flag = 0;
-	data->err = 0;
-	data->mod_flag = 0;
+	if (d->minus_flag)
+		d->zero_flag = 0;
+	if (d->plus_flag)
+		d->sp_flag = 0;
 }

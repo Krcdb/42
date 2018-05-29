@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/24 15:14:52 by mmartine          #+#    #+#             */
-/*   Updated: 2018/05/24 16:54:42 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/05/29 14:57:52 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static char	*set_sp(t_moche *d, char *s, int size)
 	while (i < size)
 		tmp[i++] = ' ';
 	if (d->minus_flag)
-		s = ft_strjoinfree(s, tmp, 2);
+		s = ft_strjoinfree(s, tmp, 3);
 	else
-		s = ft_strjoinfree(tmp, s, 1);
+		s = ft_strjoinfree(tmp, s, 3);
 	return (s);
 }
 
@@ -42,7 +42,7 @@ void		ft_conv_majc(t_moche *d)
 	}
 	else
 	{
-		tmp = ft_strnew(4);
+		tmp = ft_strnew(5);
 		tmp = ft_conv_uni(tmp, c);
 		if (ft_strlen(tmp) < d->width)
 			tmp = set_sp(d, tmp, d->width - ft_strlen(tmp));

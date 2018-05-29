@@ -6,7 +6,7 @@
 #    By: mmartine <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/28 16:32:39 by mmartine          #+#    #+#              #
-#    Updated: 2018/05/24 15:47:29 by mmartine         ###   ########.fr        #
+#    Updated: 2018/05/29 12:36:57 by mmartine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRC_FILE = ft_conv.c\
 		   ft_conv_di.c\
 		   ft_conv_p.c\
 		   ft_conv_majc.c\
+		   ft_conv_majs.c\
 		   ft_conv_uni.c\
 		   ft_data_init.c\
 		   ft_data_reset.c\
@@ -48,6 +49,7 @@ SRC_FILE = ft_conv.c\
 		   ft_strdup.c\
 		   ft_intsize_b.c\
 		   ft_toupper.c\
+		   ft_set_flag.c\
 
 
 OBJ = $(SRC_FILE:.c=.o)

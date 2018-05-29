@@ -38,6 +38,7 @@ typedef struct  s_struct
 	int		sp_flag;
 	int		per_flag;
 	int		err;
+	int		mod_flag;
 }			t_moche;
 
 int		ft_printf(const char *format, ...);
@@ -54,6 +55,7 @@ void	ft_conv_oux(t_moche *data);
 void	ft_conv_di(t_moche *data);
 void	ft_conv_p(t_moche *data);
 void	ft_conv_majc(t_moche *data);
+void	ft_conv_majs(t_moche *data);
 char	*ft_conv_uni(char *buff, int c);
 char	*ft_imtoa(intmax_t n);
 size_t	ft_intsize(intmax_t n);
@@ -70,4 +72,5 @@ void	ft_putstr(const char *s);
 void	ft_bzero(void *s, size_t n);
 char	*ft_utoa_b(uintmax_t n, int base);
 char	*ft_toupper(char *s);
+void	ft_set_flag(t_moche *data);
 #endif

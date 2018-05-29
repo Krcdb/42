@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 00:35:09 by mmartine          #+#    #+#             */
-/*   Updated: 2018/05/24 15:46:02 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/05/29 15:11:42 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static char	*ft_set(t_moche *data, char *tmp, char *s, int just)
 		while (*s)
 			*tmp++ = *s++;
 	}
+	*tmp = '\0';
 	return (tmp);
 }
 
@@ -48,6 +49,7 @@ static char	*ft_set_minus(t_moche *data, char *tmp, char *s, int just)
 	}
 	while (just--)
 		*tmp++ = ' ';
+	*tmp = '\0';
 	return (tmp);
 }
 
@@ -75,6 +77,7 @@ static char	*ft_set_width_pre(t_moche *d, char *s)
 		tmp = ft_set_minus(d, tmp, s, just);
 	else
 		tmp = ft_set(d, tmp, s, just);
+	tmp[size] = '\0';
 	return (tmp - size);
 }
 
@@ -87,7 +90,7 @@ void		ft_conv_s(t_moche *data)
 	tmp = va_arg(data->ap, char *);
 	if (tmp == NULL)
 		tmp = "(null)";
-	if (data->pre_flag && data->precision == 0)
+	if ((data->pre_flag && data->precision == 0) || (*tmp == '\0' && data->width))
 	{
 		if (!(tmp = (char*)malloc((sizeof *tmp) * data->width + 1)))
 			return;

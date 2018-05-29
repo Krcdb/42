@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 22:44:29 by mmartine          #+#    #+#             */
-/*   Updated: 2018/05/21 14:01:06 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/05/29 14:59:28 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ static char		*set_pre(t_moche *d, char *s)
 		tmp[0] = '0';
 	}
 	if (d->zero_flag || (ft_strlen(s) < d->precision))
-		tmp = ft_strjoinfree(tmp, set_z(d, s), 0);
-	return (ft_strjoinfree(tmp, s, 0));
+		tmp = ft_strjoinfree(tmp, set_z(d, s), 1);
+	return (ft_strjoinfree(tmp, s, 1));
 }
 
 static char		*set_sp(int size)
@@ -98,9 +98,9 @@ static char		*set(t_moche *d, char *s)
 	{
 		size = d->width - ft_strlen(tmp);
 		if (d->minus_flag)
-			tmp = ft_strjoinfree(tmp, set_sp(size), 0);
+			tmp = ft_strjoinfree(tmp, set_sp(size), 1);
 		else
-			tmp = ft_strjoinfree(set_sp(size), tmp, 0);
+			tmp = ft_strjoinfree(set_sp(size), tmp, 2);
 	}
 	if (d->type == 'X')
 		tmp = ft_toupper(tmp);
