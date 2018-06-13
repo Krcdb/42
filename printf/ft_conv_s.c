@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 00:35:09 by mmartine          #+#    #+#             */
-/*   Updated: 2018/05/29 15:11:42 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/06/13 20:34:04 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char	*ft_set(t_moche *data, char *tmp, char *s, int just)
 		else
 			*tmp++ = ' ';
 	}
-	if (data->precision)
+	if (data->precision && data->precision < ft_strlen(s))
 	{
 		while (data->precision--)
 			*tmp++ = *s++;
@@ -61,8 +61,13 @@ static char	*ft_set_width_pre(t_moche *d, char *s)
 
 	size = 0;
 	just = 0;
-	if (d->width >= ft_strlen(s) && (d->width > d->precision || d->precision > ft_strlen(s)))
+	if (d->width < ft_strlen(s) && d->precision < ft_strlen(s) && d->width > d->precision)
 		size = d->width;
+	else if (d->width >= ft_strlen(s) && (d->width > d->precision || d->precision > ft_strlen(s)))
+		size = d->width;
+	else if ((!d->width && d->pre_flag && d->precision > ft_strlen(s)) || 
+			(d->width < d->precision && d->width < ft_strlen(s) && d->precision > ft_strlen(s)))
+		size = ft_strlen(s);
 	else if (d->pre_flag)
 		size = d->precision;
 	else
@@ -70,6 +75,8 @@ static char	*ft_set_width_pre(t_moche *d, char *s)
 	if (!(tmp = (char*)malloc((sizeof *tmp) * size + 1)))
 		return (NULL);
 	if (d->width >= ft_strlen(s) && d->pre_flag && d->precision < ft_strlen(s))
+		just = d->width - d->precision;
+	else if (d->width < ft_strlen(s) && d->precision < ft_strlen(s) && d->width > d->precision)
 		just = d->width - d->precision;
 	else if (d->width > ft_strlen(s))
 		just = d->width - ft_strlen(s);
