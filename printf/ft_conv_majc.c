@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/24 15:14:52 by mmartine          #+#    #+#             */
-/*   Updated: 2018/06/13 19:07:02 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/09/29 01:45:13 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ void		ft_conv_majc(t_moche *d)
 		if (ft_strlen(tmp) < d->width)
 			tmp = set_sp(d, tmp, d->width - ft_strlen(tmp));
 		ft_put_conv(d, tmp);
+		ft_strdel(&tmp);
 	}
 }

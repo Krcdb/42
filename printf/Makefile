@@ -6,7 +6,7 @@
 #    By: mmartine <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/28 16:32:39 by mmartine          #+#    #+#              #
-#    Updated: 2018/05/29 12:36:57 by mmartine         ###   ########.fr        #
+#    Updated: 2018/09/28 23:54:12 by mmartine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,8 @@ SRC_FILE = ft_conv.c\
 		   ft_printf.c\
 		   ft_atoi.c\
 		   ft_strdel.c\
+		   ft_strcpy.c\
+		   ft_strcat.c\
 		   ft_strlen.c\
 		   ft_strchr.c\
 		   ft_strjoinfree.c\

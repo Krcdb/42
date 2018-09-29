@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/13 00:42:58 by mmartine          #+#    #+#             */
-/*   Updated: 2018/06/13 19:15:25 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/09/29 02:32:57 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,10 @@ static char	*set_pre(t_moche *d, char *s)
 			tmp[0] = ' ';
 	}
 	if (d->zero_flag || (ft_strlen(s) < d->precision))
-		tmp = ft_strjoinfree(tmp, set_z(d, s, neg), 1);
+	{
+		char *tpz = set_z(d, s, neg);
+		tmp = ft_strjoinfree(tmp, tpz , 1);
+	}
 	return (ft_strjoinfree(tmp, s, 1));
 }
 
@@ -86,10 +89,11 @@ static char	*set(t_moche *d, char *s)
 	{
 		size = d->width - ft_strlen(tmp);
 		if (d->minus_flag)
-			tmp = ft_strjoinfree(tmp, set_sp(size), 1);
+			tmp = ft_strjoinfree(tmp, set_sp(size), 3);
 		else
-			tmp = ft_strjoinfree(set_sp(size), tmp, 2);
+			tmp = ft_strjoinfree(set_sp(size), tmp, 3);
 	}
+	ft_strdel(&s);
 	return (tmp);
 }
 			 
@@ -109,9 +113,9 @@ void		ft_conv_di(t_moche *d)
 		tmp = ft_imtoa((short)va_arg(d->ap, int));
 	else if (d->hh_mod)
 		tmp = ft_imtoa((char)va_arg(d->ap, int));
-
 	else
 		tmp = ft_imtoa(va_arg(d->ap, int));
 	tmp = set(d, tmp);
 	ft_put_conv(d, tmp);
+	ft_strdel(&tmp);
 }

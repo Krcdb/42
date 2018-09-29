@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 22:44:29 by mmartine          #+#    #+#             */
-/*   Updated: 2018/06/13 19:33:34 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/09/29 02:39:21 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,4 +130,5 @@ void			ft_conv_oux(t_moche *d)
 		tmp = ft_utoa_b(va_arg(d->ap, unsigned int), base);
 	tmp = set(d, tmp);
 	ft_put_conv(d, tmp);
+	ft_strdel(&tmp);
 }

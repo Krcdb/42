@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 10:35:38 by mmartine          #+#    #+#             */
-/*   Updated: 2018/05/21 11:52:40 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/09/29 02:29:47 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static char	*set(t_moche *d, char *s)
 	int		size;
 
 	size = 0;
-	tmp = ft_strjoinfree("0x", s, 0);
+	tmp = ft_strjoinfree("0x", s, 2);
 	if (ft_strlen(tmp) < d->width)
 	{
 		size = d->width - ft_strlen(tmp);
@@ -49,4 +49,5 @@ void		ft_conv_p(t_moche *d)
 	tmp = ft_utoa_b(va_arg(d->ap, unsigned long int), 16);
 	tmp = set(d, tmp);
 	ft_put_conv(d, tmp);
+	ft_strdel(&tmp);
 }

@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdel.c                                        :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/09 19:19:07 by mmartine          #+#    #+#             */
-/*   Updated: 2018/09/28 21:32:24 by mmartine         ###   ########.fr       */
+/*   Created: 2017/11/08 19:50:06 by mmartine          #+#    #+#             */
+/*   Updated: 2018/09/29 00:44:39 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <stdlib.h>
-
-void	ft_strdel(char **as)
+char	*ft_strcat(char *s1, const char *s2)
 {
-	if (as == NULL)
-		return ;
-	free(*as);
-	*as = NULL;
+	int len;
+
+	len = 0;
+	while (*s1 != '\0')
+	{
+		s1++;
+		len++;
+	}
+	while (*s2 != '\0')
+	{
+		*s1++ = *s2++;
+		len++;
+	}
+	*s1 = '\0';
+	s1 -= len;
+	return (s1);
 }
