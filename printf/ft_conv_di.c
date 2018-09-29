@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/13 00:42:58 by mmartine          #+#    #+#             */
-/*   Updated: 2018/09/29 02:32:57 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/09/30 00:53:00 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@ static char *set_z(t_moche *d, char *s, int neg)
 	else if (d->zero_flag && d->width)
 		size = d->width - ft_strlen(s) - d->sp_flag - d->plus_flag - neg;
 	if (size < 1)
-		return ("");
-	tmp = ft_strnew(size);
+		return (ft_strdup(""));
+	if (!(tmp = (char*)malloc(sizeof(*tmp) * (size + 1))))
+		return (NULL);
 	while (i < size)
 		tmp[i++] = '0';
 	return (tmp);
@@ -54,10 +55,7 @@ static char	*set_pre(t_moche *d, char *s)
 			tmp[0] = ' ';
 	}
 	if (d->zero_flag || (ft_strlen(s) < d->precision))
-	{
-		char *tpz = set_z(d, s, neg);
-		tmp = ft_strjoinfree(tmp, tpz , 1);
-	}
+		tmp = ft_strjoinfree(tmp, set_z(d, s, neg), 3);
 	return (ft_strjoinfree(tmp, s, 1));
 }
 

@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/24 15:14:52 by mmartine          #+#    #+#             */
-/*   Updated: 2018/09/29 01:45:13 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/09/30 01:02:35 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static char	*set_sp(t_moche *d, char *s, int size)
 	while (i < size)
 		tmp[i++] = ' ';
 	if (d->minus_flag)
-		s = ft_strjoinfree(s, tmp, 0);
+		s = ft_strjoinfree(s, tmp, 2);
 	else
-		s = ft_strjoinfree(tmp, s, 0);
+		s = ft_strjoinfree(tmp, s, 1);
 	return (s);
 }
 

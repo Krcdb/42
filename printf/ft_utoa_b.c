@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 21:11:30 by mmartine          #+#    #+#             */
-/*   Updated: 2018/09/29 02:38:38 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/09/29 23:58:13 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,13 @@ char		*ft_utoa_b(uintmax_t n, int base)
 	char	*res;
 
 	size = ft_intsize_b(n, base);
-	if (!(res = (char*)malloc((sizeof *res) * size + 1)))
+	if (!(res = (char*)malloc(sizeof (*res) * size + 1)))
 		return (NULL);
 	if (n == 0)
-		return("0");
+	{
+		*res = '0';
+		return(res);
+	}
 	res[size] = '\0';
 	while (n > 0)
 	{

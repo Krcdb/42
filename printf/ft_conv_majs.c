@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 10:10:29 by mmartine          #+#    #+#             */
-/*   Updated: 2018/09/29 01:45:44 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/09/30 01:48:40 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static char	*set(t_moche *d, int *s)
 		buff = ft_strnew(5);
 		buff = ft_conv_uni(buff, *s);
 		size += ft_strlen(buff);
-		tmp = ft_strjoinfree(tmp, buff, 0);
+		tmp = ft_strjoinfree(tmp, buff, 3);
 		s++;
 	}
 	return (tmp);
@@ -41,8 +41,9 @@ void		ft_conv_majs(t_moche *d)
 
 	tmp = va_arg(d->ap, int*);
 	if (tmp == 0)
-		ret = "(null)";
+		ret = ft_strdup("(null)");
 	else
 		ret = set(d, tmp);
 	ft_put_conv(d, ret);
+	ft_strdel(&ret);
 }

@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 00:35:09 by mmartine          #+#    #+#             */
-/*   Updated: 2018/09/28 23:39:31 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/09/30 00:56:17 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,5 @@ void		ft_conv_s(t_moche *data)
 	else
 		tmp = ft_set_width_pre(data, tmp);
 	ft_put_conv(data, tmp);
+	ft_strdel(&tmp);
 }

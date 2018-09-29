@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 22:44:29 by mmartine          #+#    #+#             */
-/*   Updated: 2018/09/29 02:39:21 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/09/30 00:17:13 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,9 @@ static char		*set(t_moche *d, char *s)
 {
 	int		size;
 	char	*tmp;
-	
+
 	tmp = set_pre(d, s);
-	if (tmp[0] == '0' && ft_strlen(tmp) == 1 && d->pre_flag)
+	if (tmp[0] == '0' && ((ft_strlen(tmp) == 1 && d->pre_flag) || (d->precision == 0 && d->pre_flag)))
 		tmp[0] = '\0';
 	else if (s[0] == '0' && d->precision == 0 && d->pre_flag && (d->type == 'x' || d->type == 'X'))
 		tmp[0] = '\0';
@@ -104,6 +104,7 @@ static char		*set(t_moche *d, char *s)
 	}
 	if (d->type == 'X')
 		tmp = ft_toupper(tmp);
+	ft_strdel(&s);
 	return (tmp);
 }
 
