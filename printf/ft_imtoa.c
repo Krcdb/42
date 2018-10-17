@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 00:35:56 by mmartine          #+#    #+#             */
-/*   Updated: 2018/09/29 23:55:41 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/10/02 14:56:26 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char		*ft_imtoa(intmax_t n)
 		n *= -1;
 		neg = 1;
 	}
-	if (!(res = (char*)malloc((sizeof *res) * size + 1)))
+	if (!(res = (char*)malloc((sizeof(*res) * size + 1))))
 		return (NULL);
 	res[size] = '\0';
 	while (size)

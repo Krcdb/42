@@ -6,13 +6,13 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 10:35:38 by mmartine          #+#    #+#             */
-/*   Updated: 2018/09/29 02:29:47 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/10/17 18:07:03 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char		*set_sp(int size)
+static char	*set_sp(int size)
 {
 	char	*tmp;
 	int		i;

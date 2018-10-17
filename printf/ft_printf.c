@@ -6,13 +6,13 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 00:33:56 by mmartine          #+#    #+#             */
-/*   Updated: 2018/09/28 22:05:47 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/10/02 14:15:59 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_printf(const char *form, ...)
+int		ft_printf(const char *form, ...)
 {
 	t_moche	data;
 
@@ -23,13 +23,13 @@ int ft_printf(const char *form, ...)
 		if (data.i_buff >= BUFF_SIZE - 1)
 			ft_print_buff(&data);
 		else if (form[data.i_form] != '%')
-			ft_putchar_buff(&data, form);		
+			ft_putchar_buff(&data, form);
 		else if (form[data.i_form] == '%' && form[data.i_form + 1] == '%')
 		{
 			data.i_form++;
 			ft_putchar_buff(&data, form);
 		}
-		else if(form[data.i_form] == '%')
+		else if (form[data.i_form] == '%')
 			ft_parse(&data, form);
 		if (data.err)
 			return (-1);

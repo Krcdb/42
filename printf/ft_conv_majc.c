@@ -6,11 +6,12 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/24 15:14:52 by mmartine          #+#    #+#             */
-/*   Updated: 2018/09/30 01:02:35 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/10/02 15:04:22 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
 static char	*set_sp(t_moche *d, char *s, int size)
 {
 	char	*tmp;

@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 20:43:17 by mmartine          #+#    #+#             */
-/*   Updated: 2018/09/29 01:51:54 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/10/02 12:08:03 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,4 @@ char		*ft_strjoinfree(char *s1, char *s2, int n)
 		ft_strdel(&s2);
 	}
 	return (ret);
-}	
+}

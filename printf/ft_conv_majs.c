@@ -6,14 +6,13 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 10:10:29 by mmartine          #+#    #+#             */
-/*   Updated: 2018/09/30 01:48:40 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/10/02 12:05:33 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-
-static char	*set(t_moche *d, int *s)
+static char		*set(t_moche *d, int *s)
 {
 	char	*tmp;
 	char	*buff;
@@ -33,8 +32,7 @@ static char	*set(t_moche *d, int *s)
 	return (tmp);
 }
 
-
-void		ft_conv_majs(t_moche *d)
+void			ft_conv_majs(t_moche *d)
 {
 	int		*tmp;
 	char	*ret;

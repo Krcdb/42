@@ -6,13 +6,13 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/13 00:42:58 by mmartine          #+#    #+#             */
-/*   Updated: 2018/09/30 00:53:00 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/10/02 15:00:49 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char *set_z(t_moche *d, char *s, int neg)
+static char	*set_z(t_moche *d, char *s, int neg)
 {
 	char	*tmp;
 	int		size;
@@ -80,7 +80,7 @@ static char	*set(t_moche *d, char *s)
 	tmp = set_pre(d, s);
 	if (tmp[0] == '0' && ft_strlen(tmp) == 1 && d->pre_flag)
 		tmp[0] = '\0';
-	else if ((tmp[0] == ' ' || tmp[0] == '+') && tmp[1] == '0' 
+	else if ((tmp[0] == ' ' || tmp[0] == '+') && tmp[1] == '0'
 			&& ft_strlen(tmp) == 2 && d->pre_flag)
 		tmp[1] = '\0';
 	if (ft_strlen(tmp) < d->width)
@@ -94,7 +94,7 @@ static char	*set(t_moche *d, char *s)
 	ft_strdel(&s);
 	return (tmp);
 }
-			 
+
 void		ft_conv_di(t_moche *d)
 {
 	char *tmp;

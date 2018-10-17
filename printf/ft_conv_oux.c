@@ -6,20 +6,11 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 22:44:29 by mmartine          #+#    #+#             */
-/*   Updated: 2018/09/30 00:17:13 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/10/17 21:55:38 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-static int		setbase(t_moche *d)
-{
-	if (d->type == 'o' || d->type == 'O')
-		return (8);
-	else if (d->type == 'x' || d->type == 'X')
-		return (16);
-	return (10);
-}
 
 static char		*set_z(t_moche *d, char *s)
 {
@@ -84,16 +75,7 @@ static char		*set(t_moche *d, char *s)
 	char	*tmp;
 
 	tmp = set_pre(d, s);
-	if (tmp[0] == '0' && ((ft_strlen(tmp) == 1 && d->pre_flag) || (d->precision == 0 && d->pre_flag)))
-		tmp[0] = '\0';
-	else if (s[0] == '0' && d->precision == 0 && d->pre_flag && (d->type == 'x' || d->type == 'X'))
-		tmp[0] = '\0';
-	else if (tmp[0] == '0' && tmp[1] == '0' && ft_strlen(tmp) == 2 && d->hash_flag && d->precision != 1)
-		tmp[1] = '\0';
-	else if (tmp[0] == '0' && tmp[1] == 'x' && s[0] == '0' && !d->width)
-		tmp[1] = '\0';
-	else if (tmp[0] == '0' && tmp[1] == 'x' && s[0] == '0' && d->width)
-		tmp[1] = '0';
+	tmp = ft_set_oux_norm(d, s, tmp);
 	if (ft_strlen(tmp) < d->width)
 	{
 		size = d->width - ft_strlen(tmp);
@@ -108,12 +90,11 @@ static char		*set(t_moche *d, char *s)
 	return (tmp);
 }
 
-
 void			ft_conv_oux(t_moche *d)
 {
 	int		base;
 	char	*tmp;
-	
+
 	base = setbase(d);
 	if (d->hh_mod && d->type != 'O' && d->type != 'U')
 		tmp = ft_utoa_b((unsigned char)va_arg(d->ap, unsigned int), base);
@@ -131,5 +112,6 @@ void			ft_conv_oux(t_moche *d)
 		tmp = ft_utoa_b(va_arg(d->ap, unsigned int), base);
 	tmp = set(d, tmp);
 	ft_put_conv(d, tmp);
+	ft_bzero(tmp, ft_strlen(tmp));
 	ft_strdel(&tmp);
 }

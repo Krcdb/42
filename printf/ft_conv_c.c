@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 00:35:01 by mmartine          #+#    #+#             */
-/*   Updated: 2018/06/13 19:04:12 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/10/02 15:16:21 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,28 +66,19 @@ void		ft_conv_c(t_moche *data, int n)
 {
 	char	*tmp;
 	char	c;
-	
+
 	if (data->type == 'c')
 		c = va_arg(data->ap, int);
 	else if (n == 1)
 		c = 0;
 	else
 		c = '%';
-	if (data->width <= 1 && c != '\0')
+	if (ft_conv_c_norm(data, c))
+		n = 1 - 1;
+	else
 	{
-		data->buff[data->i_buff++] = c;
-		data->ret++;
-	}
-	else if ((c == '\0' || c == 0) && data->width <= 1)
-	{
-		ft_print_buff(data);
-		write(1, "\0", 1);
-		data->ret++;
-	}
-	else 
-	{
-		if (!(tmp = (char*)malloc((sizeof *tmp) * data->width)))
-			return;
+		if (!(tmp = (char*)malloc((sizeof(*tmp) * data->width))))
+			return ;
 		if (c == '\0' || c == 0)
 			set_c(data, tmp);
 		else

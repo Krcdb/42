@@ -6,7 +6,7 @@
 #    By: mmartine <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/28 16:32:39 by mmartine          #+#    #+#              #
-#    Updated: 2018/09/28 23:54:12 by mmartine         ###   ########.fr        #
+#    Updated: 2018/10/17 21:37:39 by mmartine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRC_FILE = ft_conv.c\
 		   ft_conv_s.c\
 		   ft_conv_oux.c\
 		   ft_conv_di.c\
+		   ft_norm.c\
 		   ft_conv_p.c\
 		   ft_conv_majc.c\
 		   ft_conv_majs.c\
@@ -63,10 +64,10 @@ $(NAME): $(OBJ)
 	ranlib $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 re: fclean all

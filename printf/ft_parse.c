@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 00:31:28 by mmartine          #+#    #+#             */
-/*   Updated: 2018/09/28 22:06:11 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/10/02 14:33:18 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,26 +66,8 @@ int		ft_check_pre(t_moche *data, const char *form)
 
 int		ft_check_mod(t_moche *data, const char *form)
 {
-	if (form[data->i_form] == 'h')
-	{
-		if (form[data->i_form + 1] == 'h')
-		{
-			data->hh_mod = 1;
-			data->i_form++;
-		}
-		else
-			data->h_mod = 1;
-	}
-	else if (form[data->i_form] == 'l')
-	{
-		if (form[data->i_form + 1] == 'l')
-		{
-			data->ll_mod = 1;
-			data->i_form++;
-		}
-		else
-			data->l_mod = 1;
-	}
+	if (ft_check_mod_norm(data, form))
+		data->flag = 1 - 1;
 	else if (form[data->i_form] == 'j')
 		data->j_mod = 1;
 	else if (form[data->i_form] == 'z')
@@ -97,7 +79,6 @@ int		ft_check_mod(t_moche *data, const char *form)
 	data->flag = 1;
 	return (1);
 }
-	
 
 void	ft_parse(t_moche *data, const char *form)
 {
@@ -119,7 +100,7 @@ void	ft_parse(t_moche *data, const char *form)
 			data->i_form++;
 		}
 		else
-			break;
+			break ;
 	}
 	ft_conv(data);
 }
