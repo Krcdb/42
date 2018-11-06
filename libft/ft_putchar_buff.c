@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_putchar_buff.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/08 18:23:50 by mmartine          #+#    #+#             */
-/*   Updated: 2018/09/13 21:01:55 by mmartine         ###   ########.fr       */
+/*   Created: 2018/03/27 01:01:03 by mmartine          #+#    #+#             */
+/*   Updated: 2018/11/06 19:18:14 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "string.h"
+#include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	ft_putchar_buff(t_moche *data, const char *form)
 {
-	size_t		i;
-	char		*d;
-	const char	*s;
-
-	d = dst;
-	s = src;
-	i = 0;
-	while (i < n)
+	if (data->i_buff >= BUFF_SIZE)
 	{
-		d[i] = s[i];
-		i++;
+		ft_print_buff(data);
+		ft_bzero(data->buff, BUFF_SIZE);
+		data->i_buff = 0;
 	}
-	return (dst);
+	data->buff[data->i_buff] = form[data->i_form];
+	data->i_buff++;
+	data->i_form++;
+	data->ret++;
 }

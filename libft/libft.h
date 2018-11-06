@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 14:54:38 by mmartine          #+#    #+#             */
-/*   Updated: 2018/03/27 00:43:21 by mmartine         ###   ########.fr       */
+/*   Updated: 2018/11/06 19:13:54 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
+# include <stdlib.h>
+# include <stdint.h>
+# include <ctype.h>
+# include <limits.h>
+
+# define BUFF_SIZE 4096
 
 typedef struct		s_list
 {
@@ -23,7 +30,65 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
+typedef struct	s_struct
+{
+	char		buff[BUFF_SIZE];
+	int			i_buff;
+	int			ret;
+	int			i_form;
+	char		type;
+	va_list		ap;
+
+	size_t		width;
+	size_t		precision;
+	int			flag;
+	int			pre_flag;
+	int			h_mod;
+	int			hh_mod;
+	int			l_mod;
+	int			ll_mod;
+	int			j_mod;
+	int			z_mod;
+	int			zero_flag;
+	int			hash_flag;
+	int			plus_flag;
+	int			minus_flag;
+	int			sp_flag;
+	int			per_flag;
+	int			err;
+	int			mod_flag;
+}				t_moche;
+
+void			ft_conv(t_moche *data);
+char			*ft_strjoinfree(char *s1, char *s2, int n);
+void			ft_conv_s(t_moche *data);
+void			ft_conv_c(t_moche *data, int n);
+void			ft_conv_oux(t_moche *data);
+void			ft_conv_di(t_moche *data);
+void			ft_conv_p(t_moche *data);
+void			ft_conv_majc(t_moche *data);
+void			ft_conv_majs(t_moche *data);
+char			*ft_conv_uni(char *buff, int c);
+int				ft_conv_c_norm(t_moche *d, char c);
+int				ft_printf(const char *format, ...);
+void			ft_parse(t_moche *data, const char *form);
+void			ft_putchar_buff(t_moche *data, const char *form);
+void			ft_put_conv(t_moche *data, char *s);
+void			ft_print_buff(t_moche *data);
+void			ft_set_flag(t_moche *data);
 void				ft_bzero(void *s, size_t n);
+void			ft_data_init(t_moche *data);
+void			ft_data_reset(t_moche *data);
+char			*ft_imtoa(intmax_t n);
+char			*ft_utoa_b(uintmax_t n, int base);
+size_t			ft_intsize(intmax_t n);
+size_t			ft_intsize_b(uintmax_t n, int base);
+int				ft_conv_c_norm(t_moche *d, char c);
+int				setbase(t_moche *d);
+int				ft_set_width_pre_s_norm(t_moche *d, char *s);
+char			*ft_set_oux_norm(t_moche *data, char *s, char *tmp);
+int				ft_check_mod_norm(t_moche *data, const char *form);
+int				ft_printf(const char *format, ...);
 void				*ft_memccpy(void *dst, const void *src, int c, size_t n);
 void				*ft_memchr(const void *s, int c, size_t n);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
@@ -50,7 +115,7 @@ int					ft_isdigit(int c);
 int					ft_isalnum(int c);
 int					ft_isascii(int c);
 int					ft_isprint(int c);
-int					ft_toupper(int c);
+char				*ft_toupper(char *c);
 int					ft_tolower(int c);
 void				*ft_memalloc(size_t size);
 void				ft_memdel(void **ap);

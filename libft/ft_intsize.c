@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_intsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/08 18:23:50 by mmartine          #+#    #+#             */
-/*   Updated: 2018/09/13 21:01:55 by mmartine         ###   ########.fr       */
+/*   Created: 2018/03/27 00:36:51 by mmartine          #+#    #+#             */
+/*   Updated: 2018/11/06 19:15:37 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "string.h"
+#include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+size_t		ft_intsize(intmax_t n)
 {
-	size_t		i;
-	char		*d;
-	const char	*s;
+	size_t size;
 
-	d = dst;
-	s = src;
-	i = 0;
-	while (i < n)
+	size = 0;
+	if (n == 0)
+		return (1);
+	if (n < 0)
+		size++;
+	while (n != 0)
 	{
-		d[i] = s[i];
-		i++;
+		size++;
+		n /= 10;
 	}
-	return (dst);
+	return (size);
 }

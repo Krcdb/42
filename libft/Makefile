@@ -6,7 +6,7 @@
 #    By: mmartine <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/11 00:07:32 by mmartine          #+#    #+#              #
-#    Updated: 2017/11/18 01:22:39 by mmartine         ###   ########.fr        #
+#    Updated: 2018/11/06 19:20:36 by mmartine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,6 +83,28 @@ SRC_FILE=	ft_atoi.c\
 			ft_puttab.c\
 			ft_sqrt.c\
 			ft_lstlen.c\
+			ft_conv_c.c\
+			ft_conv_s.c\
+			ft_conv_oux.c\
+			ft_conv_di.c\
+			ft_norm.c\
+			ft_conv_p.c\
+			ft_conv_majc.c\
+			ft_conv_majs.c\
+			ft_conv_uni.c\
+			ft_intsize.c\
+			ft_intsize_b.c\
+			ft_utoa_b.c\
+			ft_imtoa.c\
+			ft_data_init.c\
+			ft_data_reset.c\
+			ft_strjoinfree.c\
+			ft_printf.c\
+			ft_parse.c\
+			ft_print_buff.c\
+			ft_putchar_buff.c\
+			ft_put_conv.c\
+			ft_set_flag.c\
 
 OBJ=	$(SRC_FILE:.c=.o)
 
@@ -93,10 +115,10 @@ $(NAME): $(OBJ)
 	ranlib $(NAME)
 
 %.o: %.c
-	$(CC) -c $(CFLAGS) $< -o $@
+	@$(CC) -c $(CFLAGS) $< -o $@
 
 clean:
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 re: fclean all

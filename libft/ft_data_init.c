@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_data_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/08 18:23:50 by mmartine          #+#    #+#             */
-/*   Updated: 2018/09/13 21:01:55 by mmartine         ###   ########.fr       */
+/*   Created: 2018/03/27 00:35:29 by mmartine          #+#    #+#             */
+/*   Updated: 2018/11/06 19:16:40 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "string.h"
+#include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	ft_data_init(t_moche *data)
 {
-	size_t		i;
-	char		*d;
-	const char	*s;
-
-	d = dst;
-	s = src;
-	i = 0;
-	while (i < n)
-	{
-		d[i] = s[i];
-		i++;
-	}
-	return (dst);
+	data->i_buff = 0;
+	data->ret = 0;
+	data->i_form = 0;
+	data->type = '0';
+	ft_data_reset(data);
 }

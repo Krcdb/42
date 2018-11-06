@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_data_reset.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/09 20:43:17 by mmartine          #+#    #+#             */
-/*   Updated: 2018/05/09 01:45:22 by mmartine         ###   ########.fr       */
+/*   Created: 2018/03/27 00:35:38 by mmartine          #+#    #+#             */
+/*   Updated: 2018/11/06 19:16:56 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-char	*ft_strjoin(const char *s1, const char *s2)
+void	ft_data_reset(t_moche *data)
 {
-	char	*fresh;
-	int		len;
-
-	if (s1 == NULL || s2 == NULL)
-		return (NULL);
-	len = ft_strlen(s1) + ft_strlen(s2);
-	if (!(fresh = (char*)malloc(sizeof(*fresh) * (len + 1))))
-		return (NULL);
-	while (*s1)
-		*fresh++ = *s1++;
-	while (*s2)
-		*fresh++ = *s2++;
-	*fresh = '\0';
-	fresh -= len;
-	return (fresh);
+	data->type = '0';
+	data->width = 0;
+	data->precision = 0;
+	data->pre_flag = 0;
+	data->h_mod = 0;
+	data->hh_mod = 0;
+	data->l_mod = 0;
+	data->ll_mod = 0;
+	data->j_mod = 0;
+	data->z_mod = 0;
+	data->zero_flag = 0;
+	data->hash_flag = 0;
+	data->plus_flag = 0;
+	data->minus_flag = 0;
+	data->sp_flag = 0;
+	data->pre_flag = 0;
+	data->flag = 0;
+	data->err = 0;
+	data->mod_flag = 0;
 }

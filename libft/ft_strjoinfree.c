@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strjoinfree.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/08 18:23:50 by mmartine          #+#    #+#             */
-/*   Updated: 2018/09/13 21:01:55 by mmartine         ###   ########.fr       */
+/*   Created: 2017/11/09 20:43:17 by mmartine          #+#    #+#             */
+/*   Updated: 2018/11/06 19:17:12 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "string.h"
+#include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+char		*ft_strjoinfree(char *s1, char *s2, int n)
 {
-	size_t		i;
-	char		*d;
-	const char	*s;
+	char	*ret;
+	size_t	len;
 
-	d = dst;
-	s = src;
-	i = 0;
-	while (i < n)
+	len = ft_strlen(s1) + ft_strlen(s2);
+	ret = (char*)malloc(sizeof(char) * len + 1);
+	if (!ret)
+		return (NULL);
+	ret = ft_strcpy(ret, s1);
+	ret = ft_strcat(ret, s2);
+	if (n == 1)
+		ft_strdel(&s1);
+	else if (n == 2)
+		ft_strdel(&s2);
+	else if (n == 3)
 	{
-		d[i] = s[i];
-		i++;
+		ft_strdel(&s1);
+		ft_strdel(&s2);
 	}
-	return (dst);
+	return (ret);
 }
