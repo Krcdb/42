@@ -75,6 +75,8 @@ t_maplist	*newlst(const char *content, size_t content_size);
 void		lstaddend(t_maplist **hlst, t_maplist *nlst);
 void		lstdel(t_maplist **hlst);
 size_t		get_longest_line(t_maplist *hlst);
+size_t		get_nb_line(t_maplist *hlst);
 void		print_lst(t_maplist *mlst);
+char		*cpy_lst_to_map(char *dst, const char *src);
 
 #endif

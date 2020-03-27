@@ -1,5 +1,15 @@
 #include "../includes/cub3d.h"
 
+char		*cpy_lst_to_map(char *dst, const char *src)
+{
+	char *d;
+
+	d = dst;
+	while (*src != '\0')
+		*d++ = *src++;
+	return (dst);
+}
+
 int			is_map_char(char c)
 {
 	if (c == ' ' || c == '0' || c == '1' || c == '2' || c == 'N' || c == 'S' ||

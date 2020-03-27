@@ -158,6 +158,7 @@ char				**ft_sort_tab(char **tab);
 int					ft_sqrt(int nb);
 void				ft_putnbr_endl(int nbr);
 size_t				ft_lstlen(t_list *lst);
-int				get_next_line(const int fd, char **line);
+int					get_next_line(const int fd, char **line);
+char				*ft_strallocset(char c, size_t size);
 
 #endif

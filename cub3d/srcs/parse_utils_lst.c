@@ -46,6 +46,20 @@ void			lstaddend(t_maplist **hlst, t_maplist *nlst)
 	tmp->next = nlst;
 }
 
+size_t			get_nb_line(t_maplist *hlst)
+{
+	size_t		res;
+
+	res = 0;
+	while (hlst->next)
+	{
+		res++;
+		hlst = hlst->next;
+	}
+	res++;
+	return (res);
+}
+
 size_t			get_longest_line(t_maplist *hlst)
 {
 	size_t		res;
@@ -57,6 +71,8 @@ size_t			get_longest_line(t_maplist *hlst)
 			res = hlst->content_size;
 		hlst = hlst->next;
 	}
+	if (res < hlst->content_size)
+		res = hlst->content_size;
 	return (res);
 }
 

@@ -107,6 +107,7 @@ SRC_FILE=		get_next_line.c\
 			ft_putchar_buff.c\
 			ft_put_conv.c\
 			ft_set_flag.c\
+			ft_strallocset.c\
 
 OBJ=	$(SRC_FILE:.c=.o)
 
