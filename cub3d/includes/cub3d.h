@@ -24,6 +24,7 @@ typedef struct s_error
 	int	e_fd;
 	int	e_file;
 	int	e_map;
+	int	e_memory;
 }				t_error;
 
 
@@ -38,6 +39,8 @@ typedef struct	s_data
 	char	*east_path;
 	char	*sprite_path;
 	char    **map;
+	size_t	map_x;
+	size_t	map_y;
 	int		f_color;
 	int		c_color;
 }				t_data;
@@ -52,11 +55,11 @@ typedef struct	s_parse
 	int	ea_t;
 	int	s_t;
 	int	m_found;
-	int	m_finished;
 	int	m_ok;
 	int	f_color;
 	int	c_color;
 	int fd;
+	int	player;
 }				t_parse;
 
 void		parse(t_data *d, char *path);

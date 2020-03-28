@@ -10,21 +10,15 @@ static void	init_parse(t_parse *p)
 	p->we_t = 0;
 	p->ea_t = 0;
 	p->s_t = 0;
-	p->m_found = 0;
-	p->m_finished = 0;
 	p->m_ok = 0;
 	p->f_color = 0;
 	p->c_color = 0;
+	p->player = 0;
 }
 
 static void		parse_line(t_data *d, t_parse *p, char *line)
 {
-	if (p->m_found)
-	{
-		p->error = 1;
-		d->error.e_file = 1;
-	}
-	else if (line[0] == 'R' && line[1] == ' ')
+	if (line[0] == 'R' && line[1] == ' ')
 		parse_res(d, p, line);
 	else if (line[0] == 'N' && line[1] == 'O' && line[2] == ' ')
 		parse_no_texture(d, p, line);

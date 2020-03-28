@@ -13,6 +13,7 @@ static void		init_error(t_data *d)
 	d->error.e_fd = 0;
 	d->error.e_file = 0;
 	d->error.e_map = 0;
+	d->error.e_memory = 0;
 }
 
 static void		data_display(t_data *d)
@@ -79,6 +80,9 @@ static void		init_data(t_data *d)
 	d->west_path = NULL;
 	d->east_path = NULL;
 	d->sprite_path = NULL;
+	d->map = NULL;
+	d->map_x = 0;
+	d->map_y = 0;
 }
 
 int	main(int ac, char **av)
