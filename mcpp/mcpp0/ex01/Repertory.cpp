@@ -12,7 +12,7 @@ Repertory::~Repertory()
 void	Repertory::add_contact()
 {
 	if (this->amount == 8)
-		std::cout << "-> The repertory is full\n";
+		std::cout << "# The repertory is full\n";
 	else
 	{
 		if (this->contact[this->amount].set_information(this->amount + 1))
@@ -36,27 +36,24 @@ void	Repertory::display_search_header()
 
 void	Repertory::search_contact()
 {
-	int		index;
-	bool	input_ok = false;
+	int				index;
 
 	if (!this->amount)
-		std::cout << "-> The repertory is empty !\n";
+		std::cout << "# The repertory is empty !\n";
 	else
 	{
 		this->display_search_header();
-		std::cout << "-> Enter the index associate to the contact you want to display\n";
-		std::cout << "-> 0 to exit\n";
-		while (!input_ok)
+		std::cout << "# Enter the index associate to the contact you want to display\n";
+		std::cout << "# 0 to exit\n>";
+		while (!(std::cin >> index) || (index < 0 || index > this->amount))
 		{
 			std::cin.clear();
-			std::getline(std::cin, index);
-			if (index < 0 || index > this->amount)
-				std::cout << "-> Invalid input!\n";
-			else
-				input_ok = true;
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			std::cout << "# Invalid Index\n>";
 		}
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		if (index == 0)
-			std::cout << "-> Exit search\n";
+			std::cout << "# Exit search\n";
 		else
 			this->contact[index - 1].display_contact();
 	}

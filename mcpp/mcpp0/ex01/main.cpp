@@ -6,8 +6,8 @@ int			main(void)
 	bool			run = true;
 	std::string		input;
 
-	std::cout << "-> New repertory created\n";
-	std::cout << "-> Enter cmd : [ADD, SEARCH, EXIT]:\n";
+	std::cout << "# New repertory created\n";
+	std::cout << "# Enter cmd : [ADD, SEARCH, EXIT]:\n";
 	while (run)
 	{
 		std::cout << ">";
@@ -19,8 +19,8 @@ int			main(void)
 		else if (input == "EXIT")
 			run = false;
 		else
-			std::cout << "This command is not valid\n";
+			std::cout << "# This command is not valid. [ADD, SEARCH, EXIT]\n";
 	}
-	std::cout << "-> Closing the repertory\n";
+	std::cout << "# Closing the repertory\n";
 	return (0);
 }

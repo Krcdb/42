@@ -28,22 +28,22 @@ bool	Contact::set_information(int index)
 {
 	this->index = index;
 
-	std::cout << " -> Creating contact number " << this->index << std::endl;
+	std::cout << "# Creating contact number " << this->index << std::endl;
 	for (int i = FirstName; i <= Secret; i++)
 	{
-		std::cout << "-> Enter the " << this->fields_name[i] << " :\n";
+		std::cout << "# Enter the " << this->fields_name[i] << " :\n";
 		std::getline(std::cin, information[i]);
 	}
 	if (!this->information[FirstName].length() && !this->information[LastName].length() &&
 		!this->information[Nickname].length())
 	{
-		std::cout << "-> You must fill one of this field : First Name, Last Name, Nickname\n";
-		std::cout << "-> Contact not added\n";
+		std::cout << "# You must fill one of this field : First Name, Last Name, Nickname\n";
+		std::cout << "# Contact not added\n";
 		for (int j = FirstName; j <= Secret; j++)
 			this->information[j] = std::string();
 		return (false);	
 	}
-	std::cout << "-> Contact succesfully added !\n";
+	std::cout << "# Contact succesfully added !\n";
 	return (true);
 }
 
@@ -62,7 +62,7 @@ void	Contact::display_search()
 
 void	Contact::display_contact()
 {
-	std::cout << "-> Contact number " << this->index << "\n\n";
+	std::cout << "# Contact number " << this->index << "\n\n";
 	for (int i = FirstName; i <= Secret; i++)
 	{
 		std::cout << this->fields_name[i] << " : ";
