@@ -1,8 +1,9 @@
 #ifndef _CUB3D_H_
 # define _CUB3D_H
 
-# include "/usr/X11/include/mlx.h"
+# include "../minilibx/mlx.h"
 # include "../libft/libft.h"
+# include <stdio.h>
 
 typedef struct		s_maplist
 {

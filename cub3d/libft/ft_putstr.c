@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/10 19:35:52 by mmartine          #+#    #+#             */
-/*   Updated: 2017/11/13 19:55:17 by mmartine         ###   ########.fr       */
+/*   Created: 2020/02/04 18:19:13 by memartin          #+#    #+#             */
+/*   Updated: 2020/02/04 18:19:14 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <unistd.h>
 
 void	ft_putstr(const char *str)
 {
-	if (str == NULL)
+	if (!str)
 		return ;
-	while (*str)
-		ft_putchar(*str++);
+	write(1, str, ft_strlen(str));
 }

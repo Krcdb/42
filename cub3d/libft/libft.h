@@ -1,164 +1,102 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/12 14:54:38 by mmartine          #+#    #+#             */
-/*   Updated: 2019/10/08 13:25:48 by memartin         ###   ########.fr       */
+/*   Created: 2020/02/04 18:16:47 by memartin          #+#    #+#             */
+/*   Updated: 2020/02/25 14:49:47 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _LIBFT_H
-# define _LIBFT_H
-# include <string.h>
-# include <stdio.h>
-# include <stdlib.h>
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 # include <unistd.h>
-# include <stdarg.h>
 # include <stdlib.h>
-# include <stdint.h>
-# include <ctype.h>
-# include <limits.h>
-//# include <sys/type.h>
-//# include <sys/stat.h>
+# include <stdarg.h>
+# include <wchar.h>
+# include <inttypes.h>
 # include <fcntl.h>
+# include <string.h>
+# include <limits.h>
+# include <ctype.h>
 
-# define BUFF_SIZE 4096
+
 # define BUFF_SIZE_GNL 32
-typedef struct		s_list
+
+typedef struct		s_print
 {
-	void			*content;
-	size_t			content_size;
-	struct s_list	*next;
-}					t_list;
+	char			*fmt;
+	char			result[4000];
+	size_t			size;
+	size_t			buff_i;
+	size_t			fmt_i;
+	char			conv;
+	int				f_hash;
+	int				f_zero;
+	int				f_moins;
+	int				f_plus;
+	int				f_space;
+	int				m_h;
+	int				m_hh;
+	int				m_l;
+	int				m_ll;
+	int				m_j;
+	int				m_z;
+	int				n_neg;
+	int				precision;
+	int				width;
+	int				dot;
+	int				f_pre;
+	int				neg_pre;
+	va_list			arg;
+}					t_print;
 
-typedef struct	s_struct
-{
-	char		buff[BUFF_SIZE];
-	int			i_buff;
-	int			ret;
-	int			i_form;
-	char		type;
-	va_list		ap;
-
-	size_t		width;
-	size_t		precision;
-	int			flag;
-	int			pre_flag;
-	int			h_mod;
-	int			hh_mod;
-	int			l_mod;
-	int			ll_mod;
-	int			j_mod;
-	int			z_mod;
-	int			zero_flag;
-	int			hash_flag;
-	int			plus_flag;
-	int			minus_flag;
-	int			sp_flag;
-	int			per_flag;
-	int			err;
-	int			mod_flag;
-}				t_moche;
-
-void			ft_conv(t_moche *data);
-char			*ft_strjoinfree(char *s1, char *s2, int n);
-void			ft_conv_s(t_moche *data);
-void			ft_conv_c(t_moche *data, int n);
-void			ft_conv_oux(t_moche *data);
-void			ft_conv_di(t_moche *data);
-void			ft_conv_p(t_moche *data);
-void			ft_conv_majc(t_moche *data);
-void			ft_conv_majs(t_moche *data);
-char			*ft_conv_uni(char *buff, int c);
-int				ft_conv_c_norm(t_moche *d, char c);
-int				ft_printf(const char *format, ...);
-void			ft_parse(t_moche *data, const char *form);
-void			ft_putchar_buff(t_moche *data, const char *form);
-void			ft_put_conv(t_moche *data, char *s);
-void			ft_print_buff(t_moche *data);
-void			ft_set_flag(t_moche *data);
-void				ft_bzero(void *s, size_t n);
-void			ft_data_init(t_moche *data);
-void			ft_data_reset(t_moche *data);
-char			*ft_imtoa(intmax_t n);
-char			*ft_utoa_b(uintmax_t n, int base);
-size_t			ft_intsize(intmax_t n);
-size_t			ft_intsize_b(uintmax_t n, int base);
-int				ft_conv_c_norm(t_moche *d, char c);
-int				setbase(t_moche *d);
-int				ft_set_width_pre_s_norm(t_moche *d, char *s);
-char			*ft_set_oux_norm(t_moche *data, char *s, char *tmp);
-int				ft_check_mod_norm(t_moche *data, const char *form);
-int				ft_printf(const char *format, ...);
-void				*ft_memccpy(void *dst, const void *src, int c, size_t n);
-void				*ft_memchr(const void *s, int c, size_t n);
-int					ft_memcmp(const void *s1, const void *s2, size_t n);
-void				*ft_memcpy(void *dst, const void *src, size_t n);
-void				*ft_memmove(void *dst, const void *src, size_t len);
-void				*ft_memset(void *b, int c, size_t len);
-char				*ft_strcat(char *s1, const char *s2);
-char				*ft_strchr(const char *s, int c);
-char				*ft_strcpy(char *dst, const char *src);
-char				*ft_strdup(const char *src);
-size_t				ft_strlen(const char *s);
-char				*ft_strncat(char *s1, const char *s2, size_t n);
-char				*ft_strncpy(char *dst, const char *src, size_t len);
-char				*ft_strrchr(const char *s, int c);
-char				*ft_strstr(const char *haystack, const char *needle);
-char				*ft_strnstr(const char *s1, const char *s2, size_t len);
-int					ft_strcmp(const char *s1, const char *s2);
-int					ft_strncmp(const char *s1, const char *s2, size_t n);
-int					ft_atoi(const char *str);
-int					ft_isupper(int c);
-int					ft_islower(int c);
-int					ft_isalpha(int c);
-int					ft_isdigit(int c);
-int					ft_isalnum(int c);
-int					ft_isascii(int c);
-int					ft_isprint(int c);
-char				*ft_toupper(char *c);
-int					ft_tolower(int c);
-void				*ft_memalloc(size_t size);
-void				ft_memdel(void **ap);
-char				*ft_strnew(size_t size);
-void				ft_strdel(char **as);
-void				ft_strclr(char *s);
-void				ft_striter(char *s, void (*f)(char *));
-void				ft_striteri(char *s, void (*f)(unsigned int, char *));
-char				*ft_strmap(const char *s, char (*f)(char));
-char				*ft_strmapi(const char *s, char (*f)(unsigned int, char));
-int					ft_strequ(const char *s1, const char *s2);
-int					ft_strnequ(const char *s1, const char *s2, size_t n);
-char				*ft_strsub(const char *s, unsigned int start, size_t len);
+int					ft_printf(const char *fmt, ...);
+void				ft_printf_buffer(t_print *p);
+void				ft_printf_add_char(t_print *p, const char *fmt);
+void				ft_printf_parse(t_print *p, const char *fmt);
+void				ft_printf_conv(t_print *p);
+void				ft_printf_di(t_print *p);
+void				ft_printf_oux(t_print *p);
+void				ft_printf_c(t_print *p);
+void				ft_printf_s(t_print *p);
+void				ft_printf_modulo(t_print *p);
+void				ft_printf_p(t_print *p);
+void				ft_printf_flags(t_print *p, char *s, char *prefix);
+void				ft_printf_add_conv(t_print *p, char *s);
+char				*ft_ltoa(intmax_t n);
+char				*ft_utoa_base(unsigned long long n, int base);
+char				*ft_joinfree(char *s1, char *s2);
 char				*ft_strjoin(const char *s1, const char *s2);
-char				*ft_strtrim(const char *s);
-char				**ft_strsplit(const char *s, char c);
-char				*ft_itoa(int n);
+void				ft_strdel(char **as);
+size_t				ft_intmaxsize(intmax_t n);
+char				*ft_strnew(size_t size);
 void				ft_putchar(char c);
-void				ft_putstr(const char *str);
-void				ft_putchar_fd(char c, int fd);
-void				ft_putstr_fd(const char *str, int fd);
-void				ft_putendl_fd(const char *s, int fd);
-void				ft_putnbr(int nb);
-void				ft_putnbr_fd(int nb, int fd);
+char				*ft_strdup(const char *s);
+size_t				ft_strlen(const char *s);
+void				*ft_memset(void *s, int c, size_t l);
+int				ft_isdigit(int c);
+int				ft_atoi(const char *s);
+char				*ft_strchr(const char *s, int c);
+char				*ft_strcat(char *dest, const char *src);
+char				*ft_strcpy(char *dest, const char *src);
+int				ft_isspace(int c);
 void				ft_putendl(const char *s);
-size_t				ft_strlcat(char *dst, const char *src, size_t size);
-t_list				*ft_lstnew(const void *content, size_t content_size);
-void				ft_lstdelone(t_list **alst, void (*del)(void*, size_t));
-void				ft_lstdel(t_list **alst, void (*del)(void*, size_t));
-void				ft_lstadd(t_list **alsr, t_list *nlist);
-void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
-t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
-int					*ft_sort_number(int *tab, int len);
-void				ft_puttab(char **tab);
-char				**ft_sort_tab(char **tab);
-int					ft_sqrt(int nb);
-void				ft_putnbr_endl(int nbr);
-size_t				ft_lstlen(t_list *lst);
-int					get_next_line(const int fd, char **line);
+void				ft_putstr(const char *s);
+void				ft_printf_majd(t_print *p);
+void				ft_printf_majo(t_print *p);
+void				ft_printf_maju(t_print *p);
+void				ft_printf_majc(t_print *p);
+void				ft_printf_majs(t_print *p);
+int				ft_printf_unicode(unsigned char *buff, int c);
+void				ft_printf_precision(t_print *p, const char *fmt);
+void				ft_printf_precision_star(t_print *p, const char *fmt);
+int				get_next_line(const int fd, char **line);
+char				*ft_substr(const char *s, unsigned int start, size_t len);
+size_t				ft_intsize(intmax_t n);
+int				ft_strcmp(const char *s1, const char *s2);
 char				*ft_strallocset(char c, size_t size);
 
 #endif

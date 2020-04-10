@@ -5,15 +5,15 @@ void			print_lst(t_maplist *mlst)
 	int i = 0;
 	if (mlst == NULL)
 	{
-		printf("no lst\n");
+		ft_printf("no lst\n");
 		return ;
 	}
 	while (mlst->next)
 	{
-		printf("line : %2d  || {%s}\n", i++, mlst->content);
+		ft_printf("line : %2d  || {%s}\n", i++, mlst->content);
 		mlst = mlst->next;
 	}
-	printf("line : %2d  || {%s}\n", i++, mlst->content);
+	ft_printf("line : %2d  || {%s}\n", i++, mlst->content);
 }
 
 t_maplist		*newlst(const char *content, size_t content_size)

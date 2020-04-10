@@ -47,11 +47,11 @@ int					get_next_line(const int fd, char **line)
 		buff = ft_strnew(BUFF_SIZE_GNL + 1);
 		rd = read(fd, buff, BUFF_SIZE_GNL);
 		buff[rd] = '\0';
-		tmp = ft_strjoinfree(tmp, buff, 0);
+		tmp = ft_joinfree(tmp, buff);
 	}
-	*line = ft_strsub(tmp, 0, ft_strclen(tmp, '\n'));
-	rest = ft_strsub(tmp, ft_strclen(tmp, '\n') + 1, ft_strlen(tmp));
+	*line = ft_substr(tmp, 0, ft_strclen(tmp, '\n'));
+	rest = ft_substr(tmp, ft_strclen(tmp, '\n') + 1, ft_strlen(tmp));
 	if (tmp)
 		ft_strdel(&tmp);
-	return ((*line) ? 1 : rd);
+	return ((*line && **line) ? 1 : rd);
 }

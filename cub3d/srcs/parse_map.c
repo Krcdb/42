@@ -4,10 +4,10 @@ static void			print_tab(char **tab)
 {
 	int		i = 0;
 
-	printf("print tab\n");
+	ft_printf("print tab\n");
 	while (tab[i])
 	{
-		printf("line : %2d || {%s}\n", i, tab[i]);
+		ft_printf("line : %2d || {%s}\n", i, tab[i]);
 		i++;
 	}
 }
@@ -93,7 +93,7 @@ static void		is_map_valid(t_data *d, t_parse *p)
 		{
 			if (!is_valid_char(d->map[y][x], d, p, x, y))
 			{
-				printf("map error x : %ld || y : %ld\n", x, y);
+				ft_printf("map error x : %ld || y : %ld\n", x, y);
 				p->error = 1;
 				d->error.e_map = 1;
 				return ;
@@ -160,6 +160,6 @@ void			parse_map(t_data *d, t_parse *p, char *line)
 	if (p->player && !p->error)
 	{
 		p->m_ok = 1;
-		printf("map ok\n");
+		ft_printf("map ok\n");
 	}
 }

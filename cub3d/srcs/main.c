@@ -46,26 +46,28 @@ static void		error_display(t_data *d)
 {
 	if (d->error.e_screen_res)
 		printf("screen resolution error\n");
-	if (d->error.e_no_t)
+	else if (d->error.e_no_t)
 		printf("north texture error\n");
-	if (d->error.e_so_t)
+	else if (d->error.e_so_t)
 		printf("south texture error\n");
-	if (d->error.e_we_t)
+	else if (d->error.e_we_t)
 		printf("west texture error\n");
-	if (d->error.e_ea_t)
+	else if (d->error.e_ea_t)
 		printf("east texture error\n");
-	if (d->error.e_s_t)
+	else if (d->error.e_s_t)
 		printf("sprite texture error\n");
-	if (d->error.e_f_color)
+	else if (d->error.e_f_color)
 		printf("floor color error\n");
-	if (d->error.e_c_color)
+	else if (d->error.e_c_color)
 		printf("c color error\n");
-	if (d->error.e_fd)
+	else if (d->error.e_fd)
 		printf("fd error\n");
-	if (d->error.e_file)
+	else if (d->error.e_file)
 		printf("file.cub error\n");
-	if (d->error.e_map)
+	else if (d->error.e_map)
 		printf("map error\n");
+	else
+		printf("no error\n");
 }
 
 static void		init_data(t_data *d)
@@ -91,13 +93,12 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 	{
-		ft_printf("need a file in arg\n");
+		printf("need a file in arg\n");
 		return (0);
 	}
 	init_data(&d);
 	parse(&d, av[1]);
 	data_display(&d);
-	printf("\n");
 	error_display(&d);
 }
 
