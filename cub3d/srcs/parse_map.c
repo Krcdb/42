@@ -15,20 +15,20 @@ static void			print_tab(char **tab)
 static int		is_corner_valid(t_data *d, size_t x, size_t y)
 {
 	if (x == 0 && y == 0 &&
-		((d->map[y][x + 1] != ' ' && d->map[y][x + 1] != '1') ||
-		(d->map[y + 1][x] != ' ' && d->map[y + 1][x] != '1')))
+			((d->map[y][x + 1] != ' ' && d->map[y][x + 1] != '1') ||
+			 (d->map[y + 1][x] != ' ' && d->map[y + 1][x] != '1')))
 		return (0);
 	else if (x == (d->map_x - 1) && y == 0 &&
-		((d->map[y][x - 1] != ' ' && d->map[y][x - 1] != '1') ||
-		(d->map[y + 1][x] != ' ' && d->map[y + 1][x] != '1')))
+			((d->map[y][x - 1] != ' ' && d->map[y][x - 1] != '1') ||
+			 (d->map[y + 1][x] != ' ' && d->map[y + 1][x] != '1')))
 		return (0);
 	else if (x == 0 && y == (d->map_y - 1) &&
-		((d->map[y][x + 1] != ' ' && d->map[y][x + 1] != '1') ||
-		(d->map[y - 1][x] != ' ' && d->map[y - 1][x] != '1')))
+			((d->map[y][x + 1] != ' ' && d->map[y][x + 1] != '1') ||
+			 (d->map[y - 1][x] != ' ' && d->map[y - 1][x] != '1')))
 		return (0);
 	else if (x == (d->map_x - 1) && y == (d->map_y - 1) &&
-		((d->map[y][x - 1] != ' ' && d->map[y][x - 1] != '1') ||
-		(d->map[y - 1][x] != ' ' && d->map[y - 1][x] != '1')))
+			((d->map[y][x - 1] != ' ' && d->map[y][x - 1] != '1') ||
+			 (d->map[y - 1][x] != ' ' && d->map[y - 1][x] != '1')))
 		return (0);
 	return (1);
 }
@@ -40,20 +40,20 @@ static int		is_border_valid(t_data *d, size_t x, size_t y)
 	else
 		return (1);
 	if (x == 0  && ((d->map[y][x + 1] != ' ' && d->map[y][x + 1] != '1') ||
-		(d->map[y - 1][x] != ' ' && d->map[y - 1][x] != '1') ||
-		(d->map[y + 1][x] != ' ' && d->map[y + 1][x] != '1')))
+				(d->map[y - 1][x] != ' ' && d->map[y - 1][x] != '1') ||
+				(d->map[y + 1][x] != ' ' && d->map[y + 1][x] != '1')))
 		return (0);
 	else if (x == (d->map_x - 1)  && ((d->map[y][x - 1] != ' ' && d->map[y][x - 1] != '1') ||
-		(d->map[y + 1][x] != ' ' && d->map[y + 1][x] != '1') ||
-		(d->map[y - 1][x] != ' ' && d->map[y - 1][x] != '1')))
+				(d->map[y + 1][x] != ' ' && d->map[y + 1][x] != '1') ||
+				(d->map[y - 1][x] != ' ' && d->map[y - 1][x] != '1')))
 		return (0);	
 	else if (y == 0  && ((d->map[y][x + 1] != ' ' && d->map[y][x + 1] != '1') ||
-		(d->map[y][x - 1] != ' ' && d->map[y][x - 1] != '1') ||
-		(d->map[y + 1][x] != ' ' && d->map[y + 1][x] != '1')))
+				(d->map[y][x - 1] != ' ' && d->map[y][x - 1] != '1') ||
+				(d->map[y + 1][x] != ' ' && d->map[y + 1][x] != '1')))
 		return (0);	
 	else if (y == (d->map_y - 1)  && ((d->map[y][x - 1] != ' ' && d->map[y][x - 1] != '1') ||
-		(d->map[y][x + 1] != ' ' && d->map[y][x + 1] != '1') ||
-		(d->map[y - 1][x] != ' ' && d->map[y - 1][x] != '1')))
+				(d->map[y][x + 1] != ' ' && d->map[y][x + 1] != '1') ||
+				(d->map[y - 1][x] != ' ' && d->map[y - 1][x] != '1')))
 		return (0);
 	return (1);
 }
@@ -65,13 +65,13 @@ static int		is_valid_char(char c, t_data *d, t_parse *p, size_t x, size_t y)
 		if (c != ' ' && c != '1')
 			return (0);
 		else if (c == ' ' && !is_border_valid(d, x, y))
-				return (0);
+			return (0);
 		return (1);
 	}
 	else if (c == ' ' && ((d->map[y][x + 1] != ' ' && d->map[y][x + 1] != '1') ||
-		(d->map[y][x - 1] != ' ' && d->map[y][x - 1] != '1') ||
-		(d->map[y + 1][x] != ' ' && d->map[y + 1][x] != '1') ||
-		(d->map[y - 1][x] != ' ' && d->map[y - 1][x] != '1')))
+				(d->map[y][x - 1] != ' ' && d->map[y][x - 1] != '1') ||
+				(d->map[y + 1][x] != ' ' && d->map[y + 1][x] != '1') ||
+				(d->map[y - 1][x] != ' ' && d->map[y - 1][x] != '1')))
 		return (0);
 	if ((c == 'N' || c == 'S' || c == 'W' || c == 'E') && p->player)
 		return (0);
@@ -79,7 +79,7 @@ static int		is_valid_char(char c, t_data *d, t_parse *p, size_t x, size_t y)
 		p->player = 1;
 	return (1);
 }
-	
+
 static void		is_map_valid(t_data *d, t_parse *p)
 {
 	size_t		x;
@@ -161,5 +161,10 @@ void			parse_map(t_data *d, t_parse *p, char *line)
 	{
 		p->m_ok = 1;
 		ft_printf("map ok\n");
+	}
+	else 
+	{
+		p->error = 1;
+		d->error.e_map = 1;
 	}
 }

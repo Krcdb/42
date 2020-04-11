@@ -97,8 +97,11 @@ int	main(int ac, char **av)
 		return (0);
 	}
 	init_data(&d);
-	parse(&d, av[1]);
-	data_display(&d);
-	error_display(&d);
+	if (parse(&d, av[1]))
+	{
+		data_display(&d);
+		printf("got to graphic\n");
+	}
+	else
+		error_display(&d);
 }
-

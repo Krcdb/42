@@ -63,7 +63,7 @@ typedef struct	s_parse
 	int	player;
 }				t_parse;
 
-void		parse(t_data *d, char *path);
+int			parse(t_data *d, char *path);
 void		parse_res(t_data *d, t_parse *p, char *line);
 void		parse_color(t_data *d, t_parse *p, char *line);
 void		parse_no_texture(t_data *d, t_parse *p, char *line);

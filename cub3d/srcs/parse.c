@@ -43,7 +43,15 @@ static void		parse_line(t_data *d, t_parse *p, char *line)
 	}
 }
 
-void		parse(t_data *d, char *path)
+static int		is_parse_complete(t_parse *p)
+{
+	if (p->screen_res && p->no_t && p->so_t && p->we_t && p->ea_t && p->s_t
+		&& p->m_ok && p->f_color && p->c_color)
+		return (1);
+	return (0);
+}
+
+int				parse(t_data *d, char *path)
 {
 	t_parse	p;
 	char	*line;
@@ -53,7 +61,7 @@ void		parse(t_data *d, char *path)
 	if (p.fd <= 0)
 	{
 		d->error.e_fd = 1;
-		return ;
+		return (0);
 	}
 	while (get_next_line(p.fd, &line))
 	{
@@ -64,4 +72,7 @@ void		parse(t_data *d, char *path)
 			break ;
 	}
 	close(p.fd);
+	if (is_parse_complete(&p))
+		return (1);
+	return (0);
 }

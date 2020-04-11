@@ -61,16 +61,16 @@ OBJ = $(SRC:.c=.o)
 all : $(NAME)
 
 $(NAME): $(OBJ)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
 
 %.o: %.c
-	gcc -Wall -Wextra -Werror -c $< -o $@
+	@gcc -Wall -Wextra -Werror -c $< -o $@
 
 clean:
-	rm -rf $(OBJ)
+	@rm -rf $(OBJ)
 
 fclean : clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
 
 re: fclean all
