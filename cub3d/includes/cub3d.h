@@ -9,7 +9,7 @@
 # define NO_C 0255000000
 # define SO_C 0000000255
 # define W_C  0255125125
-# define E_C  0125125255
+# define E_C  0000255000
 
 typedef struct		s_maplist
 {

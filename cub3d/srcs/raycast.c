@@ -58,7 +58,7 @@ static void		dda(t_data *d)
 			d->ray_y += d->step_y;
 			d->side = 1;
 		}
-		if (d->map[d->ray_y][d->ray_x] > 0)
+		if (d->map[d->ray_y][d->ray_x] == '1')
 			d->hit = 1;
 	}
 	if (d->side == 0)

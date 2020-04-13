@@ -12,15 +12,13 @@ static void		init_data_game(t_data *d)
 
 void			make_window(t_data *d)
 {
-	void *mlx;
-	void *win;
 	printf("start mlx\n");
 	write(1, "1\n", 2);
-	mlx = mlx_init();
+	d->mlx_ptr = mlx_init();
 	write(1, "1\n", 2);
-	win = mlx_new_window(mlx, d->screen_x, d->screen_y, "cub3d");
+	d->win_ptr = mlx_new_window(d->mlx_ptr, d->screen_x, d->screen_y, "cub3d");
 	write(1, "1\n", 2);
-	//init_data_game(d);
-	//raycast(d);
-	mlx_loop(mlx);
+	init_data_game(d);
+	raycast(d);
+	mlx_loop(d->mlx_ptr);
 }
