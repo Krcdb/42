@@ -18,6 +18,7 @@ static void		init_error(t_data *d)
 
 static void		data_display(t_data *d)
 {
+
 	printf("x = %d | y = %d\n", d->screen_x, d->screen_y);
 	if (d->north_path)
 		printf("no path = %s\n", d->north_path);
@@ -40,6 +41,7 @@ static void		data_display(t_data *d)
 	else
 		printf("no sprite_path\n");
 	printf("f_color = %d | c_color = %d\n", d->f_color, d->c_color);
+	printf("player start x : %d | player start y : %d\n", d->player_x, d->player_y);
 }
 
 static void		error_display(t_data *d)
@@ -100,7 +102,7 @@ int	main(int ac, char **av)
 	if (parse(&d, av[1]))
 	{
 		data_display(&d);
-		printf("got to graphic\n");
+		make_window(&d);
 	}
 	else
 		error_display(&d);

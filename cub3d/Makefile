@@ -10,21 +10,23 @@ G3 =  -g3 -fsanitize=address
 
 COMPIL = gcc
 
-FLAG = -Wall -Wextra -Werror
+FLAG = 
 
-HEADER = -I $(INCLUDES_DIR)
+FLAG_MLX = -L./minilibx -lmlx -L/usr/include../lib -lXext -lX11 -lm -lbsd
+
+HEADER = -I $(INCLUDES_DIR) -I/usr/include -I./minilibx
 
 LIBFT = libft/libft.a
 
 SRCS_NAME = main.c parse.c parse_texture.c parse_res_color.c parse_map.c parse_utils.c\
-			parse_utils_lst.c\
+			parse_utils_lst.c make_window.c raycast.c\
 
 SRCS = $(addprefix $(SOURCES_DIR)/,$(SRCS_NAME))
 
 OBJS = $(SRCS:.c=.o)
 
 $(NAME):	$(LIBFT) $(OBJS)
-	@$(COMPIL) $(FLAG) $(HEADER) $(OBJS) -L./libft -lft -o $(NAME)
+	@$(COMPIL) $(FLAG) $(HEADER) $(OBJS) -L./libft -lft $(FLAG_MLX) -o $(NAME)
 
 $(LIBFT):	
 	@make -C ./libft re

@@ -76,7 +76,13 @@ static int		is_valid_char(char c, t_data *d, t_parse *p, size_t x, size_t y)
 	if ((c == 'N' || c == 'S' || c == 'W' || c == 'E') && p->player)
 		return (0);
 	else if ((c == 'N' || c == 'S' || c == 'W' || c == 'E') && !p->player)
+	{
+		d->map[y][x] = '0';
 		p->player = 1;
+		d->player_x = x;
+		d->player_y = y;
+		d->p_orientation = c;
+	}
 	return (1);
 }
 
@@ -132,7 +138,6 @@ static void		map_lst_to_tab(t_data *d, t_parse *p, t_maplist *mlst)
 		mlst = mlst->next;
 	}
 	d->map[i] = 0;
-	print_tab(d->map);
 }
 
 void			parse_map(t_data *d, t_parse *p, char *line)
@@ -157,6 +162,7 @@ void			parse_map(t_data *d, t_parse *p, char *line)
 	map_lst_to_tab(d, p, mlst);
 	lstdel(&mlst);
 	is_map_valid(d, p);
+	print_tab(d->map);
 	if (p->player && !p->error)
 	{
 		p->m_ok = 1;
