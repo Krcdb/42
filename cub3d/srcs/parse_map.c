@@ -1,6 +1,6 @@
 #include "../includes/cub3d.h"
 
-static void			print_tab(char **tab)
+void			print_tab(char **tab)
 {
 	int		i = 0;
 

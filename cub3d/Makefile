@@ -19,7 +19,8 @@ HEADER = -I $(INCLUDES_DIR) -I/usr/include -I./minilibx
 LIBFT = libft/libft.a
 
 SRCS_NAME = main.c parse.c parse_texture.c parse_res_color.c parse_map.c parse_utils.c\
-			parse_utils_lst.c make_window.c raycast.c\
+			parse_utils_lst.c main_loop.c raycast.c image.c events.c loop_manager.c move.c\
+			exit_game.c\
 
 SRCS = $(addprefix $(SOURCES_DIR)/,$(SRCS_NAME))
 

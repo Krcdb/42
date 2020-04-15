@@ -10,6 +10,15 @@
 # define SO_C 0000000255
 # define W_C  0255125125
 # define E_C  0000255000
+# define W_KEY 119
+# define A_KEY 97
+# define S_KEY 115
+# define D_KEY 100
+# define SHIFT_KEY 65505
+# define LEFT_KEY 65363
+# define RIGHT_KEY 65361
+# define ESC_KEY 65307
+
 
 typedef struct		s_maplist
 {
@@ -55,6 +64,9 @@ typedef struct	s_data
 	char	p_orientation;
 	void	*mlx_ptr;
 	void	*win_ptr;
+	void	*img_ptr;
+	char	*img_data;
+	int		exit_game;
 
 	double	plane_x;
 	double	plane_y;
@@ -81,9 +93,22 @@ typedef struct	s_data
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
+
+	int		bpp;
+	int		s_l;
+	int		endian;
+	
+	int		strafe_left;
+	int		strafe_right;
+	int		move_forward;
+	int		move_backward;
+	int		rotate_left;
+	int		rotate_right;
+	int		sprint;
+	double	speed;
+	double	rotation;
 }				t_data;
  
-
 typedef struct	s_parse
 {
 	int error;
@@ -120,7 +145,20 @@ size_t		get_longest_line(t_maplist *hlst);
 size_t		get_nb_line(t_maplist *hlst);
 void		print_lst(t_maplist *mlst);
 char		*cpy_lst_to_map(char *dst, const char *src);
-void		make_window(t_data *d);
+void		main_loop(t_data *d);
 void		raycast(t_data *d);
+void		put_line_to_img(t_data *d, int x);
+int			event_key_pressed(int key, void *param);
+int			event_key_released(int key, void *param);
+int			loop_manager(void *param);
+int			exit_game(void *param);
+void		key_manager(t_data *d);
+void		strafe_left(t_data *d);
+void		strafe_right(t_data *d);
+void		move_forward(t_data *d);
+void		move_backward(t_data *d);
+void		rotate_left(t_data *d);
+void		rotate_right(t_data *d);
+void		print_tab(char **tab);
 
 #endif

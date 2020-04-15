@@ -65,7 +65,7 @@ int				parse(t_data *d, char *path)
 	}
 	while (get_next_line(p.fd, &line))
 	{
-		parse_line(d, &p, line);
+		parse_line(d, &p, ft_strdup(line));
 		if (line)
 			free(line);
 		if (p.error)

@@ -102,7 +102,8 @@ int	main(int ac, char **av)
 	if (parse(&d, av[1]))
 	{
 		data_display(&d);
-		make_window(&d);
+		print_tab(d.map);
+		main_loop(&d);
 	}
 	else
 		error_display(&d);
