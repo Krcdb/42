@@ -1,14 +1,14 @@
 R 640 400
 
-NO ./textures/north_texture
+NO ./textures/north_texture.xpm
 
-SO ./textures/south_texture
+SO ./textures/south_texture.xpm
 
-WE ./textures/west_texture
+WE ./textures/west_texture.xpm
 
-EA ./textures/east_texture
+EA ./textures/east_texture.xpm
 
-S ./textures/sprite_texture
+S ./textures/sprite_texture.xpm
 
 F 255,255,255
 
@@ -16,4 +16,8 @@ C 0,0,0
 
  1111
 10N01
-1111
+100011111
+1000000001
+1001100001
+1000000001
+1111111111

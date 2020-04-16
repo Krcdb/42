@@ -23,7 +23,10 @@ int			event_key_pressed(int key, void *param)
 
 	d = (t_data *)param;
 	if (key == ESC_KEY)
+	{
 		d->exit_game = 1;
+		exit_game(d);
+	}
 	else if (key == A_KEY)
 		d->strafe_left = 1;
 	else if (key == D_KEY)

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/16 17:47:51 by user42            #+#    #+#             */
+/*   Updated: 2020/04/16 17:50:03 by user42           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 static void		init_error(t_data *d)
@@ -18,7 +30,6 @@ static void		init_error(t_data *d)
 
 static void		data_display(t_data *d)
 {
-
 	printf("x = %d | y = %d\n", d->screen_x, d->screen_y);
 	if (d->north_path)
 		printf("no path = %s\n", d->north_path);
@@ -29,7 +40,7 @@ static void		data_display(t_data *d)
 	else
 		printf("no so_path\n");
 	if (d->west_path)
-		printf("we path = %s\n", d->west_path);	
+		printf("we path = %s\n", d->west_path);
 	else
 		printf("no we_path\n");
 	if (d->east_path)
@@ -41,7 +52,8 @@ static void		data_display(t_data *d)
 	else
 		printf("no sprite_path\n");
 	printf("f_color = %d | c_color = %d\n", d->f_color, d->c_color);
-	printf("player start x : %d | player start y : %d\n", d->player_x, d->player_y);
+	printf("player start x : %d | player start y : %d\n",
+	d->player_x, d->player_y);
 }
 
 static void		error_display(t_data *d)
@@ -89,8 +101,8 @@ static void		init_data(t_data *d)
 	d->map_y = 0;
 }
 
-int	main(int ac, char **av)
-{	
+int				main(int ac, char **av)
+{
 	t_data d;
 
 	if (ac != 2)

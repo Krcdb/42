@@ -20,14 +20,20 @@ static void		init_data_game(t_data *d)
 	d->rotate_right = 0;
 	d->sprint = 0;
 	d->exit_game = 0;
-	d->speed = 0.05;
-	d->rotation = 0.05;
+	d->speed = 0.04;
+	d->rotation = 0.02;
+}
+
+static void		init_textures(t_data *d)
+{
+
 }
 
 void			main_loop(t_data *d)
 {
 	init_data_game(d);
 	d->mlx_ptr = mlx_init();
+	init_textures(d);
 	d->img_ptr = mlx_new_image(d->mlx_ptr, d->screen_x, d->screen_y);
 	d->img_data = mlx_get_data_addr(d->img_ptr, &d->bpp, &d->s_l, &d->endian);
 	d->win_ptr = mlx_new_window(d->mlx_ptr, d->screen_x, d->screen_y, "cub3d");
@@ -35,7 +41,6 @@ void			main_loop(t_data *d)
 	mlx_hook(d->win_ptr, 2, 1L << 0, event_key_pressed, d);
 	mlx_hook(d->win_ptr, 3, 1L << 1, event_key_released, d);
 	mlx_hook(d->win_ptr, 17, 1L << 17, exit_game, d);
-	mlx_loop_hook(d->mlx_ptr, loop_manager, d);	
-	if (!d->exit_game)	
-		mlx_loop(d->mlx_ptr);
+	mlx_loop_hook(d->mlx_ptr, loop_manager, d);
+	mlx_loop(d->mlx_ptr);
 }

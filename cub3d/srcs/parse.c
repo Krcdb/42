@@ -58,9 +58,10 @@ int				parse(t_data *d, char *path)
 
 	init_parse(&p);
 	p.fd = open(path, O_RDONLY);
-	if (p.fd <= 0)
+	if (p.fd <= 0 || !is_valid_extension(path, ".cub"))
 	{
 		d->error.e_fd = 1;
+		close(p.fd);
 		return (0);
 	}
 	while (get_next_line(p.fd, &line))

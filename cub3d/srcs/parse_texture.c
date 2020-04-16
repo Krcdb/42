@@ -2,8 +2,14 @@
 
 void			parse_no_texture(t_data *d, t_parse *p, char *line)
 {
+	int		l;
+
 	line += 3;
-	if (p->no_t || ft_strcmp(line, "./textures/north_texture"))
+	while (is_whitespace(*line))
+		line++;
+	l = ft_strlen(line);
+	if (p->no_t || !is_filepath_valid(line) ||
+		!is_valid_extension(line, ".xpm"))
 	{
 		p->error = 1;
 		d->error.e_no_t = 1;
@@ -15,8 +21,14 @@ void			parse_no_texture(t_data *d, t_parse *p, char *line)
 
 void			parse_so_texture(t_data *d, t_parse *p, char *line)
 {
+	int		l;
+	
 	line += 3;
-	if (p->so_t || ft_strcmp(line, "./textures/south_texture"))
+	while (is_whitespace(*line))
+		line++;
+	l = ft_strlen(line);
+	if (p->so_t || !is_filepath_valid(line) ||
+		!is_valid_extension(line, ".xpm"))
 	{
 		p->error = 1;
 		d->error.e_so_t = 1;
@@ -28,8 +40,14 @@ void			parse_so_texture(t_data *d, t_parse *p, char *line)
 
 void			parse_we_texture(t_data *d, t_parse *p, char *line)
 {
+	int		l;
+	
 	line += 3;
-	if (p->we_t || ft_strcmp(line, "./textures/west_texture"))
+	while (is_whitespace(*line))
+		line++;
+	l = ft_strlen(line);
+	if (p->we_t || !is_filepath_valid(line) ||
+		!is_valid_extension(line, ".xpm"))
 	{
 		p->error = 1;
 		d->error.e_we_t = 1;
@@ -41,8 +59,14 @@ void			parse_we_texture(t_data *d, t_parse *p, char *line)
 
 void			parse_ea_texture(t_data *d, t_parse *p, char *line)
 {
+	int		l;
+	
 	line += 3;
-	if (p->ea_t || ft_strcmp(line, "./textures/east_texture"))
+	while (is_whitespace(*line))
+		line++;
+	l = ft_strlen(line);
+	if (p->ea_t || !is_filepath_valid(line) ||
+		!is_valid_extension(line, ".xpm"))
 	{
 		p->error = 1;
 		d->error.e_ea_t = 1;
@@ -54,8 +78,14 @@ void			parse_ea_texture(t_data *d, t_parse *p, char *line)
 
 void			parse_sprite(t_data *d, t_parse *p, char *line)
 {
+	int		l;
+	
 	line += 2;
-	if (p->s_t || ft_strcmp(line, "./textures/sprite_texture"))
+	while (is_whitespace(*line))
+		line++;
+	l = ft_strlen(line);
+	if (p->s_t || !is_filepath_valid(line) ||
+		!is_valid_extension(line, ".xpm"))
 	{
 		p->error = 1;
 		d->error.e_s_t = 1;

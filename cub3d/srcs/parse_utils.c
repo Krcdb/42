@@ -1,5 +1,12 @@
 #include "../includes/cub3d.h"
 
+int			is_whitespace(char c)
+{
+	if (c == ' ' || c == '\t')
+		return (1);
+	return (0);
+}
+
 char		*cpy_lst_to_map(char *dst, const char *src)
 {
 	char *d;
