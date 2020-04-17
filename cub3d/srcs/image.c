@@ -7,19 +7,13 @@ static int		get_color(t_data *d, int y)
 	else if (y >= d->draw_start && y <= d->draw_end)
 	{
 		if (d->side == 0)
-		{
-			if (d->pos_x < d->ray_x)
-				return (W_C);
-			else
-				return (E_C);
-		}
+			return (EA_C);
+		else if (d->side == 1)
+			return (WE_C);
+		else if (d->side == 2)
+			return (SO_C);
 		else
-		{
-			if (d->pos_y < d->ray_y)
-				return (NO_C);
-			else
-				return (SO_C);
-		}
+			return (NO_C);
 	}
 	else
 		return (d->f_color);

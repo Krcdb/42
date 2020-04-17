@@ -8,8 +8,8 @@
 
 # define NO_C 0255000000
 # define SO_C 0000000255
-# define W_C  0255125125
-# define E_C  0000255000
+# define WE_C  0255125125
+# define EA_C  0000255000
 # define W_KEY 119
 # define A_KEY 97
 # define S_KEY 115
@@ -107,6 +107,18 @@ typedef struct	s_data
 	int		sprint;
 	double	speed;
 	double	rotation;
+
+	int		texture_size;
+	void	*no_img;
+	void	*so_img;
+	void	*we_img;
+	void	*ea_img;
+	void	*s_img;
+	char	*no_data;
+	char	*so_data;
+	char	*we_data;
+	char	*ea_data;
+	char	*s_data;
 }				t_data;
  
 typedef struct	s_parse

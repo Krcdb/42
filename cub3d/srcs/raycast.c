@@ -50,18 +50,18 @@ static void		dda(t_data *d)
 		{
 			d->side_dist_x += d->delta_x;
 			d->ray_x += d->step_x;
-			d->side = 0;
+			d->side = (d->step_x == 1) ? 0 : 1;
 		}
 		else
 		{
 			d->side_dist_y += d->delta_y;
 			d->ray_y += d->step_y;
-			d->side = 1;
+			d->side = (d->step_y == 1) ? 2 : 3;
 		}
 		if (d->map[d->ray_y][d->ray_x] == '1')
 			d->hit = 1;
 	}
-	if (d->side == 0)
+	if (d->side == 0 || d->side == 1)
 		d->wall_dist = (d->ray_x - d->pos_x + (1 - d->step_x) / 2) / d->ray_dir_x;
 	else
 		d->wall_dist = (d->ray_y - d->pos_y + (1 - d->step_y) / 2) / d->ray_dir_y;
