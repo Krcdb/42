@@ -45,5 +45,5 @@ void			put_line_to_img(t_data *d, int x)
 	y = d->draw_end + 1;
 	while (y < d->screen_y)
 		put_pixel_to_img(d, x, y++, d->f_color);
-	put_texture_on_img(d, x, get_texture_data(d));
+	put_texture_on_img(d, x, get_texture(d));
 }

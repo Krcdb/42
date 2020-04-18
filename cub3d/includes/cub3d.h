@@ -28,6 +28,17 @@ typedef struct		s_maplist
 	struct s_maplist	*next;
 }					t_maplist;
 
+typedef struct s_texture
+{
+	char	*data;
+	void	*img;
+	int		width;
+	int		height;
+	int		bpp;
+	int		s_l;
+	int		endian;
+}			t_texture;
+
 typedef struct s_error
 {
 	int	e_screen_res;
@@ -47,88 +58,80 @@ typedef struct s_error
 
 typedef struct	s_data
 {
-	t_error	error;
-	int     screen_x;
-	int     screen_y;
-	char	*north_path;
-	char	*south_path;
-	char	*west_path;
-	char	*east_path;
-	char	*sprite_path;
-	char    **map;
-	size_t	map_x;
-	size_t	map_y;
-	int		f_color;
-	int		c_color;
-	int		player_x;
-	int		player_y;
-	char	p_orientation;
-	void	*mlx_ptr;
-	void	*win_ptr;
-	void	*img_ptr;
-	char	*img_data;
-	int		exit_game;
+	t_error		error;
+	int			screen_x;
+	int			screen_y;
+	char		*north_path;
+	char		*south_path;
+	char		*west_path;
+	char		*east_path;
+	char		*sprite_path;
+	char		**map;
+	size_t		map_x;
+	size_t		map_y;
+	int			f_color;
+	int			c_color;
+	int			player_x;
+	int			player_y;
+	char		p_orientation;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	void		*img_ptr;
+	char		*img_data;
+	int			exit_game;
 
-	double	plane_x;
-	double	plane_y;
-	double	dir_x;
-	double	dir_y;
-	double	pos_x;
-	double	pos_y;
-	double	camera_x;
-	double	ray_dir_x;
-	double	ray_dir_y;
-	double	delta_x;
-	double	delta_y;
-	double	side_dist_x;
-	double	side_dist_y;
-	double	wall_dist;
+	double		plane_x;
+	double		plane_y;
+	double		dir_x;
+	double		dir_y;
+	double		pos_x;
+	double		pos_y;
+	double		camera_x;
+	double		ray_dir_x;
+	double		ray_dir_y;
+	double		delta_x;
+	double		delta_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		wall_dist;
 
-	int		step_x;
-	int		step_y;
-	int		ray_x;
-	int		ray_y;
-	int		hit;
-	int		side;
-	int		text_x;
-	int		text_y;
-	double	text_pos;
-	double	wall_x;
-	double	step;
-	
-	int		line_height;
-	int		draw_start;
-	int		draw_end;
+	int			step_x;
+	int			step_y;
+	int			ray_x;
+	int			ray_y;
+	int			hit;
+	int			side;
+	int			text_x;
+	int			text_y;
+	double		text_pos;
+	double		wall_x;
+	double		step;
 
-	int		bpp;
-	int		s_l;
-	int		endian;
-	
-	int		strafe_left;
-	int		strafe_right;
-	int		move_forward;
-	int		move_backward;
-	int		rotate_left;
-	int		rotate_right;
-	int		sprint;
-	double	speed;
-	double	rotation;
+	int			line_height;
+	int			draw_start;
+	int			draw_end;
 
-	int		texture_size;
-	int		t_bpp;
-	int		t_s_l;
-	void	*no_img;
-	void	*so_img;
-	void	*we_img;
-	void	*ea_img;
-	void	*s_img;
-	char	*no_data;
-	char	*so_data;
-	char	*we_data;
-	char	*ea_data;
-	char	*s_data;
+	int			bpp;
+	int			s_l;
+	int			endian;
+
+	int			strafe_left;
+	int			strafe_right;
+	int			move_forward;
+	int			move_backward;
+	int			rotate_left;
+	int			rotate_right;
+	int			sprint;
+	double		speed;
+	double		rotation;
+
+	t_texture	north_t;
+	t_texture	south_t;
+	t_texture	east_t;
+	t_texture	west_t;
+	t_texture	sprite_t;
 }				t_data;
- 
+
 typedef struct	s_parse
 {
 	int error;
@@ -183,7 +186,7 @@ void		move_backward(t_data *d);
 void		rotate_left(t_data *d);
 void		rotate_right(t_data *d);
 void		print_tab(char **tab);
-char		*get_texture_data(t_data *d);
-void		put_texture_on_img(t_data *d, int x, char *text_data);
+t_texture	*get_texture(t_data *d);
+void		put_texture_on_img(t_data *d, int x, t_texture *t);
 
 #endif
