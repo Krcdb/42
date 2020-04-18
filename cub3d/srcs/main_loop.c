@@ -4,19 +4,19 @@ static void		init_textures(t_data *d)
 {
 	d->no_img = mlx_xpm_file_to_image(d->mlx_ptr, d->north_path,
 		&d->texture_size, &d->texture_size);
-	d->no_data = mlx_get_data_addr(d->no_img, &d->bpp, &d->s_l, &d->endian);
+	d->no_data = mlx_get_data_addr(d->no_img, &d->t_bpp, &d->t_s_l, &d->endian);
 	d->so_img = mlx_xpm_file_to_image(d->mlx_ptr, d->south_path,
 		&d->texture_size, &d->texture_size);
-	d->so_data = mlx_get_data_addr(d->so_img, &d->bpp, &d->s_l, &d->endian);
+	d->so_data = mlx_get_data_addr(d->so_img, &d->t_bpp, &d->t_s_l, &d->endian);
 	d->we_img = mlx_xpm_file_to_image(d->mlx_ptr, d->west_path,
 		&d->texture_size, &d->texture_size);
-	d->we_data = mlx_get_data_addr(d->we_img, &d->bpp, &d->s_l, &d->endian);
+	d->we_data = mlx_get_data_addr(d->we_img, &d->t_bpp, &d->t_s_l, &d->endian);
 	d->ea_img = mlx_xpm_file_to_image(d->mlx_ptr, d->east_path,
 		&d->texture_size, &d->texture_size);
-	d->ea_data = mlx_get_data_addr(d->ea_img, &d->bpp, &d->s_l, &d->endian);
+	d->ea_data = mlx_get_data_addr(d->ea_img, &d->t_bpp, &d->t_s_l, &d->endian);
 	d->s_img = mlx_xpm_file_to_image(d->mlx_ptr, d->sprite_path,
 		&d->texture_size, &d->texture_size);
-	d->s_data = mlx_get_data_addr(d->s_img, &d->bpp, &d->s_l, &d->endian);
+	d->s_data = mlx_get_data_addr(d->s_img, &d->t_bpp, &d->t_s_l, &d->endian);
 }
 
 static void		init_data_game(t_data *d)

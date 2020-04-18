@@ -18,6 +18,7 @@
 # define LEFT_KEY 65363
 # define RIGHT_KEY 65361
 # define ESC_KEY 65307
+# define TEXT_SIZE 64
 
 
 typedef struct		s_maplist
@@ -89,7 +90,12 @@ typedef struct	s_data
 	int		ray_y;
 	int		hit;
 	int		side;
-
+	int		text_x;
+	int		text_y;
+	double	text_pos;
+	double	wall_x;
+	double	step;
+	
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
@@ -109,6 +115,8 @@ typedef struct	s_data
 	double	rotation;
 
 	int		texture_size;
+	int		t_bpp;
+	int		t_s_l;
 	void	*no_img;
 	void	*so_img;
 	void	*we_img;
@@ -175,5 +183,7 @@ void		move_backward(t_data *d);
 void		rotate_left(t_data *d);
 void		rotate_right(t_data *d);
 void		print_tab(char **tab);
+char		*get_texture_data(t_data *d);
+void		put_texture_on_img(t_data *d, int x, char *text_data);
 
 #endif

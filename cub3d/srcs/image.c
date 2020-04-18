@@ -37,14 +37,13 @@ static void		put_pixel_to_img(t_data *d, int x, int y, int color)
 
 void			put_line_to_img(t_data *d, int x)
 {
-	int		color;
 	int		y;
 
 	y = 0;
+	while (y < d->draw_start)
+		put_pixel_to_img(d, x, y++, d->c_color);
+	y = d->draw_end + 1;
 	while (y < d->screen_y)
-	{
-		color = get_color(d, y);
-		put_pixel_to_img(d, x, y, color);
-		y++;
-	}
+		put_pixel_to_img(d, x, y++, d->f_color);
+	put_texture_on_img(d, x, get_texture_data(d));
 }

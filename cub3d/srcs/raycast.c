@@ -16,6 +16,11 @@ static void		set_data(t_data *d, int x)
 	d->step_y = 0;
 	d->hit = 0;
 	d->side = 0;
+	d->text_x = 0;
+	d->text_y = 0;
+	d->text_pos = 0;
+	d->wall_x = 0;
+	d->step = 0;
 }
 
 static void		set_side_dist(t_data *d)
