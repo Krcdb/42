@@ -34,6 +34,18 @@ typedef struct		s_spritelist
 	int					map_y;
 	int					nb_sprite;
 	double				dist;
+
+	int					screen_x;
+	int					height;
+	int					width;
+	double				transform_x;
+	double				transform_y;
+	int					draw_start_y;
+	int					draw_end_y;
+	int					draw_start_x;
+	int					draw_end_x;
+	
+
 	struct s_spritelist	*next;
 }					t_spritelist;
 
