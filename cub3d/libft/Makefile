@@ -6,7 +6,7 @@
 #    By: memartin <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/04 15:26:01 by memartin          #+#    #+#              #
-#    Updated: 2020/02/20 14:38:23 by memartin         ###   ########.fr        #
+#    Updated: 2020/04/19 15:22:14 by memartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,7 @@ SRC = ft_joinfree.c\
       ft_intsize.c\
       ft_substr.c\
 	ft_strallocset.c\
+	ft_bzero.c\
 
 OBJ = $(SRC:.c=.o)
 

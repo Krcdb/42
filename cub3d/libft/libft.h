@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 18:16:47 by memartin          #+#    #+#             */
-/*   Updated: 2020/02/25 14:49:47 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/19 15:21:49 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,6 @@ char				*ft_substr(const char *s, unsigned int start, size_t len);
 size_t				ft_intsize(intmax_t n);
 int				ft_strcmp(const char *s1, const char *s2);
 char				*ft_strallocset(char c, size_t size);
+void				ft_bzero(void *s, size_t n);
 
 #endif

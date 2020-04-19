@@ -79,7 +79,8 @@ size_t			get_longest_line(t_maplist *hlst)
 void			lstdel(t_maplist **hlst)
 {
 	t_maplist	*tmp;
-	if (hlst == NULL)
+
+	if (hlst == NULL || *hlst == NULL)
 		return ;
 	while ((*hlst)->next)
 	{

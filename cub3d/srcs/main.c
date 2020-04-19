@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 17:47:51 by user42            #+#    #+#             */
-/*   Updated: 2020/04/16 17:50:03 by user42           ###   ########.fr       */
+/*   Updated: 2020/04/19 15:06:15 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,17 @@ static void		init_data(t_data *d)
 	d->west_path = NULL;
 	d->east_path = NULL;
 	d->sprite_path = NULL;
+	d->win_ptr = NULL;
+	d->img_ptr = NULL;
+	d->north_t.img = NULL;
+	d->south_t.img = NULL;
+	d->west_t.img = NULL;
+	d->east_t.img = NULL;
+	d->sprite_t.img = NULL;
 	d->map = NULL;
 	d->map_x = 0;
 	d->map_y = 0;
+	d->spritelst = NULL;
 }
 
 int				main(int ac, char **av)
@@ -113,10 +121,12 @@ int				main(int ac, char **av)
 	init_data(&d);
 	if (parse(&d, av[1]))
 	{
-		data_display(&d);
-		print_tab(d.map);
+		//data_display(&d);
 		main_loop(&d);
 	}
 	else
+	{
 		error_display(&d);
+		exit_game(&d);
+	}
 }

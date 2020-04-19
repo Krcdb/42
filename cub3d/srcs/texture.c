@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 20:16:22 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/18 20:30:44 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/19 14:42:12 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 t_texture		*get_texture(t_data *d)
 {
 	if (d->side == 0)
-		return (&d->east_t);
-	else if (d->side == 1)
 		return (&d->west_t);
+	else if (d->side == 1)
+		return (&d->east_t);
 	else if (d->side == 2)
-		return (&d->south_t);
-	else
 		return (&d->north_t);
+	else
+		return (&d->south_t);
 }
 
 void			put_texture_on_img(t_data *d, int x, t_texture *t)

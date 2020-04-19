@@ -1,6 +1,17 @@
 #include "../includes/cub3d.h"
 
-static void		init_textures(t_data *d)
+static void			init_pos_camera(t_data *d)
+{
+	d->plane_x = 0;
+	d->plane_y = 0.66;
+	d->dir_x = -1;
+	d->dir_y = 0;
+	d->pos_x = (double)d->player_x + 0.4999;
+	d->pos_y = (double)d->player_y + 0.4999;
+}
+
+
+static int			init_textures(t_data *d)
 {
 	d->north_t.img = mlx_xpm_file_to_image(d->mlx_ptr, d->north_path,
 		&d->north_t.width, &d->north_t.height);
@@ -22,16 +33,15 @@ static void		init_textures(t_data *d)
 		&d->sprite_t.width, &d->sprite_t.height);
 	d->sprite_t.data = mlx_get_data_addr(d->sprite_t.img,
 		&d->sprite_t.bpp, &d->sprite_t.s_l, &d->sprite_t.endian);
+	if (!d->north_t.img || !d->south_t.img || !d->west_t.img || !d->east_t.img
+			|| !d->sprite_t.img)
+		return (0);
+	return (1);
 }
 
 static void		init_data_game(t_data *d)
 {
-	d->plane_x = 0;
-	d->plane_y = 0.66;
-	d->dir_x = -1;
-	d->dir_y = 0;
-	d->pos_x = (double)d->player_x + 0.5;
-	d->pos_y = (double)d->player_y + 0.5;
+	init_pos_camera(d);
 	if (d->screen_x > 1920)
 		d->screen_x = 1920;
 	if (d->screen_y > 1200)
@@ -44,18 +54,22 @@ static void		init_data_game(t_data *d)
 	d->rotate_right = 0;
 	d->sprint = 0;
 	d->exit_game = 0;
-	d->speed = 0.04;
-	d->rotation = 0.02;
-	init_textures(d);
+	d->speed = 0.02;
+	d->rotation = 0.01;
+	d->z_buffer = NULL;
+	d->img_ptr = mlx_new_image(d->mlx_ptr, d->screen_x, d->screen_y);
+	d->img_data = mlx_get_data_addr(d->img_ptr, &d->bpp, &d->s_l, &d->endian);
+	d->win_ptr = mlx_new_window(d->mlx_ptr, d->screen_x, d->screen_y, "cub3d");
+	if (!init_textures(d) || !d->img_ptr || !d->win_ptr)
+		exit_game(d);
+	if (!(d->z_buffer = (double*)malloc(sizeof(double) * d->screen_x)))
+		exit_game(d);
 }
 
 void			main_loop(t_data *d)
 {
 	d->mlx_ptr = mlx_init();
 	init_data_game(d);
-	d->img_ptr = mlx_new_image(d->mlx_ptr, d->screen_x, d->screen_y);
-	d->img_data = mlx_get_data_addr(d->img_ptr, &d->bpp, &d->s_l, &d->endian);
-	d->win_ptr = mlx_new_window(d->mlx_ptr, d->screen_x, d->screen_y, "cub3d");
 	raycast(d);
 	mlx_hook(d->win_ptr, 2, 1L << 0, event_key_pressed, d);
 	mlx_hook(d->win_ptr, 3, 1L << 1, event_key_released, d);

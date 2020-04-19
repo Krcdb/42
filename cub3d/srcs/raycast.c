@@ -47,7 +47,7 @@ static void		set_side_dist(t_data *d)
 	}
 }
 
-static void		dda(t_data *d)
+static void		dda(t_data *d, int x)
 {
 	while (!d->hit)
 	{
@@ -65,11 +65,14 @@ static void		dda(t_data *d)
 		}
 		if (d->map[d->ray_y][d->ray_x] == '1')
 			d->hit = 1;
+		else if (d->map[d->ray_y][d->ray_x] == '2')
+			sprite_hit(d);
 	}
 	if (d->side == 0 || d->side == 1)
 		d->wall_dist = (d->ray_x - d->pos_x + (1 - d->step_x) / 2) / d->ray_dir_x;
 	else
 		d->wall_dist = (d->ray_y - d->pos_y + (1 - d->step_y) / 2) / d->ray_dir_y;
+	d->z_buffer[x] = d->wall_dist;
 }
 
 void			raycast(t_data *d)
@@ -77,11 +80,13 @@ void			raycast(t_data *d)
 	int		x;
 
 	x = 0;
+	del_all_sprite(&d->spritelst);
+	ft_bzero(d->z_buffer, sizeof(double) * d->screen_x);
 	while (d->screen_x - 1 - x >= 0)
 	{
 		set_data(d, d->screen_x - 1 - x);
 		set_side_dist(d);
-		dda(d);
+		dda(d, x);
 		d->line_height = (int)(d->screen_y / d->wall_dist);
 		d->draw_start = (-d->line_height / 2) + (d->screen_y / 2);
 		if (d->draw_start < 0)
@@ -92,5 +97,6 @@ void			raycast(t_data *d)
 		put_line_to_img(d, x);
 		x++;
 	}
+	draw_sprite(d);
 	mlx_put_image_to_window(d->mlx_ptr, d->win_ptr, d->img_ptr, 0, 0);
 }
