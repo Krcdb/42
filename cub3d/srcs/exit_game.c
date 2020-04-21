@@ -19,14 +19,16 @@ void			exit_init(t_data *d)
 	int		i;
 
 	i = 0;
-	while (d->map[i])
-	{
-		if (d->map[i])
-			free(d->map[i]);
-		i++;
-	}
 	if (d->map)
+	{
+		while (d->map[i])
+		{
+			if (d->map[i])
+				free(d->map[i]);
+			i++;
+		}
 		free(d->map);
+	}
 	if (d->north_path)
 		free(d->north_path);
 	if (d->south_path)

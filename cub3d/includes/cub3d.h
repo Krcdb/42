@@ -20,6 +20,13 @@
 # define ESC_KEY 65307
 # define TEXT_SIZE 64
 
+typedef struct		s_rgb
+{
+	int		r;
+	int		g;
+	int		b;
+	int		rgb;
+}					t_rgb;
 
 typedef struct		s_maplist
 {

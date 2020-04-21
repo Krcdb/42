@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/19 17:29:07 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/20 21:13:07 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/21 22:35:29 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,13 @@ static void		set_sprite_draw(t_spritelist **sp, t_data *d)
 		d->screen_x - 1 : (*sp)->draw_end_x;
 }
 
-static void		get_pxl_color(t_data *d, t_texture *t)
+static int			check_color(t_data *d, t_texture *t)
 {
-	d->pxl_color = t->data[d->text_y * t->s_l + d->text_x * t->bpp / 8]
-		+ t->data[d->text_y * t->s_l + d->text_x * t->bpp / 8 + 1]
-		+ t->data[d->text_y * t->s_l + d->text_x * t->bpp / 8 + 2];
+	if (t->data[d->text_y * t->s_l + d->text_x * t->bpp / 8] == -1
+		&& t->data[d->text_y * t->s_l + d->text_x * t->bpp / 8 + 1] == 0
+		&& t->data[d->text_y * t->s_l + d->text_x * t->bpp / 8 + 2] == -1)
+		return (0);
+	return (1);
 }
 
 static void		put_p(int x, int y, t_data *d, t_texture *t)
@@ -72,8 +74,7 @@ static void		draw_stripe(int x, t_spritelist *sp, t_data *d, t_texture *t)
 		{
 			dd = (y * t->s_l) - d->screen_y * (t->s_l / 2) + sp->height * t->s_l / 2;
 			d->text_y = ((dd * t->height) / sp->height) / t->s_l;
-			get_pxl_color(d, t);
-			if (d->pxl_color != 0)
+			if (check_color(d, t))
 				put_p(d->screen_x - 1 - x, y, d, t);
 			y++;
 		}

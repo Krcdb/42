@@ -1,24 +1,5 @@
 #include "../includes/cub3d.h"
 
-static int		get_color(t_data *d, int y)
-{
-	if (y < d->draw_start)
-		return (d->c_color);
-	else if (y >= d->draw_start && y <= d->draw_end)
-	{
-		if (d->side == 0)
-			return (EA_C);
-		else if (d->side == 1)
-			return (WE_C);
-		else if (d->side == 2)
-			return (SO_C);
-		else
-			return (NO_C);
-	}
-	else
-		return (d->f_color);
-}
-
 static void		put_pixel_to_img(t_data *d, int x, int y, int color)
 {
 	unsigned char *rgb;

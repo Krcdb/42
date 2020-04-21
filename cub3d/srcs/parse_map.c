@@ -162,7 +162,6 @@ void			parse_map(t_data *d, t_parse *p, char *line)
 	map_lst_to_tab(d, p, mlst);
 	lstdel(&mlst);
 	is_map_valid(d, p);
-	//print_tab(d->map);
 	if (p->player && !p->error)
 		p->m_ok = 1;
 	else 

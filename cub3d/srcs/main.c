@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 17:47:51 by user42            #+#    #+#             */
-/*   Updated: 2020/04/20 19:40:25 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/21 22:37:17 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ static void		init_data(t_data *d)
 	init_error(d);
 	d->screen_x = 0;
 	d->screen_y = 0;
-	d->f_color = 0;
 	d->c_color = 0;
+	d->f_color = 0;
 	d->north_path = NULL;
 	d->south_path = NULL;
 	d->west_path = NULL;
