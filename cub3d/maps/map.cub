@@ -1,18 +1,18 @@
-R   640   400 
+R   640	400 
 
-NO ./textures/north_texture.xpm
+NO ./textures/deadwall128.xpm
 
-SO ./textures/south_texture.xpm
+SO ./textures/brickwall128.xpm
 
-WE ./textures/west_texture.xpm
+WE ./textures/pipewall128.xpm
 
-EA ./textures/east_texture.xpm
+EA ./textures/metalwall128.xpm
 
 S ./textures/pig.xpm
 
-F 255,255,255
+F 178,167,87
 
-C 0,0,0
+C 89,78,93
 
         1111111111111111111111111
         1000000000000000000000001

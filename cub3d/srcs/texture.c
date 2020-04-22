@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 20:16:22 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/19 14:42:12 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/22 20:50:45 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void			put_texture_on_img(t_data *d, int x, t_texture *t)
 	else	
 		d->wall_x = (double)d->pos_x + d->wall_dist * d->ray_dir_x;
 	d->wall_x -= floor(d->wall_x);
-	d->text_x = (int)(d->wall_x * 64);
+	d->text_x = (int)(d->wall_x * t->width);
 	if ((d->side == 0 || d->side == 1) && d->ray_dir_x > 0)
 		d->text_x = t->width - d->text_x - 1;
 	if ((d->side == 2 || d->side == 3) && d->ray_dir_y < 0)
