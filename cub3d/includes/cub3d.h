@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 20:18:27 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/23 20:21:43 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/23 23:57:53 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,8 +258,10 @@ void				sprite_hit(t_data*d);
 void				del_all_sprite(t_spritelist **hlst);
 void				print_sprite(t_spritelist *hlst);
 void				draw_sprite(t_data *d);
+void				draw_hud(t_data *d, t_hud *t);
 void				sort_sprite(t_spritelist **spritelst);
 void				exit_init(t_data *d);
 void				bitmap(t_data *d);
+int					init_hud_textures(t_data *d);
 
 #endif

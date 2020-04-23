@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 11:24:25 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/23 13:46:49 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/23 23:52:34 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ static int		check_color(t_data *d, t_hud *t)
 static void		draw_hud_pxl(int x, int y, t_data *d, t_hud *t)
 {
 	d->text_y = ((double)(y - t->draw_s_y) / (double)(t->draw_e_y - t->draw_s_y)) * t->height;
-	//printf("x : %d || y : %d || text_x : %d || text_y : %d\n", x, y, d->text_x, d->text_y);
 	if (check_color(d, t))
 	{
 		d->img_data[y * d->s_l + x * d->bpp / 8] = 
