@@ -6,23 +6,46 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 19:00:22 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/23 19:04:23 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/23 23:08:16 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void		init_pos_camera(t_data *d)
+static void		set_plane_dir(t_data *d, double dir_y, double p_x, double p_y)
 {
-	d->plane_x = 0;
-	d->plane_y = 0.66;
-	d->dir_x = -1;
-	d->dir_y = 0;
-	d->pos_x = (double)d->player_x + 0.4999;
-	d->pos_y = (double)d->player_y + 0.4999;
+	d->dir_y = dir_y;
+	d->plane_x = p_x;
+	d->plane_y = p_y;
 }
 
-void		rotate_left(t_data *d)
+void			init_pos_camera(t_data *d)
+{
+	d->pos_x = (double)d->player_x + 0.4999;
+	d->pos_y = (double)d->player_y + 0.4999;
+	if (d->p_orientation == 'N')
+	{
+		d->dir_x = 0;
+		set_plane_dir(d, -1, 0.66, 0);
+	}
+	else if (d->p_orientation == 'S')
+	{
+		d->dir_x = 0;
+		set_plane_dir(d, 1, -0.66, 0);
+	}		
+	else if (d->p_orientation == 'W')
+	{
+		d->dir_x = -1;
+		set_plane_dir(d, 0, 0, -0.66);
+	}
+	else if (d->p_orientation == 'N')
+	{
+		d->dir_x = 1;
+		set_plane_dir(d, 0, 0, 0.66);
+	}
+}
+
+void			rotate_left(t_data *d)
 {
 	double	old_dir_x;
 	double	old_plane_x;
@@ -35,7 +58,7 @@ void		rotate_left(t_data *d)
 	d->plane_y = old_plane_x * sin(d->rotation) + d->plane_y * cos(d->rotation);
 }
 
-void		rotate_right(t_data *d)
+void			rotate_right(t_data *d)
 {
 	double	old_dir_x;
 	double	old_plane_x;
