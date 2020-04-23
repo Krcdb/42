@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 19:35:39 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/23 20:03:43 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/23 23:17:14 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,9 @@ void			raycast(t_data *d)
 	x = 0;
 	del_all_sprite(&d->spritelst);
 	ft_bzero(d->z_buffer, sizeof(double) * d->screen_x);
-	while (d->screen_x - 1 - x >= 0)
+	while (x < d->screen_x)
 	{
-		set_data(d, d->screen_x - 1 - x);
+		set_data(d, x);
 		set_side_dist(d);
 		dda(d, x);
 		d->line_height = (int)(d->screen_y / d->wall_dist);

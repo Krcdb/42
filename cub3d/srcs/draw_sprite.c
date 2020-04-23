@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/19 17:29:07 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/23 18:52:24 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/23 23:25:13 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,8 @@ static void		draw_stripe(int x, t_spritelist *sp, t_data *d, t_texture *t)
 
 	d->text_x = (int)(t->s_l * (x - (-(sp->width) / 2 + sp->screen_x))
 			* t->width / sp->width) / t->s_l;
-	d->text_x = t->width - d->text_x;
 	if (sp->transform_y > 0 && x > 0 && x < d->screen_x &&
-		sp->transform_y < d->z_buffer[d->screen_x - 1 - x])
+		sp->transform_y < d->z_buffer[x])
 	{
 		y = sp->draw_start_y;
 		while (y < sp->draw_end_y)
@@ -76,7 +75,7 @@ static void		draw_stripe(int x, t_spritelist *sp, t_data *d, t_texture *t)
 				+ sp->height * t->s_l / 2;
 			d->text_y = ((dd * t->height) / sp->height) / t->s_l;
 			if (check_color(d, t))
-				put_p(d->screen_x - 1 - x, y, d, t);
+				put_p(x, y, d, t);
 			y++;
 		}
 	}
