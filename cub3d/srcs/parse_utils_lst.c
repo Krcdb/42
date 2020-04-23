@@ -1,20 +1,16 @@
-#include "../includes/cub3d.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_utils_lst.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/23 19:34:44 by memartin          #+#    #+#             */
+/*   Updated: 2020/04/23 19:34:56 by memartin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void			print_lst(t_maplist *mlst)
-{
-	int i = 0;
-	if (mlst == NULL)
-	{
-		ft_printf("no lst\n");
-		return ;
-	}
-	while (mlst->next)
-	{
-		ft_printf("line : %2d  || {%s}\n", i++, mlst->content);
-		mlst = mlst->next;
-	}
-	ft_printf("line : %2d  || {%s}\n", i++, mlst->content);
-}
+#include "../includes/cub3d.h"
 
 t_maplist		*newlst(const char *content, size_t content_size)
 {

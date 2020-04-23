@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exit_game.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/23 18:54:48 by memartin          #+#    #+#             */
+/*   Updated: 2020/04/23 19:41:53 by memartin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 static void		free_textures(t_data *d)
@@ -12,6 +24,22 @@ static void		free_textures(t_data *d)
 		mlx_destroy_image(d->mlx_ptr, d->east_t.img);
 	if (d->sprite_t.img)
 		mlx_destroy_image(d->mlx_ptr, d->sprite_t.img);
+}
+
+void			del_all_sprite(t_spritelist **hlst)
+{
+	t_spritelist	*tmp;
+
+	if (hlst == NULL || *hlst == NULL)
+		return ;
+	while ((*hlst)->next)
+	{
+		tmp = (*hlst)->next;
+		free(*hlst);
+		*hlst = tmp;
+	}
+	free(*hlst);
+	*hlst = NULL;
 }
 
 void			exit_init(t_data *d)
@@ -41,7 +69,7 @@ void			exit_init(t_data *d)
 		free(d->sprite_path);
 }
 
-int				exit_game(void	*param)
+int				exit_game(void *param)
 {
 	t_data *d;
 

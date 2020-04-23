@@ -20,7 +20,8 @@ LIBFT = libft/libft.a
 
 SRCS_NAME = main.c parse.c parse_texture.c parse_res.c parse_color.c parse_map.c parse_utils.c\
 			parse_utils_lst.c main_loop.c raycast.c image.c events.c loop_manager.c move.c\
-			exit_game.c files_utils.c texture.c sprite.c draw_sprite.c\
+			exit_game.c files_utils.c texture.c sprite.c draw_sprite.c bitmap.c camera.c\
+			parse_map_utils.c\
 
 SRCS = $(addprefix $(SOURCES_DIR)/,$(SRCS_NAME))
 

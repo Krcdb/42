@@ -1,37 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/23 19:31:55 by memartin          #+#    #+#             */
+/*   Updated: 2020/04/23 20:14:58 by memartin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
-
-void			print_tab(char **tab)
-{
-	int		i = 0;
-
-	ft_printf("print tab\n");
-	while (tab[i])
-	{
-		ft_printf("line : %2d || {%s}\n", i, tab[i]);
-		i++;
-	}
-}
-
-static int		is_corner_valid(t_data *d, size_t x, size_t y)
-{
-	if (x == 0 && y == 0 &&
-			((d->map[y][x + 1] != ' ' && d->map[y][x + 1] != '1') ||
-			 (d->map[y + 1][x] != ' ' && d->map[y + 1][x] != '1')))
-		return (0);
-	else if (x == (d->map_x - 1) && y == 0 &&
-			((d->map[y][x - 1] != ' ' && d->map[y][x - 1] != '1') ||
-			 (d->map[y + 1][x] != ' ' && d->map[y + 1][x] != '1')))
-		return (0);
-	else if (x == 0 && y == (d->map_y - 1) &&
-			((d->map[y][x + 1] != ' ' && d->map[y][x + 1] != '1') ||
-			 (d->map[y - 1][x] != ' ' && d->map[y - 1][x] != '1')))
-		return (0);
-	else if (x == (d->map_x - 1) && y == (d->map_y - 1) &&
-			((d->map[y][x - 1] != ' ' && d->map[y][x - 1] != '1') ||
-			 (d->map[y - 1][x] != ' ' && d->map[y - 1][x] != '1')))
-		return (0);
-	return (1);
-}
 
 static int		is_border_valid(t_data *d, size_t x, size_t y)
 {
@@ -39,50 +18,48 @@ static int		is_border_valid(t_data *d, size_t x, size_t y)
 		return (0);
 	else
 		return (1);
-	if (x == 0  && ((d->map[y][x + 1] != ' ' && d->map[y][x + 1] != '1') ||
+	if (x == 0 && ((d->map[y][x + 1] != ' ' && d->map[y][x + 1] != '1') ||
 				(d->map[y - 1][x] != ' ' && d->map[y - 1][x] != '1') ||
 				(d->map[y + 1][x] != ' ' && d->map[y + 1][x] != '1')))
 		return (0);
-	else if (x == (d->map_x - 1)  && ((d->map[y][x - 1] != ' ' && d->map[y][x - 1] != '1') ||
+	else if (x == (d->map_x - 1) &&
+				((d->map[y][x - 1] != ' ' && d->map[y][x - 1] != '1') ||
 				(d->map[y + 1][x] != ' ' && d->map[y + 1][x] != '1') ||
 				(d->map[y - 1][x] != ' ' && d->map[y - 1][x] != '1')))
-		return (0);	
-	else if (y == 0  && ((d->map[y][x + 1] != ' ' && d->map[y][x + 1] != '1') ||
+		return (0);
+	else if (y == 0 && ((d->map[y][x + 1] != ' ' && d->map[y][x + 1] != '1') ||
 				(d->map[y][x - 1] != ' ' && d->map[y][x - 1] != '1') ||
 				(d->map[y + 1][x] != ' ' && d->map[y + 1][x] != '1')))
-		return (0);	
-	else if (y == (d->map_y - 1)  && ((d->map[y][x - 1] != ' ' && d->map[y][x - 1] != '1') ||
+		return (0);
+	else if (y == (d->map_y - 1) &&
+				((d->map[y][x - 1] != ' ' && d->map[y][x - 1] != '1') ||
 				(d->map[y][x + 1] != ' ' && d->map[y][x + 1] != '1') ||
 				(d->map[y - 1][x] != ' ' && d->map[y - 1][x] != '1')))
 		return (0);
 	return (1);
 }
 
-static int		is_valid_char(char c, t_data *d, t_parse *p, size_t x, size_t y)
+static int		is_valid_char(t_data *d, t_parse *p, size_t x, size_t y)
 {
 	if (x == 0 || y == 0 || x == d->map_x - 1 || y == d->map_y - 1)
 	{
-		if (c != ' ' && c != '1')
+		if (p->c != ' ' && p->c != '1')
 			return (0);
-		else if (c == ' ' && !is_border_valid(d, x, y))
+		else if (p->c == ' ' && !is_border_valid(d, x, y))
 			return (0);
 		return (1);
 	}
-	else if (c == ' ' && ((d->map[y][x + 1] != ' ' && d->map[y][x + 1] != '1') ||
+	else if (p->c == ' ' && ((d->map[y][x + 1] != ' ' &&
+				d->map[y][x + 1] != '1') ||
 				(d->map[y][x - 1] != ' ' && d->map[y][x - 1] != '1') ||
 				(d->map[y + 1][x] != ' ' && d->map[y + 1][x] != '1') ||
 				(d->map[y - 1][x] != ' ' && d->map[y - 1][x] != '1')))
 		return (0);
-	if ((c == 'N' || c == 'S' || c == 'W' || c == 'E') && p->player)
+	if ((p->c == 'N' || p->c == 'S' || p->c == 'W' || p->c == 'E') && p->player)
 		return (0);
-	else if ((c == 'N' || c == 'S' || c == 'W' || c == 'E') && !p->player)
-	{
-		d->map[y][x] = '0';
-		p->player = 1;
-		d->player_x = x;
-		d->player_y = y;
-		d->p_orientation = c;
-	}
+	else if ((p->c == 'N' || p->c == 'S' ||
+			p->c == 'W' || p->c == 'E') && !p->player)
+		set_player_pos(d, p, x, y);
 	return (1);
 }
 
@@ -97,9 +74,9 @@ static void		is_map_valid(t_data *d, t_parse *p)
 		x = 0;
 		while (x < d->map_x)
 		{
-			if (!is_valid_char(d->map[y][x], d, p, x, y))
+			p->c = d->map[y][x];
+			if (!is_valid_char(d, p, x, y))
 			{
-				ft_printf("map error x : %ld || y : %ld\n", x, y);
 				p->error = 1;
 				d->error.e_map = 1;
 				return ;
@@ -109,7 +86,6 @@ static void		is_map_valid(t_data *d, t_parse *p)
 		y++;
 	}
 }
-
 
 static void		map_lst_to_tab(t_data *d, t_parse *p, t_maplist *mlst)
 {
@@ -162,11 +138,5 @@ void			parse_map(t_data *d, t_parse *p, char *line)
 	map_lst_to_tab(d, p, mlst);
 	lstdel(&mlst);
 	is_map_valid(d, p);
-	if (p->player && !p->error)
-		p->m_ok = 1;
-	else 
-	{
-		p->error = 1;
-		d->error.e_map = 1;
-	}
+	set_parse_map_error(d, p);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   events.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/23 18:53:57 by memartin          #+#    #+#             */
+/*   Updated: 2020/04/23 20:16:29 by memartin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 void		key_manager(t_data *d)
@@ -15,7 +27,6 @@ void		key_manager(t_data *d)
 	if (d->rotate_right)
 		rotate_right(d);
 }
-
 
 int			event_key_pressed(int key, void *param)
 {

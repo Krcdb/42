@@ -1,5 +1,17 @@
-#ifndef _CUB3D_H_
-# define _CUB3D_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/23 20:18:27 by memartin          #+#    #+#             */
+/*   Updated: 2020/04/23 20:21:43 by memartin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef CUB3D_H
+# define CUB3D_H
 
 # include "mlx.h"
 # include "../libft/libft.h"
@@ -51,12 +63,25 @@ typedef struct		s_spritelist
 	int					draw_end_y;
 	int					draw_start_x;
 	int					draw_end_x;
-	
-
 	struct s_spritelist	*next;
 }					t_spritelist;
 
-typedef struct s_texture
+typedef struct		s_hud
+{
+	char	*data;
+	void	*img;
+	int		draw_s_x;
+	int		draw_e_x;
+	int		draw_s_y;
+	int		draw_e_y;
+	int		width;
+	int		height;
+	int		bpp;
+	int		s_l;
+	int		endian;
+}					t_hud;
+
+typedef struct		s_texture
 {
 	char	*data;
 	void	*img;
@@ -65,9 +90,9 @@ typedef struct s_texture
 	int		bpp;
 	int		s_l;
 	int		endian;
-}			t_texture;
+}					t_texture;
 
-typedef struct s_error
+typedef struct		s_error
 {
 	int	e_screen_res;
 	int	e_no_t;
@@ -81,12 +106,12 @@ typedef struct s_error
 	int	e_file;
 	int	e_map;
 	int	e_memory;
-}				t_error;
+}					t_error;
 
-
-typedef struct	s_data
+typedef struct		s_data
 {
 	t_error			error;
+	int				save;
 	int				screen_x;
 	int				screen_y;
 	char			*north_path;
@@ -158,6 +183,7 @@ typedef struct	s_data
 	t_texture		east_t;
 	t_texture		west_t;
 	t_texture		sprite_t;
+	t_hud			sgun_t;
 
 	t_spritelist	*spritelst;
 	t_spritelist	*spritedraw;
@@ -165,69 +191,75 @@ typedef struct	s_data
 	int				s_text_x;
 	int				s_text_y;
 	int				pxl_color;
-}				t_data;
+}					t_data;
 
-typedef struct	s_parse
+typedef struct		s_parse
 {
-	int error;
-	int	screen_res;
-	int	no_t;
-	int	so_t;
-	int	we_t;
-	int	ea_t;
-	int	s_t;
-	int	m_found;
-	int	m_ok;
-	int	f_color;
-	int	c_color;
-	int fd;
-	int	player;
-}				t_parse;
+	int		error;
+	int		screen_res;
+	int		no_t;
+	int		so_t;
+	int		we_t;
+	int		ea_t;
+	int		s_t;
+	int		m_found;
+	int		m_ok;
+	int		f_color;
+	int		c_color;
+	int		fd;
+	int		player;
+	char	c;
+}					t_parse;
 
-int				parse(t_data *d, char *path);
-void			parse_res(t_data *d, t_parse *p, char *line);
-void			parse_color(t_data *d, t_parse *p, char *line);
-void			parse_no_texture(t_data *d, t_parse *p, char *line);
-void			parse_so_texture(t_data *d, t_parse *p, char *line);
-void			parse_we_texture(t_data *d, t_parse *p, char *line);
-void			parse_ea_texture(t_data *d, t_parse *p, char *line);
-void			parse_sprite(t_data *d, t_parse *p, char *line);
-void			parse_map(t_data *d, t_parse *p, char *line);
-int				is_empty_line(char *line);
-int				is_map_line(char *line);
-int				is_map_char(char c);
-int				is_whitespace(char c);
-int				is_filepath_valid(const char *path);
-int				is_valid_extension(const char *path, const char *ext);
-t_maplist		*newlst(const char *content, size_t content_size);
-void			lstaddend(t_maplist **hlst, t_maplist *nlst);
-void			lstdel(t_maplist **hlst);
-size_t			get_longest_line(t_maplist *hlst);
-size_t			get_nb_line(t_maplist *hlst);
-void			print_lst(t_maplist *mlst);
-char			*cpy_lst_to_map(char *dst, const char *src);
-void			main_loop(t_data *d);
-void			raycast(t_data *d);
-void			put_line_to_img(t_data *d, int x);
-int				event_key_pressed(int key, void *param);
-int				event_key_released(int key, void *param);
-int				loop_manager(void *param);
-int				exit_game(void *param);
-void			key_manager(t_data *d);
-void			strafe_left(t_data *d);
-void			strafe_right(t_data *d);
-void			move_forward(t_data *d);
-void			move_backward(t_data *d);
-void			rotate_left(t_data *d);
-void			rotate_right(t_data *d);
-void			print_tab(char **tab);
-t_texture		*get_texture(t_data *d);
-void			put_texture_on_img(t_data *d, int x, t_texture *t);
-void			sprite_hit(t_data*d);
-void			del_all_sprite(t_spritelist **hlst);
-void			print_sprite(t_spritelist *hlst);
-void			draw_sprite(t_data *d);
-void			sort_sprite(t_spritelist **spritelst);
-void			exit_init(t_data *d);
+int					parse(t_data *d, char *path);
+void				parse_res(t_data *d, t_parse *p, char *line);
+void				parse_color(t_data *d, t_parse *p, char *line);
+void				parse_no_texture(t_data *d, t_parse *p, char *line);
+void				parse_so_texture(t_data *d, t_parse *p, char *line);
+void				parse_we_texture(t_data *d, t_parse *p, char *line);
+void				parse_ea_texture(t_data *d, t_parse *p, char *line);
+void				parse_sprite(t_data *d, t_parse *p, char *line);
+void				parse_map(t_data *d, t_parse *p, char *line);
+void				set_player_pos(t_data *d, t_parse *p, int x, int y);
+void				set_parse_map_error(t_data *d, t_parse *p);
+int					is_corner_valid(t_data *d, size_t x, size_t y);
+int					is_empty_line(char *line);
+int					is_map_line(char *line);
+int					is_map_char(char c);
+int					is_whitespace(char c);
+int					is_filepath_valid(const char *path);
+int					is_valid_extension(const char *path, const char *ext);
+t_maplist			*newlst(const char *content, size_t content_size);
+void				lstaddend(t_maplist **hlst, t_maplist *nlst);
+void				lstdel(t_maplist **hlst);
+size_t				get_longest_line(t_maplist *hlst);
+size_t				get_nb_line(t_maplist *hlst);
+void				print_lst(t_maplist *mlst);
+char				*cpy_lst_to_map(char *dst, const char *src);
+void				main_loop(t_data *d);
+void				raycast(t_data *d);
+void				put_line_to_img(t_data *d, int x);
+int					event_key_pressed(int key, void *param);
+int					event_key_released(int key, void *param);
+int					loop_manager(void *param);
+int					exit_game(void *param);
+void				key_manager(t_data *d);
+void				strafe_left(t_data *d);
+void				strafe_right(t_data *d);
+void				move_forward(t_data *d);
+void				move_backward(t_data *d);
+void				init_pos_camera(t_data *d);
+void				rotate_left(t_data *d);
+void				rotate_right(t_data *d);
+void				print_tab(char **tab);
+t_texture			*get_texture(t_data *d);
+void				put_texture_on_img(t_data *d, int x, t_texture *t);
+void				sprite_hit(t_data*d);
+void				del_all_sprite(t_spritelist **hlst);
+void				print_sprite(t_spritelist *hlst);
+void				draw_sprite(t_data *d);
+void				sort_sprite(t_spritelist **spritelst);
+void				exit_init(t_data *d);
+void				bitmap(t_data *d);
 
 #endif

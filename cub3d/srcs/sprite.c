@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/19 15:31:41 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/19 18:39:21 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/23 19:42:46 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,41 +35,6 @@ static void			add_sprite(t_spritelist **hlst, t_spritelist *nlst)
 	}
 }
 
-void				print_sprite(t_spritelist *hlst)
-{
-	int i = 0;
-
-	printf("print sprite \n");
-	if (hlst == NULL)
-	{
-		printf("no sprite\n");
-		return ;
-	}
-	while (hlst)
-	{
-		printf("nb : %d | map_x : %d | map_y : %d | dist : %f\n", 
-				hlst->nb_sprite, hlst->map_x, hlst->map_y, hlst->dist);
-		hlst = hlst->next;
-	}
-	printf("\n");
-}
-
-void				del_all_sprite(t_spritelist **hlst)
-{
-	t_spritelist	*tmp;
-
-	if (hlst == NULL || *hlst == NULL)
-		return ;
-	while ((*hlst)->next)
-	{
-		tmp = (*hlst)->next;
-		free(*hlst);
-		*hlst = tmp;
-	}
-	free(*hlst);
-	*hlst = NULL;
-}
-
 void				sprite_hit(t_data *d)
 {
 	t_spritelist	*tmp;
@@ -88,11 +53,11 @@ void				sprite_hit(t_data *d)
 		d->spritelst->nb_sprite = 1;
 }
 
-static void		swap_sprite(t_spritelist **sprite1, t_spritelist **sprite2)
+static void			swap_sprite(t_spritelist **sprite1, t_spritelist **sprite2)
 {
 	double	tmp;
 	int		tmp2;
-	
+
 	if ((*sprite1)->dist < (*sprite2)->dist)
 	{
 		tmp = (*sprite1)->dist;
@@ -106,7 +71,8 @@ static void		swap_sprite(t_spritelist **sprite1, t_spritelist **sprite2)
 		(*sprite2)->map_y = tmp2;
 	}
 }
-void			sort_sprite(t_spritelist **spritelst)
+
+void				sort_sprite(t_spritelist **spritelst)
 {
 	int				i;
 	int				nb;

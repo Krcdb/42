@@ -1,17 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main_loop.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/23 18:59:18 by memartin          #+#    #+#             */
+/*   Updated: 2020/04/23 20:16:09 by memartin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
-static void			init_pos_camera(t_data *d)
-{
-	d->plane_x = 0;
-	d->plane_y = 0.66;
-	d->dir_x = -1;
-	d->dir_y = 0;
-	d->pos_x = (double)d->player_x + 0.4999;
-	d->pos_y = (double)d->player_y + 0.4999;
-}
-
-
-static int			init_textures(t_data *d)
+static int		init_textures(t_data *d)
 {
 	d->north_t.img = mlx_xpm_file_to_image(d->mlx_ptr, d->north_path,
 		&d->north_t.width, &d->north_t.height);
@@ -19,11 +20,11 @@ static int			init_textures(t_data *d)
 		&d->north_t.bpp, &d->north_t.s_l, &d->north_t.endian);
 	d->south_t.img = mlx_xpm_file_to_image(d->mlx_ptr, d->south_path,
 		&d->south_t.width, &d->south_t.height);
-	d->south_t.data = mlx_get_data_addr(d->south_t.img, 
+	d->south_t.data = mlx_get_data_addr(d->south_t.img,
 		&d->south_t.bpp, &d->south_t.s_l, &d->south_t.endian);
 	d->west_t.img = mlx_xpm_file_to_image(d->mlx_ptr, d->west_path,
 		&d->west_t.width, &d->west_t.height);
-	d->west_t.data = mlx_get_data_addr(d->west_t.img, 
+	d->west_t.data = mlx_get_data_addr(d->west_t.img,
 		&d->west_t.bpp, &d->west_t.s_l, &d->west_t.endian);
 	d->east_t.img = mlx_xpm_file_to_image(d->mlx_ptr, d->east_path,
 		&d->east_t.width, &d->east_t.height);
@@ -39,13 +40,8 @@ static int			init_textures(t_data *d)
 	return (1);
 }
 
-static void		init_data_game(t_data *d)
+static void		init_move(t_data *d)
 {
-	init_pos_camera(d);
-	if (d->screen_x > 1920)
-		d->screen_x = 1920;
-	if (d->screen_y > 1200)
-		d->screen_y = 1200;
 	d->strafe_left = 0;
 	d->strafe_right = 0;
 	d->move_forward = 0;
@@ -56,11 +52,23 @@ static void		init_data_game(t_data *d)
 	d->exit_game = 0;
 	d->speed = 0.02;
 	d->rotation = 0.01;
+}
+
+static void		init_data_game(t_data *d)
+{
+	init_pos_camera(d);
+	init_move(d);
+	if (d->screen_x > 1920)
+		d->screen_x = 1920;
+	if (d->screen_y > 1200)
+		d->screen_y = 1200;
 	d->z_buffer = NULL;
 	d->img_ptr = mlx_new_image(d->mlx_ptr, d->screen_x, d->screen_y);
 	d->img_data = mlx_get_data_addr(d->img_ptr, &d->bpp, &d->s_l, &d->endian);
-	d->win_ptr = mlx_new_window(d->mlx_ptr, d->screen_x, d->screen_y, "cub3d");
-	if (!init_textures(d) || !d->img_ptr || !d->win_ptr)
+	if (d->save != 1)
+		d->win_ptr = mlx_new_window(d->mlx_ptr, d->screen_x,
+		d->screen_y, "cub3d");
+	if (!init_textures(d) || !d->img_ptr || (!d->win_ptr && !d->save))
 		exit_game(d);
 	if (!(d->z_buffer = (double*)malloc(sizeof(double) * d->screen_x)))
 		exit_game(d);

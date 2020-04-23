@@ -6,12 +6,13 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 18:16:47 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/19 15:21:49 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/23 20:24:53 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef LIBFT_H
+# define LIBFT_H
+
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
@@ -21,7 +22,6 @@
 # include <string.h>
 # include <limits.h>
 # include <ctype.h>
-
 
 # define BUFF_SIZE_GNL 32
 
@@ -77,12 +77,12 @@ void				ft_putchar(char c);
 char				*ft_strdup(const char *s);
 size_t				ft_strlen(const char *s);
 void				*ft_memset(void *s, int c, size_t l);
-int				ft_isdigit(int c);
-int				ft_atoi(const char *s);
+int					ft_isdigit(int c);
+int					ft_atoi(const char *s);
 char				*ft_strchr(const char *s, int c);
 char				*ft_strcat(char *dest, const char *src);
 char				*ft_strcpy(char *dest, const char *src);
-int				ft_isspace(int c);
+int					ft_isspace(int c);
 void				ft_putendl(const char *s);
 void				ft_putstr(const char *s);
 void				ft_printf_majd(t_print *p);
@@ -90,13 +90,13 @@ void				ft_printf_majo(t_print *p);
 void				ft_printf_maju(t_print *p);
 void				ft_printf_majc(t_print *p);
 void				ft_printf_majs(t_print *p);
-int				ft_printf_unicode(unsigned char *buff, int c);
+int					ft_printf_unicode(unsigned char *buff, int c);
 void				ft_printf_precision(t_print *p, const char *fmt);
 void				ft_printf_precision_star(t_print *p, const char *fmt);
-int				get_next_line(const int fd, char **line);
+int					get_next_line(const int fd, char **line);
 char				*ft_substr(const char *s, unsigned int start, size_t len);
 size_t				ft_intsize(intmax_t n);
-int				ft_strcmp(const char *s1, const char *s2);
+int					ft_strcmp(const char *s1, const char *s2);
 char				*ft_strallocset(char c, size_t size);
 void				ft_bzero(void *s, size_t n);
 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_res.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/23 19:32:48 by memartin          #+#    #+#             */
+/*   Updated: 2020/04/23 19:33:12 by memartin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 static void		set_error_res(t_data *d, t_parse *p)
@@ -21,13 +33,14 @@ static int		check_format(char *line)
 	if (!ft_isdigit(*line))
 		return (0);
 	while (ft_isdigit(*line))
-		line++;	
+		line++;
 	while (is_whitespace(*line))
 		line++;
 	if (*line != '\0')
 		return (0);
 	return (1);
 }
+
 void			parse_res(t_data *d, t_parse *p, char *line)
 {
 	line += 2;

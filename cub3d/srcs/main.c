@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 17:47:51 by user42            #+#    #+#             */
-/*   Updated: 2020/04/21 22:37:17 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/23 18:57:10 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static void		data_display(t_data *d)
 
 static void		error_display(t_data *d)
 {
+	ft_printf("error\n");
 	if (d->error.e_screen_res)
 		printf("screen resolution error\n");
 	else if (d->error.e_no_t)
@@ -80,8 +81,6 @@ static void		error_display(t_data *d)
 		printf("file.cub error\n");
 	else if (d->error.e_map)
 		printf("map error\n");
-	else
-		printf("no error\n");
 }
 
 static void		init_data(t_data *d)
@@ -103,6 +102,7 @@ static void		init_data(t_data *d)
 	d->west_t.img = NULL;
 	d->east_t.img = NULL;
 	d->sprite_t.img = NULL;
+	d->sgun_t.img = NULL;
 	d->map = NULL;
 	d->map_x = 0;
 	d->map_y = 0;
@@ -113,20 +113,25 @@ int				main(int ac, char **av)
 {
 	t_data d;
 
-	if (ac != 2)
-	{
-		printf("need a file in arg\n");
-		return (0);
-	}
-	init_data(&d);
-	if (parse(&d, av[1]))
-	{
-		//data_display(&d);
-		main_loop(&d);
-	}
+	if (ac < 2)
+		ft_printf("error\nneed a file in arg\n");
+	else if (ac == 3 && ft_strcmp(av[2], "--save") != 0)
+		ft_printf("error\nbad option\n");
+	else if (ac > 3)
+		ft_printf("error\ntoo many arguments\n");
 	else
 	{
-		error_display(&d);
-		exit_init(&d);
+		if (ac == 3)
+			d.save = 1;
+		else
+			d.save = 0;
+		init_data(&d);
+		if (parse(&d, av[1]))
+			main_loop(&d);
+		else
+		{
+			error_display(&d);
+			exit_init(&d);
+		}
 	}
 }

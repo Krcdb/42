@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycast.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/23 19:35:39 by memartin          #+#    #+#             */
+/*   Updated: 2020/04/23 20:03:43 by memartin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 static void		set_data(t_data *d, int x)
@@ -5,8 +17,10 @@ static void		set_data(t_data *d, int x)
 	d->camera_x = (2 * x / (double)(d->screen_x)) - 1;
 	d->ray_dir_x = d->dir_x + d->plane_x * d->camera_x;
 	d->ray_dir_y = d->dir_y + d->plane_y * d->camera_x;
-	d->delta_x = sqrt(1 + (d->ray_dir_y * d->ray_dir_y) / (d->ray_dir_x * d->ray_dir_x));
-	d->delta_y = sqrt(1 + (d->ray_dir_x * d->ray_dir_x) / (d->ray_dir_y * d->ray_dir_y));
+	d->delta_x = sqrt(1 + (d->ray_dir_y * d->ray_dir_y) /
+		(d->ray_dir_x * d->ray_dir_x));
+	d->delta_y = sqrt(1 + (d->ray_dir_x * d->ray_dir_x) /
+		(d->ray_dir_y * d->ray_dir_y));
 	d->side_dist_x = 0;
 	d->side_dist_y = 0;
 	d->wall_dist = 0;
@@ -49,6 +63,17 @@ static void		set_side_dist(t_data *d)
 	}
 }
 
+static void		set_wall_dist(t_data *d, int x)
+{
+	if (d->side == 0 || d->side == 1)
+		d->wall_dist = (d->ray_x - d->pos_x +
+			(1 - d->step_x) / 2) / d->ray_dir_x;
+	else
+		d->wall_dist = (d->ray_y - d->pos_y +
+			(1 - d->step_y) / 2) / d->ray_dir_y;
+	d->z_buffer[x] = d->wall_dist;
+}
+
 static void		dda(t_data *d, int x)
 {
 	while (!d->hit)
@@ -65,16 +90,13 @@ static void		dda(t_data *d, int x)
 			d->ray_y += d->step_y;
 			d->side = (d->step_y == 1) ? 2 : 3;
 		}
-		if (d->map[d->ray_y][d->ray_x] == '1')
+		if (d->map[d->ray_y][d->ray_x] == '1' ||
+				d->map[d->ray_y][d->ray_x] == '3')
 			d->hit = 1;
 		else if (d->map[d->ray_y][d->ray_x] == '2')
 			sprite_hit(d);
 	}
-	if (d->side == 0 || d->side == 1)
-		d->wall_dist = (d->ray_x - d->pos_x + (1 - d->step_x) / 2) / d->ray_dir_x;
-	else
-		d->wall_dist = (d->ray_y - d->pos_y + (1 - d->step_y) / 2) / d->ray_dir_y;
-	d->z_buffer[x] = d->wall_dist;
+	set_wall_dist(d, x);
 }
 
 void			raycast(t_data *d)
@@ -100,5 +122,8 @@ void			raycast(t_data *d)
 		x++;
 	}
 	draw_sprite(d);
-	mlx_put_image_to_window(d->mlx_ptr, d->win_ptr, d->img_ptr, 0, 0);
+	if (!d->save)
+		mlx_put_image_to_window(d->mlx_ptr, d->win_ptr, d->img_ptr, 0, 0);
+	else
+		bitmap(d);
 }

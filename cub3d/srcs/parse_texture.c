@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_texture.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/23 19:33:55 by memartin          #+#    #+#             */
+/*   Updated: 2020/04/23 19:33:58 by memartin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 void			parse_no_texture(t_data *d, t_parse *p, char *line)
@@ -22,7 +34,7 @@ void			parse_no_texture(t_data *d, t_parse *p, char *line)
 void			parse_so_texture(t_data *d, t_parse *p, char *line)
 {
 	int		l;
-	
+
 	line += 3;
 	while (is_whitespace(*line))
 		line++;
@@ -41,7 +53,7 @@ void			parse_so_texture(t_data *d, t_parse *p, char *line)
 void			parse_we_texture(t_data *d, t_parse *p, char *line)
 {
 	int		l;
-	
+
 	line += 3;
 	while (is_whitespace(*line))
 		line++;
@@ -60,7 +72,7 @@ void			parse_we_texture(t_data *d, t_parse *p, char *line)
 void			parse_ea_texture(t_data *d, t_parse *p, char *line)
 {
 	int		l;
-	
+
 	line += 3;
 	while (is_whitespace(*line))
 		line++;
@@ -79,7 +91,7 @@ void			parse_ea_texture(t_data *d, t_parse *p, char *line)
 void			parse_sprite(t_data *d, t_parse *p, char *line)
 {
 	int		l;
-	
+
 	line += 2;
 	while (is_whitespace(*line))
 		line++;
