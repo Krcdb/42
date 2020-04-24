@@ -6,11 +6,19 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 19:07:33 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/23 19:32:26 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/24 12:54:50 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+int				is_valid_map_char(char c)
+{
+	if (c != ' ' && c != '0' && c != '1' && c != '2' && c != 'N' && c != 'E'
+			&& c != 'W' && c != 'S')
+		return (0);
+	return (1);
+}
 
 void			set_player_pos(t_data *d, t_parse *p, int x, int y)
 {

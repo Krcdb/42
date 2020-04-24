@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 19:31:55 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/23 20:14:58 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/24 12:54:47 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ static int		is_border_valid(t_data *d, size_t x, size_t y)
 
 static int		is_valid_char(t_data *d, t_parse *p, size_t x, size_t y)
 {
+	if (!is_valid_map_char(d->map[y][x]))
+		return (0);
 	if (x == 0 || y == 0 || x == d->map_x - 1 || y == d->map_y - 1)
 	{
 		if (p->c != ' ' && p->c != '1')
