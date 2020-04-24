@@ -6,11 +6,11 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 19:32:48 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/24 13:14:20 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/24 13:44:38 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes/cub3d_bonus.h"
 
 static void		set_error_res(t_data *d, t_parse *p)
 {

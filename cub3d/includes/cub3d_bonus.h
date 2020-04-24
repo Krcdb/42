@@ -1,36 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 20:18:27 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/24 12:53:22 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/24 19:35:29 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # include "mlx.h"
 # include "../libft/libft.h"
 # include <math.h>
 # include <stdio.h>
 
-# define NO_C 0255000000
-# define SO_C 0000000255
-# define WE_C  0255125125
-# define EA_C  0000255000
 # define W_KEY 119
 # define A_KEY 97
 # define S_KEY 115
 # define D_KEY 100
+# define E_KEY 101
+# define C_KEY 99
+# define KEY_1 49
+# define KEY_2 50
+# define KEY_3 51
+# define KEY_4 52
 # define SHIFT_KEY 65505
+# define SPACE_KEY 32
+# define CTRL_KEY 65507
 # define LEFT_KEY 65363
 # define RIGHT_KEY 65361
 # define ESC_KEY 65307
-# define TEXT_SIZE 64
+
+# define EXIT_PATH "./textures/exitwall.xpm"
+# define SECRET_PATH "./textures/deadwall128.xpm"
+# define DOOR_PATH "./textures/door128.xpm"
+# define LOCKED_PATH "./textures/door128.xpm"
+
+# define DEAD_PATH "./textures/deadpig128.xpm"
+# define PISTOL_DROP_PATH "./textures/pistoldrop.xpm"
+# define SHOOT_DROP_PATH "./textures/shootdrop.xpm"
+# define NUKE_DROP_PATH "./textures/nukedrop.xpm"
+# define GLASS_PATH "./textures/glass128.xpm"
+# define CARD_PATH "./textures/bluecard.xpm"
+
+# define PISTOL_HUD_PATH "./textures/pistol_hud.xpm"
+# define SHOOT_HUD_PATH "./textures/shootgun_hud.xpm"
+# define NUKE_HUD_PATH "./textures/nukegun_hud.xpm"
+# define HANDCARD_PATH "./textures/cardhand.xpm"
 
 typedef struct		s_rgb
 {
@@ -53,6 +73,7 @@ typedef struct		s_spritelist
 	int					map_y;
 	int					nb_sprite;
 	double				dist;
+	char				type;
 
 	int					screen_x;
 	int					height;
@@ -182,8 +203,24 @@ typedef struct		s_data
 	t_texture		south_t;
 	t_texture		east_t;
 	t_texture		west_t;
-	t_texture		sprite_t;
-	t_hud			sgun_t;
+
+	t_texture		exit_t;
+	t_texture		secret_t;
+	t_texture		lock_t;
+	t_texture		door_t;
+
+	t_texture		mob_t;
+	t_texture		deadmob_t;
+	t_texture		pistoldrop_t;
+	t_texture		shootdrop_t;
+	t_texture		nukedrop_t;
+	t_texture		glass_t;
+	t_texture		card_t;
+
+	t_hud			pistol_t;
+	t_hud			shootgun_t;
+	t_hud			nuke_t;
+	t_hud			handcard_t;
 
 	t_spritelist	*spritelst;
 	t_spritelist	*spritedraw;
@@ -191,6 +228,17 @@ typedef struct		s_data
 	int				s_text_x;
 	int				s_text_y;
 	int				pxl_color;
+
+	int				inventory;
+	int				b_pistol;
+	int				b_shootgun;
+	int				b_nukegun;
+	int				b_handcard;
+
+	int				b_one;
+	int				b_two;
+	int				b_three;
+	int				b_four;
 }					t_data;
 
 typedef struct		s_parse
@@ -253,7 +301,7 @@ void				init_pos_camera(t_data *d);
 void				rotate_left(t_data *d);
 void				rotate_right(t_data *d);
 void				print_tab(char **tab);
-t_texture			*get_texture(t_data *d);
+t_texture			*get_texture(t_data *d, char c);
 void				put_texture_on_img(t_data *d, int x, t_texture *t);
 void				sprite_hit(t_data*d);
 void				del_all_sprite(t_spritelist **hlst);
@@ -264,5 +312,11 @@ void				sort_sprite(t_spritelist **spritelst);
 void				exit_init(t_data *d);
 void				bitmap(t_data *d);
 int					init_hud_textures(t_data *d);
+int					init_wall_text(t_data *d);
+int					init_sprite_text(t_data *d);
+int					is_wall(char c);
+int					is_sprite(char c);
+int					is_walk(char c);
+t_hud				*get_hud(t_data *d);
 
 #endif

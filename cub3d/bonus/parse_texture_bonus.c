@@ -6,11 +6,11 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 19:33:55 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/24 13:14:23 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/24 13:44:43 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes/cub3d_bonus.h"
 
 void			parse_no_texture(t_data *d, t_parse *p, char *line)
 {

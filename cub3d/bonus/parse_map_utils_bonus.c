@@ -6,17 +6,17 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 19:07:33 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/24 13:14:17 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/24 17:19:32 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes/cub3d_bonus.h"
 
 int				is_valid_map_char(char c)
 {
-	if (c != ' ' && c != '0' && c != '1' && c != 'e' && c != 's' && c != 'd'
+	if (c != ' ' && c != '0' && c != '1' && c != 'e' && c != 'h' && c != 'd'
 		&& c != 'l' && c != 'N' && c != 'E' && c != 'S' && c != 'W'
-		&& c != 'm' && c != 'd' && c != 'p' && c != 's' && c != 'n'
+		&& c != 'm' && c != 'k' && c != 'p' && c != 's' && c != 'n'
 		&& c != 'g' && c != 'c')
 		return (0);
 	return (1);

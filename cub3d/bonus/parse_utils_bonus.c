@@ -6,11 +6,11 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 19:34:24 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/24 13:14:27 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/24 17:24:18 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes/cub3d_bonus.h"
 
 int			is_whitespace(char c)
 {
@@ -31,7 +31,9 @@ char		*cpy_lst_to_map(char *dst, const char *src)
 
 int			is_map_char(char c)
 {
-	if (c == ' ' || c == '0' || c == '1' || c == '2' || c == '3' ||
+	if (c == ' ' || c == '0' || c == '1' || c == 'e' || c == 'h' ||
+		c == 'd' || c == 'l' || c == 'm' || c == 'k' || c == 'p' ||
+		c == 's' || c == 'n' || c == 'g' || c == 'c' ||
 		c == 'N' || c == 'S' || c == 'W' || c == 'E')
 		return (1);
 	return (0);

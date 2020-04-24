@@ -6,18 +6,19 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/19 15:31:41 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/24 13:14:51 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/24 16:11:44 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes/cub3d_bonus.h"
 
-static t_spritelist	*new_sprite(t_data *d)
+static t_spritelist	*new_sprite(t_data *d, char c)
 {
 	t_spritelist		*new;
 
 	if (!(new = (t_spritelist*)malloc(sizeof(t_spritelist))))
 		return (NULL);
+	new->type = c;
 	new->map_x = d->ray_x;
 	new->map_y = d->ray_y;
 	new->dist = ((d->pos_x - new->map_x) * (d->pos_x - new->map_x)) +
@@ -46,7 +47,7 @@ void				sprite_hit(t_data *d)
 			return ;
 		tmp = tmp->next;
 	}
-	add_sprite(&d->spritelst, new_sprite(d));
+	add_sprite(&d->spritelst, new_sprite(d, d->map[d->ray_y][d->ray_x]));
 	if (d->spritelst->next)
 		d->spritelst->nb_sprite = d->spritelst->next->nb_sprite + 1;
 	else
@@ -57,6 +58,7 @@ static void			swap_sprite(t_spritelist **sprite1, t_spritelist **sprite2)
 {
 	double	tmp;
 	int		tmp2;
+	char	tmp3;
 
 	if ((*sprite1)->dist < (*sprite2)->dist)
 	{
@@ -69,6 +71,9 @@ static void			swap_sprite(t_spritelist **sprite1, t_spritelist **sprite2)
 		tmp2 = (*sprite1)->map_y;
 		(*sprite1)->map_y = (*sprite2)->map_y;
 		(*sprite2)->map_y = tmp2;
+		tmp3 = (*sprite1)->type;
+		(*sprite1)->type = (*sprite2)->type;
+		(*sprite2)->type = tmp3;
 	}
 }
 

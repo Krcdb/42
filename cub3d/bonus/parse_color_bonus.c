@@ -6,11 +6,11 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 19:05:32 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/24 13:14:09 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/24 13:44:26 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes/cub3d_bonus.h"
 
 static int		check_format(char *line)
 {

@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 19:34:24 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/23 19:34:25 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/24 13:49:21 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char		*cpy_lst_to_map(char *dst, const char *src)
 
 int			is_map_char(char c)
 {
-	if (c == ' ' || c == '0' || c == '1' || c == '2' || c == '3' ||
+	if (c == ' ' || c == '0' || c == '1' || c == '2' ||
 		c == 'N' || c == 'S' || c == 'W' || c == 'E')
 		return (1);
 	return (0);

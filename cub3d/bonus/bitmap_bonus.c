@@ -6,11 +6,11 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 16:36:37 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/24 13:12:30 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/24 13:43:27 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes/cub3d_bonus.h"
 
 static void		data_to_bitmap(t_data *d, int fd)
 {

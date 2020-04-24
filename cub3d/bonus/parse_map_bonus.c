@@ -6,11 +6,11 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 19:31:55 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/24 13:14:14 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/24 17:25:29 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes/cub3d_bonus.h"
 
 static int		is_border_valid(t_data *d, size_t x, size_t y)
 {
@@ -41,8 +41,6 @@ static int		is_border_valid(t_data *d, size_t x, size_t y)
 
 static int		is_valid_char(t_data *d, t_parse *p, size_t x, size_t y)
 {
-	if (!is_valid_map_char(d->map[y][x]))
-		return (0);
 	if (x == 0 || y == 0 || x == d->map_x - 1 || y == d->map_y - 1)
 	{
 		if (p->c != ' ' && p->c != '1')

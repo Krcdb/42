@@ -6,11 +6,11 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 18:59:18 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/24 13:13:57 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/24 19:22:22 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes/cub3d_bonus.h"
 
 static int		init_textures(t_data *d)
 {
@@ -30,17 +30,17 @@ static int		init_textures(t_data *d)
 		&d->east_t.width, &d->east_t.height);
 	d->east_t.data = mlx_get_data_addr(d->east_t.img,
 		&d->east_t.bpp, &d->east_t.s_l, &d->east_t.endian);
-	d->sprite_t.img = mlx_xpm_file_to_image(d->mlx_ptr, d->sprite_path,
-		&d->sprite_t.width, &d->sprite_t.height);
-	d->sprite_t.data = mlx_get_data_addr(d->sprite_t.img,
-		&d->sprite_t.bpp, &d->sprite_t.s_l, &d->sprite_t.endian);
+	d->mob_t.img = mlx_xpm_file_to_image(d->mlx_ptr, d->sprite_path,
+		&d->mob_t.width, &d->mob_t.height);
+	d->mob_t.data = mlx_get_data_addr(d->mob_t.img,
+		&d->mob_t.bpp, &d->mob_t.s_l, &d->mob_t.endian);
 	if (!d->north_t.img || !d->south_t.img || !d->west_t.img || !d->east_t.img
-			|| !d->sprite_t.img)
+			|| !d->mob_t.img)
 		return (0);
 	return (1);
 }
 
-static void		init_move(t_data *d)
+static void		init_move_key(t_data *d)
 {
 	d->strafe_left = 0;
 	d->strafe_right = 0;
@@ -52,12 +52,16 @@ static void		init_move(t_data *d)
 	d->exit_game = 0;
 	d->speed = 0.02;
 	d->rotation = 0.01;
+	d->b_one = 0;
+	d->b_two = 0;
+	d->b_three = 0;
+	d->b_four = 0;
 }
 
 static void		init_data_game(t_data *d)
 {
 	init_pos_camera(d);
-	init_move(d);
+	init_move_key(d);
 	if (d->screen_x > 1920)
 		d->screen_x = 1920;
 	if (d->screen_y > 1200)
@@ -69,7 +73,7 @@ static void		init_data_game(t_data *d)
 		d->win_ptr = mlx_new_window(d->mlx_ptr, d->screen_x,
 		d->screen_y, "cub3d");
 	if (!init_textures(d) || !d->img_ptr || !init_hud_textures(d) ||
-		(!d->win_ptr && !d->save))
+		!init_wall_text(d) || !init_sprite_text(d) || (!d->win_ptr && !d->save))
 		exit_game(d);
 	if (!(d->z_buffer = (double*)malloc(sizeof(double) * d->screen_x)))
 		exit_game(d);

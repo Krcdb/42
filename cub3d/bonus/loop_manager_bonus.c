@@ -6,11 +6,11 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 18:56:40 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/24 13:13:50 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/24 13:44:02 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes/cub3d_bonus.h"
 
 int			loop_manager(void *param)
 {

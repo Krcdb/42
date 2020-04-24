@@ -6,11 +6,11 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/19 17:29:07 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/24 13:12:48 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/24 17:20:43 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes/cub3d_bonus.h"
 
 static void		set_sprite_draw(t_spritelist **sp, t_data *d)
 {
@@ -39,7 +39,7 @@ static void		set_sprite_draw(t_spritelist **sp, t_data *d)
 		d->screen_x - 1 : (*sp)->draw_end_x;
 }
 
-static int		check_color(t_data *d, t_texture *t)
+static int			check_color(t_data *d, t_texture *t)
 {
 	if (t->data[d->text_y * t->s_l + d->text_x * t->bpp / 8] == -1
 		&& t->data[d->text_y * t->s_l + d->text_x * t->bpp / 8 + 1] == 0
@@ -48,7 +48,7 @@ static int		check_color(t_data *d, t_texture *t)
 	return (1);
 }
 
-static void		put_p(int x, int y, t_data *d, t_texture *t)
+static void			put_p(int x, int y, t_data *d, t_texture *t)
 {
 	d->img_data[y * d->s_l + x * d->bpp / 8] =
 		t->data[d->text_y * t->s_l + d->text_x * t->bpp / 8];
@@ -58,7 +58,7 @@ static void		put_p(int x, int y, t_data *d, t_texture *t)
 		t->data[d->text_y * t->s_l + d->text_x * (t->bpp / 8) + 2];
 }
 
-static void		draw_stripe(int x, t_spritelist *sp, t_data *d, t_texture *t)
+static void			draw_stripe(int x, t_spritelist *sp, t_data *d, t_texture *t)
 {
 	int		y;
 	int		dd;
@@ -81,7 +81,25 @@ static void		draw_stripe(int x, t_spritelist *sp, t_data *d, t_texture *t)
 	}
 }
 
-void			draw_sprite(t_data *d)
+static t_texture	*get_sprite(t_data *d, char c)
+{
+	if (c == 'm')
+		return (&d->mob_t);
+	else if (c == 'k')
+		return (&d->deadmob_t);
+	else if (c == 'p')
+		return (&d->pistoldrop_t);
+	else if (c == 's')
+		return (&d->shootdrop_t);
+	else if (c == 'n')
+		return (&d->nukedrop_t);
+	else if (c == 'g')
+		return (&d->glass_t);
+	else
+		return (&d->card_t);
+}
+
+void				draw_sprite(t_data *d)
 {
 	int		x;
 
@@ -94,7 +112,7 @@ void			draw_sprite(t_data *d)
 		x = d->spritelst->draw_start_x;
 		while (x < d->spritelst->draw_end_x)
 		{
-			draw_stripe(x, d->spritelst, d, &d->sprite_t);
+			draw_stripe(x, d->spritelst, d, get_sprite(d, d->spritelst->type));
 			x++;
 		}
 		d->spritelst = d->spritelst->next;

@@ -6,11 +6,11 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 19:00:22 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/24 13:12:39 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/24 13:43:33 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes/cub3d_bonus.h"
 
 static void		set_plane_dir(t_data *d, double dir_y, double p_x, double p_y)
 {

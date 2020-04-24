@@ -6,15 +6,23 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 20:16:22 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/24 13:14:54 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/24 17:20:22 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes/cub3d_bonus.h"
 
-t_texture		*get_texture(t_data *d)
+t_texture		*get_texture(t_data *d, char c)
 {
-	if (d->side == 0)
+	if (c == 'e')
+		return (&d->exit_t);
+	else if (c == 'h')
+		return (&d->secret_t);
+	else if (c == 'd')
+		return (&d->door_t);
+	else if (c == 'l')
+		return (&d->lock_t);
+	else if (d->side == 0)
 		return (&d->west_t);
 	else if (d->side == 1)
 		return (&d->east_t);

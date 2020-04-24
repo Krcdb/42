@@ -6,11 +6,11 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 19:35:39 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/24 13:14:33 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/24 19:01:40 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes/cub3d_bonus.h"
 
 static void		set_data(t_data *d, int x)
 {
@@ -90,14 +90,12 @@ static void		dda(t_data *d, int x)
 			d->ray_y += d->step_y;
 			d->side = (d->step_y == 1) ? 2 : 3;
 		}
-		if (d->map[d->ray_y][d->ray_x] == '1' ||
-				d->map[d->ray_y][d->ray_x] == '3')
+		if (is_wall(d->map[d->ray_y][d->ray_x]))
 			d->hit = 1;
-		else if (d->map[d->ray_y][d->ray_x] == '2')
+		else if (is_sprite(d->map[d->ray_y][d->ray_x]))
 			sprite_hit(d);
 	}
 	set_wall_dist(d, x);
-void				draw_sprite(t_data *d);
 }
 
 void			raycast(t_data *d)
@@ -123,7 +121,8 @@ void			raycast(t_data *d)
 		x++;
 	}
 	draw_sprite(d);
-	draw_hud(d, &d->sgun_t);
+	if (d->inventory)
+		draw_hud(d, get_hud(d));
 	if (!d->save)
 		mlx_put_image_to_window(d->mlx_ptr, d->win_ptr, d->img_ptr, 0, 0);
 	else

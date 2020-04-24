@@ -1,38 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   files_utils_bonus.c                                :+:      :+:    :+:   */
+/*   hit_detection_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/23 18:55:49 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/24 13:43:53 by memartin         ###   ########.fr       */
+/*   Created: 2020/04/24 13:54:35 by memartin          #+#    #+#             */
+/*   Updated: 2020/04/24 17:26:06 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d_bonus.h"
 
-int			is_valid_extension(const char *path, const char *ext)
+int				is_wall(char c)
 {
-	int		l;
-
-	l = ft_strlen(path);
-	if (path[l - 4] != ext[0] || path[l - 3] != ext[1] ||
-		path[l - 2] != ext[2] || path[l - 1] != ext[3])
-		return (0);
-	return (1);
+	if (c == '1' || c == 'e' || c == 'h' || c == 'd' || c == 'l')
+		return (1);
+	return (0);
 }
 
-int			is_filepath_valid(const char *path)
+int				is_sprite(char c)
 {
-	int fd;
+	if (c == 'm' || c == 'k' || c == 'p' || c == 's' || c == 'n' ||
+		c == 'g' || c == 'c')
+		return (1);
+	return (0);
+}
 
-	fd = open(path, O_RDONLY);
-	if (fd == -1)
-	{
-		close(fd);
-		return (0);
-	}
-	close(fd);
-	return (1);
+int				is_walk(char c)
+{
+	if (c == '0' || c == 'h' || c == 'k' || c == 'p' || c == 's' ||
+		c == 'n' || c == 'c')
+		return (1);
+	return (0);
 }

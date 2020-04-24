@@ -6,11 +6,11 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 19:34:44 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/24 13:14:30 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/24 13:44:51 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes/cub3d_bonus.h"
 
 t_maplist		*newlst(const char *content, size_t content_size)
 {
