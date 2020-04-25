@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 20:18:27 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/24 19:35:29 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/25 17:53:51 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,6 +239,8 @@ typedef struct		s_data
 	int				b_two;
 	int				b_three;
 	int				b_four;
+	int				b_action;
+	int				b_shoot;
 }					t_data;
 
 typedef struct		s_parse
@@ -318,5 +320,7 @@ int					is_wall(char c);
 int					is_sprite(char c);
 int					is_walk(char c);
 t_hud				*get_hud(t_data *d);
+void				action_detection(t_data *d);
+void				player_shoot(t_data *d);
 
 #endif

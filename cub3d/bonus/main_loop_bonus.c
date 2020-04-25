@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 18:59:18 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/24 19:22:22 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/25 10:41:26 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ static void		init_move_key(t_data *d)
 	d->b_two = 0;
 	d->b_three = 0;
 	d->b_four = 0;
+	d->b_action = 0;
 }
 
 static void		init_data_game(t_data *d)

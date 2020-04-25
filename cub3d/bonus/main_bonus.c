@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 17:47:51 by user42            #+#    #+#             */
-/*   Updated: 2020/04/24 19:37:13 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/25 17:45:37 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,8 @@ static void		init_data(t_data *d)
 	d->b_shootgun = 0;
 	d->b_nukegun = 0;
 	d->b_handcard = 0;
+	d->b_shoot = 0;
+	d->b_action = 0;
 }
 
 int				main(int ac, char **av)

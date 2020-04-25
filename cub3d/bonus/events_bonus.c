@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 18:53:57 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/24 19:34:52 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/25 17:55:21 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,10 @@ int			event_key_pressed(int key, void *param)
 		d->sprint = 1;
 	else if (key == KEY_1 || key == KEY_2 || key == KEY_3 || key == KEY_4)
 		key_inventory(d, key);
+	else if (key == E_KEY && !d->b_action)
+		action_detection(d);
+	else if (key == SPACE_KEY && !d->b_shoot)
+		player_shoot(d);
 	return (1);
 }
 
@@ -125,5 +129,9 @@ int			event_key_released(int key, void *param)
 		d->sprint = 0;
 	else if (key == KEY_1 || key == KEY_2 || key == KEY_3 || key == KEY_4)
 		key_inventory_released(d, key);
+	else if (key == E_KEY)
+		d->b_action = 0;
+	else if (key == SPACE_KEY)
+		d->b_shoot = 0;
 	return (1);
 }

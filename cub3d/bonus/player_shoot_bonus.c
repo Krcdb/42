@@ -1,63 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hit_detection_bonus.c                              :+:      :+:    :+:   */
+/*   player_shoot_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/24 13:54:35 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/25 10:41:01 by memartin         ###   ########.fr       */
+/*   Created: 2020/04/25 17:31:55 by memartin          #+#    #+#             */
+/*   Updated: 2020/04/25 17:58:58 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d_bonus.h"
 
-int				is_wall(char c)
+static int			is_shoot_hit(char c)
 {
-	if (c == '1' || c == 'e' || c == 'h' || c == 'd' || c == 'l')
+	if (is_wall(c) || c == 'm')
 		return (1);
 	return (0);
 }
 
-int				is_sprite(char c)
+static void			dda_shoot(t_data *d)
 {
-	if (c == 'm' || c == 'k' || c == 'p' || c == 's' || c == 'n' ||
-		c == 'g' || c == 'c')
-		return (1);
-	return (0);
-}
-
-int				is_walk(char c)
-{
-	if (c == '0' || c == 'h' || c == 'k' || c == 'p' || c == 's' ||
-		c == 'n' || c == 'c')
-		return (1);
-	return (0);
-}
-
-static void		action_resolution(t_data *d)
-{
-	d->b_action = 1;
-	if (d->side_dist_x < d->side_dist_y)
-		d->ray_x += d->step_x;
-	else
-		d->ray_y += d->step_y;
-	if (d->map[d->ray_y][d->ray_x] == 'd')
-		d->map[d->ray_y][d->ray_x] = '0';
-	else if (d->map[d->ray_y][d->ray_x] == 'e')
-		exit_game(d);
-	else if (d->map[d->ray_y][d->ray_x] == 'l')
+	d->hit = 0;
+	while (!d->hit)
 	{
-		if (d->inventory == 4 && d->b_handcard)
+		if (d->side_dist_x < d->side_dist_y)
 		{
-			d->map[d->ray_y][d->ray_x] = '0';
-			d->inventory = 0;
-			d->b_handcard = 0;
+			d->side_dist_x += d->delta_x;
+			d->ray_x += d->step_x;
 		}
+		else
+		{
+			d->side_dist_y += d->delta_y;
+			d->ray_y += d->step_y;
+		}
+		if (is_shoot_hit(d->map[d->ray_y][d->ray_x]))
+			d->hit = 1;
 	}
+	if (d->map[d->ray_y][d->ray_x] == 'm')
+		d->map[d->ray_y][d->ray_x] = 'k';
+		
 }
 
-void			action_detection(t_data *d)
+static void			shoot_dectection(t_data *d)
 {
 	d->delta_x = sqrt(1 + (d->dir_y * d->dir_y) / (d->dir_x * d->dir_x));
 	d->delta_y = sqrt(1 + (d->dir_x * d->dir_x) / (d->dir_y * d->dir_y));
@@ -83,5 +68,12 @@ void			action_detection(t_data *d)
 		d->step_y = 1;
 		d->side_dist_y = (d->ray_y + 1 - d->pos_y) * d->delta_y;
 	}
-	action_resolution(d);
+	dda_shoot(d);
+}
+
+void				player_shoot(t_data *d)
+{
+	d->b_shoot = 1;
+	if (d->inventory == 1 || d->inventory == 2 || d->inventory == 3)
+		shoot_dectection(d);
 }
