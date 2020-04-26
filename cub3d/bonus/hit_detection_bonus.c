@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/24 13:54:35 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/25 10:41:01 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/26 14:12:48 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,15 @@ static void		action_resolution(t_data *d)
 	else
 		d->ray_y += d->step_y;
 	if (d->map[d->ray_y][d->ray_x] == 'd')
+	{
+		system("aplay ./sound/slidoor.wav $>/dev/null &");
 		d->map[d->ray_y][d->ray_x] = '0';
+	}
 	else if (d->map[d->ray_y][d->ray_x] == 'e')
+	{
+		system("aplay ./sound/endsong.wav");
 		exit_game(d);
+	}
 	else if (d->map[d->ray_y][d->ray_x] == 'l')
 	{
 		if (d->inventory == 4 && d->b_handcard)
@@ -53,6 +59,7 @@ static void		action_resolution(t_data *d)
 			d->map[d->ray_y][d->ray_x] = '0';
 			d->inventory = 0;
 			d->b_handcard = 0;
+			system("aplay ./sound/slidoor.wav $>/dev/null &");
 		}
 	}
 }

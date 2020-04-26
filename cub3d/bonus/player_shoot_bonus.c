@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/25 17:31:55 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/25 17:58:58 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/26 14:14:08 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ static void			dda_shoot(t_data *d)
 			d->hit = 1;
 	}
 	if (d->map[d->ray_y][d->ray_x] == 'm')
+	{
+		system("aplay /home/user42/repo/cub3d/sound/pigdy.wav &>/dev/null &");	
 		d->map[d->ray_y][d->ray_x] = 'k';
-		
+	}
 }
 
 static void			shoot_dectection(t_data *d)
@@ -74,6 +76,13 @@ static void			shoot_dectection(t_data *d)
 void				player_shoot(t_data *d)
 {
 	d->b_shoot = 1;
-	if (d->inventory == 1 || d->inventory == 2 || d->inventory == 3)
+	d->diff_time = get_diff_time(d->old_time);
+	if ((d->inventory == 1 || d->inventory == 2 || d->inventory == 3)
+		&& d->diff_time >= 0.40)
+	{
+		d->b_player_shooted = 1;
+		d->old_time = clock();
+		system("aplay ./sound/chaingun.wav &>/dev/null &");
 		shoot_dectection(d);
+	}
 }

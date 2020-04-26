@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 20:18:27 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/25 17:53:51 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/26 14:15:13 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "mlx.h"
 # include "../libft/libft.h"
 # include <math.h>
+# include <time.h>
 # include <stdio.h>
 
 # define W_KEY 119
@@ -38,7 +39,7 @@
 # define EXIT_PATH "./textures/exitwall.xpm"
 # define SECRET_PATH "./textures/deadwall128.xpm"
 # define DOOR_PATH "./textures/door128.xpm"
-# define LOCKED_PATH "./textures/door128.xpm"
+# define LOCKED_PATH "./textures/lockeddoor128.xpm"
 
 # define DEAD_PATH "./textures/deadpig128.xpm"
 # define PISTOL_DROP_PATH "./textures/pistoldrop.xpm"
@@ -48,6 +49,8 @@
 # define CARD_PATH "./textures/bluecard.xpm"
 
 # define PISTOL_HUD_PATH "./textures/pistol_hud.xpm"
+# define PISTOL1_HUD_PATH "./textures/pistol1.xpm"
+# define PISTOL2_HUD_PATH "./textures/pistol2.xpm"
 # define SHOOT_HUD_PATH "./textures/shootgun_hud.xpm"
 # define NUKE_HUD_PATH "./textures/nukegun_hud.xpm"
 # define HANDCARD_PATH "./textures/cardhand.xpm"
@@ -218,6 +221,8 @@ typedef struct		s_data
 	t_texture		card_t;
 
 	t_hud			pistol_t;
+	t_hud			pistol1_t;
+	t_hud			pistol2_t;
 	t_hud			shootgun_t;
 	t_hud			nuke_t;
 	t_hud			handcard_t;
@@ -241,6 +246,11 @@ typedef struct		s_data
 	int				b_four;
 	int				b_action;
 	int				b_shoot;
+	int				b_player_shooted;
+
+	clock_t			old_time;
+	clock_t			old_step_time;
+	float			diff_time;
 }					t_data;
 
 typedef struct		s_parse
@@ -322,5 +332,7 @@ int					is_walk(char c);
 t_hud				*get_hud(t_data *d);
 void				action_detection(t_data *d);
 void				player_shoot(t_data *d);
+float				get_diff_time(clock_t old);
+void				update_bool_time(t_data *d);
 
 #endif

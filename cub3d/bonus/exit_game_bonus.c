@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 18:54:48 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/24 16:10:40 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/26 11:47:13 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,10 @@ static void		free_textures(t_data *d)
 		mlx_destroy_image(d->mlx_ptr, d->card_t.img);
 	if (d->pistol_t.img)
 		mlx_destroy_image(d->mlx_ptr, d->pistol_t.img);
+	if (d->pistol1_t.img)
+		mlx_destroy_image(d->mlx_ptr, d->pistol1_t.img);
+	if (d->pistol2_t.img)
+		mlx_destroy_image(d->mlx_ptr, d->pistol2_t.img);
 	if (d->shootgun_t.img)
 		mlx_destroy_image(d->mlx_ptr, d->shootgun_t.img);
 	if (d->nuke_t.img)

@@ -32,7 +32,7 @@ BONUS_NAME = main_bonus.c parse_bonus.c parse_texture_bonus.c parse_res_bonus.c\
 			files_utils_bonus.c texture_bonus.c sprite_bonus.c draw_sprite_bonus.c\
 			bitmap_bonus.c camera_bonus.c parse_map_utils_bonus.c\
 			hud_bonus.c hit_detection_bonus.c init_text_sprite_bonus.c\
-			player_shoot_bonus.c\
+			player_shoot_bonus.c time_bonus.c\
 
 SRCS = $(addprefix $(SOURCES_DIR)/,$(SRCS_NAME))
 
