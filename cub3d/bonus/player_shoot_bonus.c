@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/25 17:31:55 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/26 14:14:08 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/27 10:44:07 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,10 @@ void				player_shoot(t_data *d)
 	if ((d->inventory == 1 || d->inventory == 2 || d->inventory == 3)
 		&& d->diff_time >= 0.40)
 	{
-		d->b_player_shooted = 1;
+		if (d->inventory == 1)
+			d->b_player_spistol = 1;
+		else
+			d->b_player_shooted = 1;
 		d->old_time = clock();
 		system("aplay ./sound/chaingun.wav &>/dev/null &");
 		shoot_dectection(d);

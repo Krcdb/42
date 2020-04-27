@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast_bonus.c                                    :+:      :+:    :+:   */
+/*   draw_glass_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/23 19:35:39 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/27 10:58:39 by memartin         ###   ########.fr       */
+/*   Created: 2020/04/27 11:16:54 by memartin          #+#    #+#             */
+/*   Updated: 2020/04/27 16:20:06 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,9 @@ static void		set_wall_dist(t_data *d, int x)
 	else
 		d->wall_dist = (d->ray_y - d->pos_y +
 			(1 - d->step_y) / 2) / d->ray_dir_y;
-	d->z_buffer[x] = d->wall_dist;
 }
 
-static void		dda(t_data *d, int x)
+static void		dda(t_data *d, t_spritelist *sp, int x)
 {
 	while (!d->hit)
 	{
@@ -90,26 +89,22 @@ static void		dda(t_data *d, int x)
 			d->ray_y += d->step_y;
 			d->side = (d->step_y == 1) ? 2 : 3;
 		}
-		if (is_wall(d->map[d->ray_y][d->ray_x]))
+		if (d->ray_y == sp->map_y && d->ray_x == sp->map_x)
 			d->hit = 1;
-		else if (is_sprite(d->map[d->ray_y][d->ray_x]))
-			sprite_hit(d, x);
 	}
 	set_wall_dist(d, x);
 }
 
-void			raycast(t_data *d)
+void			draw_glass(t_data *d, t_spritelist *sp)
 {
 	int		x;
 
-	x = 0;
-	del_all_sprite(&d->spritelst);
-	ft_bzero(d->z_buffer, sizeof(double) * d->screen_x);
-	while (x < d->screen_x)
+	x = sp->draw_start_x;
+	while (x <= sp->draw_end_x)
 	{
 		set_data(d, x);
 		set_side_dist(d);
-		dda(d, x);
+		dda(d, sp, x);
 		d->line_height = (int)(d->screen_y / d->wall_dist);
 		d->draw_start = (-d->line_height / 2) + (d->screen_y / 2);
 		if (d->draw_start < 0)
@@ -117,14 +112,7 @@ void			raycast(t_data *d)
 		d->draw_end = (d->line_height / 2) + (d->screen_y / 2);
 		if (d->draw_end >= d->screen_y)
 			d->draw_end = d->screen_y - 1;
-		put_line_to_img(d, x);
+		put_glass_line_to_img(d, x, &d->glass_t);
 		x++;
 	}
-	draw_sprite(d);
-	if (d->inventory)
-		draw_hud(d, get_hud(d));
-	if (!d->save)
-		mlx_put_image_to_window(d->mlx_ptr, d->win_ptr, d->img_ptr, 0, 0);
-	else
-		bitmap(d);
 }

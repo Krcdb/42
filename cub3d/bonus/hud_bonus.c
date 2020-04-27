@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 11:24:25 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/26 11:32:45 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/27 10:49:10 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,11 @@ t_hud			*get_hud(t_data *d)
 	d->diff_time = get_diff_time(d->old_time);
 	if (d->inventory == 1)
 	{
-		if (!d->b_player_shooted)
+		if (!d->b_player_spistol)
 			return (&d->pistol_t);
-		if (d->b_player_shooted && d->diff_time < 0.15)
+		if (d->diff_time < 0.15 && d->b_player_spistol)
 			return (&d->pistol1_t);
-		else if (d->b_player_shooted && d->diff_time < 0.3)
+		else if (d->diff_time < 0.3 && d->b_player_spistol)
 			return (&d->pistol2_t);
 		else
 			return (&d->pistol_t);

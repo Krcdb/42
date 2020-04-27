@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 17:47:51 by user42            #+#    #+#             */
-/*   Updated: 2020/04/26 14:16:49 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/27 10:42:51 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,8 @@ static void		init_data(t_data *d)
 	d->b_handcard = 0;
 	d->b_shoot = 0;
 	d->b_action = 0;
+	d->b_player_shooted = 0;
+	d->b_player_spistol = 0;
 	d->old_time = clock();
 	d->old_step_time = clock();
 	d->diff_time = 0;

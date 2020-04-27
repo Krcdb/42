@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 20:18:27 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/26 14:15:13 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/27 12:00:05 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -247,6 +247,7 @@ typedef struct		s_data
 	int				b_action;
 	int				b_shoot;
 	int				b_player_shooted;
+	int				b_player_spistol;
 
 	clock_t			old_time;
 	clock_t			old_step_time;
@@ -315,7 +316,7 @@ void				rotate_right(t_data *d);
 void				print_tab(char **tab);
 t_texture			*get_texture(t_data *d, char c);
 void				put_texture_on_img(t_data *d, int x, t_texture *t);
-void				sprite_hit(t_data*d);
+void				sprite_hit(t_data*d, int x);
 void				del_all_sprite(t_spritelist **hlst);
 void				print_sprite(t_spritelist *hlst);
 void				draw_sprite(t_data *d);
@@ -334,5 +335,7 @@ void				action_detection(t_data *d);
 void				player_shoot(t_data *d);
 float				get_diff_time(clock_t old);
 void				update_bool_time(t_data *d);
+void				draw_glass(t_data *d, t_spritelist *sp);
+void				put_glass_line_to_img(t_data *d, int x, t_texture *t);
 
 #endif
