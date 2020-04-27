@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 20:18:27 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/24 12:53:22 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/27 17:43:10 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,6 +209,7 @@ typedef struct		s_parse
 	int		fd;
 	int		player;
 	char	c;
+	int		i;
 }					t_parse;
 
 int					parse(t_data *d, char *path);

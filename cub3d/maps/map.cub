@@ -1,18 +1,22 @@
-R   640   400
+		R   640   400
 
-NO ./textures/ironwall128.xpm
+     NO    ./textures/ironwall128.xpm
 
-SO ./textures/brickwall128.xpm
+      SO ./textures/brickwall128.xpm
 
-WE ./textures/pipewall128.xpm
+			WE ./textures/pipewall128.xpm
 
-EA ./textures/metalwall128.xpm
 
-S ./textures/pig128.xpm
 
-F 178,167,87
 
-C 89,78,93
+				EA   ./textures/metalwall128.xpm
+
+	S    ./textures/pig128.xpm
+
+   		F   	 178,167,87
+
+		C     89,78,93
+
 
         1111111111111111111111111
         1000000000000000000000001

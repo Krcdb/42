@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 19:32:48 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/24 13:44:38 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/27 19:24:25 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ static int		check_format(char *line)
 
 void			parse_res(t_data *d, t_parse *p, char *line)
 {
+	while (is_whitespace(*line))
+		line++;
 	line += 2;
 	if (!check_format(line))
 	{

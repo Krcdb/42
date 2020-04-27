@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 20:18:27 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/27 12:00:05 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/27 19:22:17 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,6 +257,7 @@ typedef struct		s_data
 typedef struct		s_parse
 {
 	int		error;
+	int		i;
 	int		screen_res;
 	int		no_t;
 	int		so_t;
@@ -337,5 +338,7 @@ float				get_diff_time(clock_t old);
 void				update_bool_time(t_data *d);
 void				draw_glass(t_data *d, t_spritelist *sp);
 void				put_glass_line_to_img(t_data *d, int x, t_texture *t);
+void				after_move(t_data *d);
+void				step_sound(t_data *d);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/25 17:31:55 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/27 10:44:07 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/27 19:31:12 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int			is_shoot_hit(char c)
 {
-	if (is_wall(c) || c == 'm')
+	if (is_wall(c) || c == 'm' || c == 'g')
 		return (1);
 	return (0);
 }
@@ -39,7 +39,7 @@ static void			dda_shoot(t_data *d)
 	}
 	if (d->map[d->ray_y][d->ray_x] == 'm')
 	{
-		system("aplay /home/user42/repo/cub3d/sound/pigdy.wav &>/dev/null &");	
+		system("aplay /home/user42/repo/cub3d/sound/pigdy.wav &>/dev/null &");
 		d->map[d->ray_y][d->ray_x] = 'k';
 	}
 }

@@ -6,13 +6,13 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 18:54:48 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/26 11:47:13 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/27 19:07:14 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d_bonus.h"
 
-static void		free_textures(t_data *d)
+static void		free_textures_1(t_data *d)
 {
 	if (d->north_t.img)
 		mlx_destroy_image(d->mlx_ptr, d->north_t.img);
@@ -21,7 +21,7 @@ static void		free_textures(t_data *d)
 	if (d->west_t.img)
 		mlx_destroy_image(d->mlx_ptr, d->west_t.img);
 	if (d->east_t.img)
-		mlx_destroy_image(d->mlx_ptr, d->east_t.img);	
+		mlx_destroy_image(d->mlx_ptr, d->east_t.img);
 	if (d->exit_t.img)
 		mlx_destroy_image(d->mlx_ptr, d->exit_t.img);
 	if (d->secret_t.img)
@@ -34,6 +34,10 @@ static void		free_textures(t_data *d)
 		mlx_destroy_image(d->mlx_ptr, d->mob_t.img);
 	if (d->deadmob_t.img)
 		mlx_destroy_image(d->mlx_ptr, d->deadmob_t.img);
+}
+
+static void		free_textures(t_data *d)
+{
 	if (d->pistoldrop_t.img)
 		mlx_destroy_image(d->mlx_ptr, d->pistoldrop_t.img);
 	if (d->shootdrop_t.img)
@@ -56,13 +60,6 @@ static void		free_textures(t_data *d)
 		mlx_destroy_image(d->mlx_ptr, d->nuke_t.img);
 	if (d->handcard_t.img)
 		mlx_destroy_image(d->mlx_ptr, d->handcard_t.img);
-
-
-
-
-
-
-
 }
 
 void			del_all_sprite(t_spritelist **hlst)
@@ -119,6 +116,7 @@ int				exit_game(void *param)
 		mlx_destroy_image(d->mlx_ptr, d->img_ptr);
 	exit_init(d);
 	free_textures(d);
+	free_textures_1(d);
 	if (d->z_buffer)
 		free(d->z_buffer);
 	del_all_sprite(&d->spritelst);

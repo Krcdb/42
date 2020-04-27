@@ -29,6 +29,7 @@ make bonus
 
 ## Bonus
 
+ - HUD
  - Sound (step, pig scream when they die, door, weapon fire, item pickup)
  - Glass wall
  - Door

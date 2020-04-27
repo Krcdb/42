@@ -6,13 +6,13 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/19 17:29:07 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/27 16:26:21 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/27 18:24:27 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d_bonus.h"
 
-static void		set_sprite_draw(t_spritelist **sp, t_data *d)
+static void			set_sprite_draw(t_spritelist **sp, t_data *d)
 {
 	double		sp_x;
 	double		sp_y;
@@ -39,17 +39,12 @@ static void		set_sprite_draw(t_spritelist **sp, t_data *d)
 		d->screen_x - 1 : (*sp)->draw_end_x;
 }
 
-static int			check_color(t_data *d, t_texture *t)
+static void			put_p(int x, int y, t_data *d, t_texture *t)
 {
 	if (t->data[d->text_y * t->s_l + d->text_x * t->bpp / 8] == -1
 			&& t->data[d->text_y * t->s_l + d->text_x * t->bpp / 8 + 1] == 0
 			&& t->data[d->text_y * t->s_l + d->text_x * t->bpp / 8 + 2] == -1)
-		return (0);
-	return (1);
-}
-
-static void			put_p(int x, int y, t_data *d, t_texture *t)
-{
+		return ;
 	d->img_data[y * d->s_l + x * d->bpp / 8] =
 		t->data[d->text_y * t->s_l + d->text_x * t->bpp / 8];
 	d->img_data[y * d->s_l + x * d->bpp / 8 + 1] =
@@ -58,7 +53,8 @@ static void			put_p(int x, int y, t_data *d, t_texture *t)
 		t->data[d->text_y * t->s_l + d->text_x * (t->bpp / 8) + 2];
 }
 
-static void			draw_stripe(int x, t_spritelist *sp, t_data *d, t_texture *t)
+static void			draw_stripe(int x, t_spritelist *sp,
+		t_data *d, t_texture *t)
 {
 	int		y;
 	int		dd;
@@ -74,8 +70,7 @@ static void			draw_stripe(int x, t_spritelist *sp, t_data *d, t_texture *t)
 			dd = (y * t->s_l) - d->screen_y * (t->s_l / 2)
 				+ sp->height * t->s_l / 2;
 			d->text_y = ((dd * t->height) / sp->height) / t->s_l;
-			if (check_color(d, t))
-				put_p(x, y, d, t);
+			put_p(x, y, d, t);
 			y++;
 		}
 	}
@@ -116,7 +111,8 @@ void				draw_sprite(t_data *d)
 			x = d->spritelst->draw_start_x;
 			while (x < d->spritelst->draw_end_x)
 			{
-				draw_stripe(x, d->spritelst, d, get_sprite(d, d->spritelst->type));
+				draw_stripe(x, d->spritelst, d,
+						get_sprite(d, d->spritelst->type));
 				x++;
 			}
 		}

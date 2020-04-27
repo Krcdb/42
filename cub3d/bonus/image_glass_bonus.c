@@ -6,13 +6,13 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/27 11:44:17 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/27 11:59:28 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/27 19:08:22 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d_bonus.h"
 
-static int			check_color(t_data *d, t_texture *t)
+static int		check_color(t_data *d, t_texture *t)
 {
 	if (t->data[d->text_y * t->s_l + d->text_x * t->bpp / 8] == -1
 		&& t->data[d->text_y * t->s_l + d->text_x * t->bpp / 8 + 1] == 0
@@ -60,4 +60,3 @@ void			put_glass_line_to_img(t_data *d, int x, t_texture *t)
 		y++;
 	}
 }
-

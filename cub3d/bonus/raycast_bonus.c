@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 19:35:39 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/27 10:58:39 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/27 19:33:10 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static void		set_data(t_data *d, int x)
 	d->ray_dir_x = d->dir_x + d->plane_x * d->camera_x;
 	d->ray_dir_y = d->dir_y + d->plane_y * d->camera_x;
 	d->delta_x = sqrt(1 + (d->ray_dir_y * d->ray_dir_y) /
-		(d->ray_dir_x * d->ray_dir_x));
+			(d->ray_dir_x * d->ray_dir_x));
 	d->delta_y = sqrt(1 + (d->ray_dir_x * d->ray_dir_x) /
-		(d->ray_dir_y * d->ray_dir_y));
+			(d->ray_dir_y * d->ray_dir_y));
 	d->side_dist_x = 0;
 	d->side_dist_y = 0;
 	d->wall_dist = 0;
@@ -67,11 +67,18 @@ static void		set_wall_dist(t_data *d, int x)
 {
 	if (d->side == 0 || d->side == 1)
 		d->wall_dist = (d->ray_x - d->pos_x +
-			(1 - d->step_x) / 2) / d->ray_dir_x;
+				(1 - d->step_x) / 2) / d->ray_dir_x;
 	else
 		d->wall_dist = (d->ray_y - d->pos_y +
-			(1 - d->step_y) / 2) / d->ray_dir_y;
+				(1 - d->step_y) / 2) / d->ray_dir_y;
 	d->z_buffer[x] = d->wall_dist;
+	d->line_height = (int)(d->screen_y / d->wall_dist);
+	d->draw_start = (-d->line_height / 2) + (d->screen_y / 2);
+	if (d->draw_start < 0)
+		d->draw_start = 0;
+	d->draw_end = (d->line_height / 2) + (d->screen_y / 2);
+	if (d->draw_end >= d->screen_y)
+		d->draw_end = d->screen_y - 1;
 }
 
 static void		dda(t_data *d, int x)
@@ -110,13 +117,6 @@ void			raycast(t_data *d)
 		set_data(d, x);
 		set_side_dist(d);
 		dda(d, x);
-		d->line_height = (int)(d->screen_y / d->wall_dist);
-		d->draw_start = (-d->line_height / 2) + (d->screen_y / 2);
-		if (d->draw_start < 0)
-			d->draw_start = 0;
-		d->draw_end = (d->line_height / 2) + (d->screen_y / 2);
-		if (d->draw_end >= d->screen_y)
-			d->draw_end = d->screen_y - 1;
 		put_line_to_img(d, x);
 		x++;
 	}

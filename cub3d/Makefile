@@ -28,11 +28,12 @@ SRCS_NAME = main.c parse.c parse_texture.c parse_res.c parse_color.c parse_map.c
 BONUS_NAME = main_bonus.c parse_bonus.c parse_texture_bonus.c parse_res_bonus.c\
 			parse_color_bonus.c parse_map_bonus.c parse_utils_bonus.c\
 			parse_utils_lst_bonus.c main_loop_bonus.c raycast_bonus.c image_bonus.c\
-			events_bonus.c loop_manager_bonus.c move_bonus.c exit_game_bonus.c\
+			events_key_pressed_bonus.c loop_manager_bonus.c move_bonus.c exit_game_bonus.c\
 			files_utils_bonus.c texture_bonus.c sprite_bonus.c draw_sprite_bonus.c\
-			bitmap_bonus.c camera_bonus.c parse_map_utils_bonus.c\
-			hud_bonus.c hit_detection_bonus.c init_text_sprite_bonus.c\
+			events_key_released_bonus.c bitmap_bonus.c camera_bonus.c parse_map_utils_bonus.c\
+			hud_bonus.c hud_utils_bonus.c hit_detection_bonus.c init_text_sprite_bonus.c\
 			player_shoot_bonus.c time_bonus.c draw_glass_bonus.c image_glass_bonus.c\
+			sound_bonus.c sprite_utils_bonus.c\
 
 SRCS = $(addprefix $(SOURCES_DIR)/,$(SRCS_NAME))
 
@@ -68,6 +69,6 @@ fclean :	clean
 		@rm -f ./$(NAME)
 		@rm -f ./$(NAME_BONUS)
 
-re:		fclean bonus
+re:		fclean all
 
 .PHONY:		all bonus clean fclean re

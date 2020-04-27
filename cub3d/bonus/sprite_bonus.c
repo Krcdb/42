@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/19 15:31:41 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/27 16:25:07 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/27 19:29:40 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,65 +61,4 @@ void				sprite_hit(t_data *d, int x)
 		d->spritelst->nb_sprite = d->spritelst->next->nb_sprite + 1;
 	else
 		d->spritelst->nb_sprite = 1;
-}
-
-static void			swap_sprite_2(t_spritelist **sprite1, t_spritelist **sprite2)
-{
-	int		tmp;
-
-	tmp = (*sprite1)->draw_start_x;
-	(*sprite1)->draw_start_x = (*sprite2)->draw_start_x;
-	(*sprite2)->draw_start_x = tmp;
-	tmp = (*sprite1)->draw_end_x;
-	(*sprite1)->draw_end_x = (*sprite2)->draw_end_x;
-	(*sprite2)->draw_end_x = tmp;
-}
-
-static void			swap_sprite(t_spritelist **sprite1, t_spritelist **sprite2)
-{
-	double	tmp;
-	int		tmp2;
-	char	tmp3;
-
-	if ((*sprite1)->dist < (*sprite2)->dist)
-	{
-		tmp = (*sprite1)->dist;
-		(*sprite1)->dist = (*sprite2)->dist;
-		(*sprite2)->dist = tmp;
-		tmp2 = (*sprite1)->map_x;
-		(*sprite1)->map_x = (*sprite2)->map_x;
-		(*sprite2)->map_x = tmp2;
-		tmp2 = (*sprite1)->map_y;
-		(*sprite1)->map_y = (*sprite2)->map_y;
-		(*sprite2)->map_y = tmp2;
-		tmp3 = (*sprite1)->type;
-		(*sprite1)->type = (*sprite2)->type;
-		(*sprite2)->type = tmp3;
-		swap_sprite_2(sprite1, sprite2);
-	}
-}
-
-void				sort_sprite(t_spritelist **spritelst)
-{
-	int				i;
-	int				nb;
-	t_spritelist	*lst;
-
-	i = 0;
-	nb = (*spritelst)->nb_sprite;
-	lst = *spritelst;
-	if (nb == 1)
-		return ;
-	if (nb == 2)
-		swap_sprite(&lst, &lst->next);
-	while (i < nb - 1)
-	{
-		lst = *spritelst;
-		while (lst->next)
-		{
-			swap_sprite(&lst, &lst->next);
-			lst = lst->next;
-		}
-		i++;
-	}
 }

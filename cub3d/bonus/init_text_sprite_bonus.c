@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/24 14:35:14 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/24 17:08:50 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/27 19:12:01 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int				init_wall_text(t_data *d)
 	return (1);
 }
 
-int				init_sprite_text(t_data *d)
+static int		init_sprite_text_1(t_data *d)
 {
 	d->deadmob_t.img = mlx_xpm_file_to_image(d->mlx_ptr, DEAD_PATH,
 		&d->deadmob_t.width, &d->deadmob_t.height);
@@ -50,7 +50,8 @@ int				init_sprite_text(t_data *d)
 		&d->pistoldrop_t.width, &d->pistoldrop_t.height);
 	if (d->pistoldrop_t.img)
 		d->pistoldrop_t.data = mlx_get_data_addr(d->pistoldrop_t.img,
-			&d->pistoldrop_t.bpp, &d->pistoldrop_t.s_l, &d->pistoldrop_t.endian);
+			&d->pistoldrop_t.bpp, &d->pistoldrop_t.s_l,
+			&d->pistoldrop_t.endian);
 	d->shootdrop_t.img = mlx_xpm_file_to_image(d->mlx_ptr, SHOOT_DROP_PATH,
 		&d->shootdrop_t.width, &d->shootdrop_t.height);
 	if (d->shootdrop_t.img)
@@ -61,6 +62,14 @@ int				init_sprite_text(t_data *d)
 	if (d->nukedrop_t.img)
 		d->nukedrop_t.data = mlx_get_data_addr(d->nukedrop_t.img,
 			&d->nukedrop_t.bpp, &d->nukedrop_t.s_l, &d->nukedrop_t.endian);
+	if (!d->deadmob_t.img || !d->pistoldrop_t.img || !d->shootdrop_t.img ||
+		!d->nukedrop_t.img)
+		return (0);
+	return (1);
+}
+
+int				init_sprite_text(t_data *d)
+{
 	d->glass_t.img = mlx_xpm_file_to_image(d->mlx_ptr, GLASS_PATH,
 		&d->glass_t.width, &d->glass_t.height);
 	if (d->glass_t.img)
@@ -71,8 +80,7 @@ int				init_sprite_text(t_data *d)
 	if (d->card_t.img)
 		d->card_t.data = mlx_get_data_addr(d->card_t.img,
 			&d->card_t.bpp, &d->card_t.s_l, &d->card_t.endian);
-	if (!d->deadmob_t.img || !d->pistoldrop_t.img || !d->shootdrop_t.img ||
-		!d->nukedrop_t.img || !d->glass_t.img || !d->card_t.img)
+	if (!d->glass_t.img || !d->card_t.img || !init_sprite_text_1(d))
 		return (0);
 	return (1);
 }
