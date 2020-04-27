@@ -1,4 +1,6 @@
-# Cub3d 42 project by memartin
+# Cub3d 42 project
+
+Autor : memartin
 
 ## Basic Input
 
@@ -9,7 +11,7 @@
  - Left arrow : Rotate camera left
  - Right arrow : Rotate camera right
 
-##Bonus
+## Bonus
 
  - Sound (step, pig scream when they die, door, weapon fire, item pickup)
  - Glass wall
@@ -24,7 +26,7 @@
  - Animated weapon (only pistol)
  - Pig -> die when you shoot at them
 
-##Bonus Input
+## Bonus Input
  - 1 : Pistol
  - 2 : Shootgun
  - 3 : Nuke
