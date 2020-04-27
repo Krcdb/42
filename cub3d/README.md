@@ -2,6 +2,22 @@
 
 Autor : memartin
 
+Mandatory part
+'''bash
+make re
+'''
+Bonus part
+'''bash
+make bonus
+'''
+
+## Usage
+'''bash
+./Cub3d anymap.cub [--save]
+'''
+
+--save : save the fist image to BMP format
+
 ## Basic Input
 
  - W : Move forward
