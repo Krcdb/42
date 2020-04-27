@@ -16,7 +16,7 @@ make bonus
 ./Cub3d anymap.cub [--save]
 ```
 
---save : save the fist image to BMP format
+--save : save the first image to BMP format
 
 ## Basic Input
 
@@ -33,7 +33,7 @@ make bonus
  - Sound (step, pig scream when they die, door, weapon fire, item pickup)
  - Glass wall
  - Door
- - Locked door (need to pickup the card and activate the door with thee card in hand)
+ - Locked door (need to pickup the card and activate the door with the card in hand)
  - Secret door
  - End of level wall
  - Item pickup
