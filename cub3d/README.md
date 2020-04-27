@@ -3,18 +3,18 @@
 Autor : memartin
 
 Mandatory part
-'''bash
+```bash
 make re
-'''
+```
 Bonus part
-'''bash
+```bash
 make bonus
-'''
+```
 
 ## Usage
-'''bash
+```bash
 ./Cub3d anymap.cub [--save]
-'''
+```
 
 --save : save the fist image to BMP format
 
