@@ -6,36 +6,48 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 18:59:18 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/23 20:16:09 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/27 17:36:42 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
+static int		init_textures_2(t_data *d)
+{
+	d->east_t.img = mlx_xpm_file_to_image(d->mlx_ptr, d->east_path,
+		&d->east_t.width, &d->east_t.height);
+	if (d->east_t.img)
+		d->east_t.data = mlx_get_data_addr(d->east_t.img,
+			&d->east_t.bpp, &d->east_t.s_l, &d->east_t.endian);
+	d->sprite_t.img = mlx_xpm_file_to_image(d->mlx_ptr, d->sprite_path,
+		&d->sprite_t.width, &d->sprite_t.height);
+	if (d->sprite_t.img)
+		d->sprite_t.data = mlx_get_data_addr(d->sprite_t.img,
+			&d->sprite_t.bpp, &d->sprite_t.s_l, &d->sprite_t.endian);
+	if (!d->east_t.img || !d->sprite_t.img)
+		return (0);
+	return (1);
+}
+
 static int		init_textures(t_data *d)
 {
 	d->north_t.img = mlx_xpm_file_to_image(d->mlx_ptr, d->north_path,
 		&d->north_t.width, &d->north_t.height);
-	d->north_t.data = mlx_get_data_addr(d->north_t.img,
-		&d->north_t.bpp, &d->north_t.s_l, &d->north_t.endian);
+	if (d->north_t.img)
+		d->north_t.data = mlx_get_data_addr(d->north_t.img,
+			&d->north_t.bpp, &d->north_t.s_l, &d->north_t.endian);
 	d->south_t.img = mlx_xpm_file_to_image(d->mlx_ptr, d->south_path,
 		&d->south_t.width, &d->south_t.height);
-	d->south_t.data = mlx_get_data_addr(d->south_t.img,
-		&d->south_t.bpp, &d->south_t.s_l, &d->south_t.endian);
+	if (d->south_t.img)
+		d->south_t.data = mlx_get_data_addr(d->south_t.img,
+			&d->south_t.bpp, &d->south_t.s_l, &d->south_t.endian);
 	d->west_t.img = mlx_xpm_file_to_image(d->mlx_ptr, d->west_path,
 		&d->west_t.width, &d->west_t.height);
-	d->west_t.data = mlx_get_data_addr(d->west_t.img,
-		&d->west_t.bpp, &d->west_t.s_l, &d->west_t.endian);
-	d->east_t.img = mlx_xpm_file_to_image(d->mlx_ptr, d->east_path,
-		&d->east_t.width, &d->east_t.height);
-	d->east_t.data = mlx_get_data_addr(d->east_t.img,
-		&d->east_t.bpp, &d->east_t.s_l, &d->east_t.endian);
-	d->sprite_t.img = mlx_xpm_file_to_image(d->mlx_ptr, d->sprite_path,
-		&d->sprite_t.width, &d->sprite_t.height);
-	d->sprite_t.data = mlx_get_data_addr(d->sprite_t.img,
-		&d->sprite_t.bpp, &d->sprite_t.s_l, &d->sprite_t.endian);
-	if (!d->north_t.img || !d->south_t.img || !d->west_t.img || !d->east_t.img
-			|| !d->sprite_t.img)
+	if (d->west_t.img)
+		d->west_t.data = mlx_get_data_addr(d->west_t.img,
+			&d->west_t.bpp, &d->west_t.s_l, &d->west_t.endian);
+	if (!d->north_t.img || !d->south_t.img || !d->west_t.img ||
+		!init_textures_2(d))
 		return (0);
 	return (1);
 }

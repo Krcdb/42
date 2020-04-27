@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 19:05:32 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/23 19:05:33 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/27 18:07:30 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,10 @@ void			parse_color(t_data *d, t_parse *p, char *line)
 	rgb.r = 0;
 	rgb.g = 0;
 	rgb.b = 0;
+	while (is_whitespace(*line))
+		line++;
 	if (!check_format(line + 2))
 	{
-		printf("bad format\n");
 		p->error = 1;
 		if (*line == 'F')
 			d->error.e_f_color = 1;

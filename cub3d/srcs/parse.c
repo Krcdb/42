@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 19:04:43 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/23 19:05:14 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/27 18:02:13 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,26 +28,28 @@ static void		init_parse(t_parse *p)
 	p->player = 0;
 }
 
-static void		parse_line(t_data *d, t_parse *p, char *line)
+static void		parse_line(t_data *d, t_parse *p, char *l)
 {
-	if (line[0] == 'R' && line[1] == ' ')
-		parse_res(d, p, line);
-	else if (line[0] == 'N' && line[1] == 'O' && line[2] == ' ')
-		parse_no_texture(d, p, line);
-	else if (line[0] == 'S' && line[1] == 'O' && line[2] == ' ')
-		parse_so_texture(d, p, line);
-	else if (line[0] == 'W' && line[1] == 'E' && line[2] == ' ')
-		parse_we_texture(d, p, line);
-	else if (line[0] == 'E' && line[1] == 'A' && line[2] == ' ')
-		parse_ea_texture(d, p, line);
-	else if (line[0] == 'S' && line[1] == ' ')
-		parse_sprite(d, p, line);
-	else if ((line[0] == 'F' || line[0] == 'C') && line[1] == ' ')
-		parse_color(d, p, line);
-	else if (is_empty_line(line))
+	while (is_whitespace(l[p->i]))
+		p->i++;
+	if (l[p->i] == 'R' && is_whitespace(l[p->i + 1]))
+		parse_res(d, p, l + p->i);
+	else if (l[p->i] == 'N' && l[p->i + 1] == 'O' && is_whitespace(l[p->i + 2]))
+		parse_no_texture(d, p, l + p->i);
+	else if (l[p->i] == 'S' && l[p->i + 1] == 'O' && is_whitespace(l[p->i + 2]))
+		parse_so_texture(d, p, l + p->i);
+	else if (l[p->i] == 'W' && l[p->i + 1] == 'E' && is_whitespace(l[p->i + 2]))
+		parse_we_texture(d, p, l + p->i);
+	else if (l[p->i] == 'E' && l[p->i + 1] == 'A' && is_whitespace(l[p->i + 2]))
+		parse_ea_texture(d, p, l + p->i);
+	else if (l[p->i] == 'S' && is_whitespace(l[p->i + 1]))
+		parse_sprite(d, p, l + p->i);
+	else if ((l[p->i] == 'F' || l[p->i] == 'C') && is_whitespace(l[p->i + 1]))
+		parse_color(d, p, l);
+	else if (is_empty_line(l))
 		return ;
-	else if (is_map_line(line))
-		parse_map(d, p, line);
+	else if (is_map_line(l))
+		parse_map(d, p, l);
 	else
 	{
 		p->error = 1;
@@ -78,6 +80,7 @@ int				parse(t_data *d, char *path)
 	}
 	while (get_next_line(p.fd, &line))
 	{
+		p.i = 0;
 		parse_line(d, &p, ft_strdup(line));
 		if (line)
 			free(line);
