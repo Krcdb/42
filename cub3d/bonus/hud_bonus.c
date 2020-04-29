@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 11:24:25 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/27 18:19:50 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/29 11:57:03 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void			draw_hud(t_data *d, t_hud *t)
 		d->text_x = ((double)(x - t->draw_s_x) /
 			(double)(t->draw_e_x - t->draw_s_x)) *
 			t->width;
-		while (y < t->draw_e_y)
+		while (y <= t->draw_e_y)
 		{
 			draw_hud_pxl(x, y, d, t);
 			y++;

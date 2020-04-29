@@ -12,7 +12,7 @@ G3 =  -g3 -fsanitize=address
 
 COMPIL = gcc
 
-FLAG =
+FLAG = -Wall -Wextra -Werror
 
 FLAG_MLX = -lmlx -lXext -lX11 -lm -lbsd
 

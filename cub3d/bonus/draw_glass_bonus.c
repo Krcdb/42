@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/27 11:16:54 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/27 16:20:06 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/29 12:51:41 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void		set_side_dist(t_data *d)
 	}
 }
 
-static void		set_wall_dist(t_data *d, int x)
+static void		set_wall_dist(t_data *d)
 {
 	if (d->side == 0 || d->side == 1)
 		d->wall_dist = (d->ray_x - d->pos_x +
@@ -73,7 +73,7 @@ static void		set_wall_dist(t_data *d, int x)
 			(1 - d->step_y) / 2) / d->ray_dir_y;
 }
 
-static void		dda(t_data *d, t_spritelist *sp, int x)
+static void		dda(t_data *d, t_spritelist *sp)
 {
 	while (!d->hit)
 	{
@@ -92,7 +92,7 @@ static void		dda(t_data *d, t_spritelist *sp, int x)
 		if (d->ray_y == sp->map_y && d->ray_x == sp->map_x)
 			d->hit = 1;
 	}
-	set_wall_dist(d, x);
+	set_wall_dist(d);
 }
 
 void			draw_glass(t_data *d, t_spritelist *sp)
@@ -104,7 +104,7 @@ void			draw_glass(t_data *d, t_spritelist *sp)
 	{
 		set_data(d, x);
 		set_side_dist(d);
-		dda(d, sp, x);
+		dda(d, sp);
 		d->line_height = (int)(d->screen_y / d->wall_dist);
 		d->draw_start = (-d->line_height / 2) + (d->screen_y / 2);
 		if (d->draw_start < 0)
