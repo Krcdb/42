@@ -14,9 +14,9 @@ COMPIL = gcc
 
 FLAG =
 
-FLAG_MLX = -L./minilibx -lmlx -L/usr/include../lib -lXext -lX11 -lm -lbsd
+FLAG_MLX = -lmlx -lXext -lX11 -lm -lbsd
 
-HEADER = -I $(INCLUDES_DIR) -I/usr/include -I./minilibx
+HEADER = -I $(INCLUDES_DIR)
 
 LIBFT = libft/libft.a
 
