@@ -43,7 +43,12 @@ OBJS = $(SRCS:.c=.o)
 
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
-$(NAME):	$(LIBFT) $(OBJS)
+mlx:
+	@make -C ./minilibx
+	@cd ./minilibx && sudo cp libmlx.a /usr/local/lib && sudo cp libmlx_Linux.a /usr/local/lib
+	@cd ./minilibx && sudo cp mlx.h /usr/local/include
+
+$(NAME):	mlx $(LIBFT) $(OBJS)
 	@$(COMPIL) $(FLAG) $(HEADER) $(OBJS) -L./libft -lft $(FLAG_MLX) -o $(NAME)
 
 $(LIBFT):	
@@ -54,7 +59,7 @@ $(LIBFT):
 
 all:	$(NAME)
 
-$(NAME_BONUS):	$(LIBFT) $(OBJS_BONUS)
+$(NAME_BONUS):	mlx $(LIBFT) $(OBJS_BONUS)
 	@$(COMPIL) $(FLAG) $(HEADER) $(OBJS_BONUS) -L./libft -lft $(FLAG_MLX) -o $(NAME)
 
 bonus:	fclean $(NAME_BONUS)
