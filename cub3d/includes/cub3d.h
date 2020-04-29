@@ -6,14 +6,14 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 20:18:27 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/27 17:43:10 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/29 17:14:17 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "mlx.h"
+# include "../minilibx/mlx.h"
 # include "../libft/libft.h"
 # include <math.h>
 # include <stdio.h>
