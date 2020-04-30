@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 19:00:22 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/23 23:26:32 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/30 14:10:57 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void			init_pos_camera(t_data *d)
 		d->dir_x = -1;
 		set_plane_dir(d, 0, 0, -0.66);
 	}
-	else if (d->p_orientation == 'N')
+	else if (d->p_orientation == 'E')
 	{
 		d->dir_x = 1;
 		set_plane_dir(d, 0, 0, 0.66);
