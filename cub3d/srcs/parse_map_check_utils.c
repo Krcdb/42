@@ -6,13 +6,13 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/29 18:15:17 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/29 18:25:31 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/30 12:01:07 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static int				is_corner_valid(t_data *d, size_t x, size_t y)
+static int		is_corner_valid(t_data *d, size_t x, size_t y)
 {
 	if (x == 0 && y == 0 &&
 			((d->map[y][x + 1] != ' ' && d->map[y][x + 1] != '1') ||

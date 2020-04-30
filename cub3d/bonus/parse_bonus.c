@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 19:04:43 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/27 19:26:22 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/30 11:44:22 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,13 @@ static void		parse_line(t_data *d, t_parse *p, char *l)
 	}
 }
 
-static int		is_parse_complete(t_parse *p)
+static int		is_parse_complete(t_data *d, t_parse *p)
 {
 	if (p->screen_res && p->no_t && p->so_t && p->we_t && p->ea_t && p->s_t
 		&& p->m_ok && p->f_color && p->c_color)
 		return (1);
+	p->error = 1;
+	d->error.e_missing = 1;
 	return (0);
 }
 
@@ -88,7 +90,7 @@ int				parse(t_data *d, char *path)
 			break ;
 	}
 	close(p.fd);
-	if (is_parse_complete(&p))
+	if (is_parse_complete(d, &p))
 		return (1);
 	return (0);
 }

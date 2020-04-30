@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 20:18:27 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/30 11:08:13 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/30 11:51:51 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ typedef struct		s_error
 	int	e_file;
 	int	e_map;
 	int	e_memory;
+	int	e_missing;
 }					t_error;
 
 typedef struct		s_data
@@ -340,5 +341,6 @@ void				draw_glass(t_data *d, t_spritelist *sp);
 void				put_glass_line_to_img(t_data *d, int x, t_texture *t);
 void				after_move(t_data *d);
 void				step_sound(t_data *d);
+void				error_display(t_data *d);
 
 #endif

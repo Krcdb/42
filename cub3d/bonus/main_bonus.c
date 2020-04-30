@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 17:47:51 by user42            #+#    #+#             */
-/*   Updated: 2020/04/27 19:26:03 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/30 11:51:17 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,33 +26,7 @@ static void		init_error(t_data *d)
 	d->error.e_file = 0;
 	d->error.e_map = 0;
 	d->error.e_memory = 0;
-}
-
-static void		error_display(t_data *d)
-{
-	ft_printf("error\n");
-	if (d->error.e_screen_res)
-		ft_printf("screen resolution error\n");
-	else if (d->error.e_no_t)
-		ft_printf("north texture error\n");
-	else if (d->error.e_so_t)
-		ft_printf("south texture error\n");
-	else if (d->error.e_we_t)
-		ft_printf("west texture error\n");
-	else if (d->error.e_ea_t)
-		ft_printf("east texture error\n");
-	else if (d->error.e_s_t)
-		ft_printf("sprite texture error\n");
-	else if (d->error.e_f_color)
-		ft_printf("floor color error\n");
-	else if (d->error.e_c_color)
-		ft_printf("c color error\n");
-	else if (d->error.e_fd)
-		ft_printf("fd error\n");
-	else if (d->error.e_file)
-		ft_printf("file.cub error\n");
-	else if (d->error.e_map)
-		ft_printf("map error\n");
+	d->error.e_missing = 0;
 }
 
 static void		init_text_null(t_data *d)

@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 20:18:27 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/29 18:28:58 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/30 11:58:59 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ typedef struct		s_error
 	int	e_file;
 	int	e_map;
 	int	e_memory;
+	int	e_missing;
 }					t_error;
 
 typedef struct		s_data
@@ -265,5 +266,6 @@ void				sort_sprite(t_spritelist **spritelst);
 void				exit_init(t_data *d);
 void				bitmap(t_data *d);
 int					init_hud_textures(t_data *d);
+void				error_display(t_data *d);
 
 #endif

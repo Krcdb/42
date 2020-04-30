@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/30 11:02:21 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/30 11:10:57 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/30 11:45:49 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static int		is_valid_char(t_data *d, t_parse *p, size_t x, size_t y)
 	return (1);
 }
 
-void		is_map_valid(t_data *d, t_parse *p)
+void			is_map_valid(t_data *d, t_parse *p)
 {
 	size_t		x;
 	size_t		y;
@@ -107,4 +107,3 @@ void		is_map_valid(t_data *d, t_parse *p)
 		y++;
 	}
 }
-

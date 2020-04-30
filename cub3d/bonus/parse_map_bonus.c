@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 19:31:55 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/30 11:09:59 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/30 11:24:57 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void			parse_map(t_data *d, t_parse *p, char *line)
 		if (is_empty_line(line) || !is_map_line(line))
 		{
 			p->error = 1;
-			d->error.e_file = 1;
+			d->error.e_map = 1;
 			if (line)
 				free(line);
 			break ;
