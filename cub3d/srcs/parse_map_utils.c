@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 19:07:33 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/24 12:54:50 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/29 18:16:13 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,25 +38,4 @@ void			set_parse_map_error(t_data *d, t_parse *p)
 		p->error = 1;
 		d->error.e_map = 1;
 	}
-}
-
-int				is_corner_valid(t_data *d, size_t x, size_t y)
-{
-	if (x == 0 && y == 0 &&
-			((d->map[y][x + 1] != ' ' && d->map[y][x + 1] != '1') ||
-			(d->map[y + 1][x] != ' ' && d->map[y + 1][x] != '1')))
-		return (0);
-	else if (x == (d->map_x - 1) && y == 0 &&
-			((d->map[y][x - 1] != ' ' && d->map[y][x - 1] != '1') ||
-			(d->map[y + 1][x] != ' ' && d->map[y + 1][x] != '1')))
-		return (0);
-	else if (x == 0 && y == (d->map_y - 1) &&
-			((d->map[y][x + 1] != ' ' && d->map[y][x + 1] != '1') ||
-			(d->map[y - 1][x] != ' ' && d->map[y - 1][x] != '1')))
-		return (0);
-	else if (x == (d->map_x - 1) && y == (d->map_y - 1) &&
-			((d->map[y][x - 1] != ' ' && d->map[y][x - 1] != '1') ||
-			(d->map[y - 1][x] != ' ' && d->map[y - 1][x] != '1')))
-		return (0);
-	return (1);
 }

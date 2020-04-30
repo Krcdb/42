@@ -23,7 +23,7 @@ LIBFT = libft/libft.a
 SRCS_NAME = main.c parse.c parse_texture.c parse_res.c parse_color.c parse_map.c parse_utils.c\
 			parse_utils_lst.c main_loop.c raycast.c image.c events.c loop_manager.c move.c\
 			exit_game.c files_utils.c texture.c sprite.c draw_sprite.c bitmap.c camera.c\
-			parse_map_utils.c\
+			parse_map_utils.c parse_map_check_utils.c\
 
 BONUS_NAME = main_bonus.c parse_bonus.c parse_texture_bonus.c parse_res_bonus.c\
 			parse_color_bonus.c parse_map_bonus.c parse_utils_bonus.c\
@@ -33,7 +33,7 @@ BONUS_NAME = main_bonus.c parse_bonus.c parse_texture_bonus.c parse_res_bonus.c\
 			events_key_released_bonus.c bitmap_bonus.c camera_bonus.c parse_map_utils_bonus.c\
 			hud_bonus.c hud_utils_bonus.c hit_detection_bonus.c init_text_sprite_bonus.c\
 			player_shoot_bonus.c time_bonus.c draw_glass_bonus.c image_glass_bonus.c\
-			sound_bonus.c sprite_utils_bonus.c\
+			sound_bonus.c sprite_utils_bonus.c parse_map_check_bonus.c\
 
 SRCS = $(addprefix $(SOURCES_DIR)/,$(SRCS_NAME))
 

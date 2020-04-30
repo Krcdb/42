@@ -6,14 +6,14 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 20:18:27 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/29 17:14:50 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/30 11:08:13 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_BONUS_H
 # define CUB3D_BONUS_H
 
-# include "../minilibx/mlx.h"
+# include "mlx.h"
 # include "../libft/libft.h"
 # include <math.h>
 # include <time.h>
@@ -284,7 +284,7 @@ void				parse_sprite(t_data *d, t_parse *p, char *line);
 void				parse_map(t_data *d, t_parse *p, char *line);
 void				set_player_pos(t_data *d, t_parse *p, int x, int y);
 void				set_parse_map_error(t_data *d, t_parse *p);
-int					is_corner_valid(t_data *d, size_t x, size_t y);
+void				is_map_valid(t_data *d, t_parse *p);
 int					is_valid_map_char(char c);
 int					is_empty_line(char *line);
 int					is_map_line(char *line);
