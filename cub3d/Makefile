@@ -43,6 +43,8 @@ OBJS = $(SRCS:.c=.o)
 
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
+all:	$(NAME)
+
 mlx:
 	@make -C ./minilibx
 	@cd ./minilibx && sudo cp libmlx.a /usr/local/lib && sudo cp libmlx_Linux.a /usr/local/lib
@@ -57,7 +59,6 @@ $(LIBFT):
 %.o: %.c
 	@$(COMPIL) $(FLAG) $(HEADER) -c $< -o $@
 
-all:	$(NAME)
 
 $(NAME_BONUS):	mlx $(LIBFT) $(OBJS_BONUS)
 	@$(COMPIL) $(FLAG) $(HEADER) $(OBJS_BONUS) -L./libft -lft $(FLAG_MLX) -o $(NAME)

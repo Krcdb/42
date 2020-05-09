@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 19:04:43 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/30 11:44:22 by memartin         ###   ########.fr       */
+/*   Updated: 2020/05/02 12:25:39 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int				parse(t_data *d, char *path)
 	while (get_next_line(p.fd, &line))
 	{
 		p.i = 0;
-		parse_line(d, &p, ft_strdup(line));
+		parse_line(d, &p, line);
 		if (line)
 			free(line);
 		if (p.error)

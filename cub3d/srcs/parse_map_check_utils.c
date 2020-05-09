@@ -6,11 +6,24 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/29 18:15:17 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/30 12:01:07 by memartin         ###   ########.fr       */
+/*   Updated: 2020/05/01 12:59:56 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+static int		is_corner(t_data *d, size_t x, size_t y)
+{
+	if (x == 0 && y == 0)
+		return (1);
+	else if (x == 0 && y == d->map_y - 1)
+		return (1);
+	else if (x == d->map_x - 1 && y == 0)
+		return (1);
+	else if (x == d->map_x - 1 && y == d->map_y - 1)
+		return (1);
+	return (0);
+}
 
 static int		is_corner_valid(t_data *d, size_t x, size_t y)
 {
@@ -37,26 +50,28 @@ static int		is_border_valid(t_data *d, size_t x, size_t y)
 {
 	if (!is_corner_valid(d, x, y))
 		return (0);
-	else
-		return (1);
-	if (x == 0 && ((d->map[y][x + 1] != ' ' && d->map[y][x + 1] != '1') ||
-				(d->map[y - 1][x] != ' ' && d->map[y - 1][x] != '1') ||
-				(d->map[y + 1][x] != ' ' && d->map[y + 1][x] != '1')))
-		return (0);
-	else if (x == (d->map_x - 1) &&
-				((d->map[y][x - 1] != ' ' && d->map[y][x - 1] != '1') ||
-				(d->map[y + 1][x] != ' ' && d->map[y + 1][x] != '1') ||
-				(d->map[y - 1][x] != ' ' && d->map[y - 1][x] != '1')))
-		return (0);
-	else if (y == 0 && ((d->map[y][x + 1] != ' ' && d->map[y][x + 1] != '1') ||
-				(d->map[y][x - 1] != ' ' && d->map[y][x - 1] != '1') ||
-				(d->map[y + 1][x] != ' ' && d->map[y + 1][x] != '1')))
-		return (0);
-	else if (y == (d->map_y - 1) &&
-				((d->map[y][x - 1] != ' ' && d->map[y][x - 1] != '1') ||
-				(d->map[y][x + 1] != ' ' && d->map[y][x + 1] != '1') ||
-				(d->map[y - 1][x] != ' ' && d->map[y - 1][x] != '1')))
-		return (0);
+	if (!is_corner(d, x, y))
+	{
+		if (x == 0 && ((d->map[y][x + 1] != ' ' && d->map[y][x + 1] != '1') ||
+					(d->map[y - 1][x] != ' ' && d->map[y - 1][x] != '1') ||
+					(d->map[y + 1][x] != ' ' && d->map[y + 1][x] != '1')))
+			return (0);
+		else if (x == (d->map_x - 1) &&
+					((d->map[y][x - 1] != ' ' && d->map[y][x - 1] != '1') ||
+					(d->map[y + 1][x] != ' ' && d->map[y + 1][x] != '1') ||
+					(d->map[y - 1][x] != ' ' && d->map[y - 1][x] != '1')))
+			return (0);
+		else if (y == 0 &&
+					((d->map[y][x + 1] != ' ' && d->map[y][x + 1] != '1') ||
+					(d->map[y][x - 1] != ' ' && d->map[y][x - 1] != '1') ||
+					(d->map[y + 1][x] != ' ' && d->map[y + 1][x] != '1')))
+			return (0);
+		else if (y == (d->map_y - 1) &&
+					((d->map[y][x - 1] != ' ' && d->map[y][x - 1] != '1') ||
+					(d->map[y][x + 1] != ' ' && d->map[y][x + 1] != '1') ||
+					(d->map[y - 1][x] != ' ' && d->map[y - 1][x] != '1')))
+			return (0);
+	}
 	return (1);
 }
 

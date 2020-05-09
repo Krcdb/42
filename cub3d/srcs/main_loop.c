@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 18:59:18 by memartin          #+#    #+#             */
-/*   Updated: 2020/04/27 17:36:42 by memartin         ###   ########.fr       */
+/*   Updated: 2020/04/30 14:51:56 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,12 @@ static void		init_data_game(t_data *d)
 	init_move(d);
 	if (d->screen_x > 1920)
 		d->screen_x = 1920;
+	else if (d->screen_x < 640)
+		d->screen_x = 640;
 	if (d->screen_y > 1200)
 		d->screen_y = 1200;
+	else if (d->screen_y < 400)
+		d->screen_y = 400;
 	d->z_buffer = NULL;
 	d->img_ptr = mlx_new_image(d->mlx_ptr, d->screen_x, d->screen_y);
 	d->img_data = mlx_get_data_addr(d->img_ptr, &d->bpp, &d->s_l, &d->endian);

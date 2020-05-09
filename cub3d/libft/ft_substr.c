@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 13:08:34 by memartin          #+#    #+#             */
-/*   Updated: 2019/11/22 16:12:16 by memartin         ###   ########.fr       */
+/*   Updated: 2020/05/02 12:22:11 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 		i = 0;
 		if (!(res = (char*)malloc(sizeof(char) * len + 1)))
 			return (NULL);
-		while (i < len && s[i])
+		while (i < len && s[start + i])
 		{
 			res[i] = (char)s[start + i];
 			i++;

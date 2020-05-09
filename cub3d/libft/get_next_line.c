@@ -6,7 +6,7 @@
 /*   By: mmartine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 20:42:35 by mmartine          #+#    #+#             */
-/*   Updated: 2020/02/04 16:03:29 by memartin         ###   ########.fr       */
+/*   Updated: 2020/05/02 12:19:20 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,28 @@ static size_t		ft_strclen(char *str, char c)
 	return (len);
 }
 
+static char			*ft_strsub_gnl(char *s,
+	unsigned int start, size_t len)
+{
+	char			*res;
+	unsigned int	i;
+
+	if (s && start < ft_strclen(s, '\0'))
+	{
+		i = 0;
+		if (!(res = ft_strnew(len)))
+			return (NULL);
+		while (i < len && s[start + i])
+		{
+			res[i] = (char)s[start + i];
+			i++;
+		}
+		res[i] = '\0';
+		return (res);
+	}
+	return (NULL);
+}
+
 int					get_next_line(const int fd, char **line)
 {
 	static char	*rest;
@@ -41,6 +63,7 @@ int					get_next_line(const int fd, char **line)
 		tmp = ft_strdup(rest);
 	else
 		tmp = ft_strnew(1);
+	ft_strdel(&rest);
 	rd = 1;
 	while (!(ft_strchr(tmp, '\n')) && rd > 0)
 	{
@@ -49,8 +72,8 @@ int					get_next_line(const int fd, char **line)
 		buff[rd] = '\0';
 		tmp = ft_joinfree(tmp, buff);
 	}
-	*line = ft_substr(tmp, 0, ft_strclen(tmp, '\n'));
-	rest = ft_substr(tmp, ft_strclen(tmp, '\n') + 1, ft_strlen(tmp));
+	*line = ft_strsub_gnl(tmp, 0, ft_strclen(tmp, '\n'));
+	rest = ft_strsub_gnl(tmp, ft_strclen(tmp, '\n') + 1, ft_strlen(tmp));
 	if (tmp)
 		ft_strdel(&tmp);
 	return ((*line && **line) ? 1 : rd);
