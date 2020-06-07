@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_printf_buffer.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/04 18:18:55 by memartin          #+#    #+#             */
-/*   Updated: 2020/02/04 18:18:57 by memartin         ###   ########.fr       */
+/*   Created: 2020/02/04 18:17:06 by memartin          #+#    #+#             */
+/*   Updated: 2020/02/04 18:17:07 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
-void	ft_putchar(char c)
+void	ft_printf_buffer(t_print *p)
 {
-	write(1, &c, 1);
+	p->result[p->buff_i] = '\0';
+	ft_putstr(p->result);
+	p->buff_i = 0;
+	p->result[p->buff_i] = '\0';
 }

@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_strallocset.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/04 18:18:55 by memartin          #+#    #+#             */
-/*   Updated: 2020/02/04 18:18:57 by memartin         ###   ########.fr       */
+/*   Created: 2020/04/23 20:23:09 by memartin          #+#    #+#             */
+/*   Updated: 2020/04/23 20:23:10 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
-void	ft_putchar(char c)
+char			*ft_strallocset(char c, size_t size)
 {
-	write(1, &c, 1);
+	size_t		i;
+	char		*str;
+	char		*tmp;
+
+	if (!(str = (char*)malloc(sizeof(char) * (size + 1))))
+		return (NULL);
+	i = 0;
+	tmp = str;
+	while (i <= size)
+		tmp[i++] = '\0';
+	i = 0;
+	while (i < size)
+		tmp[i++] = c;
+	return (str);
 }

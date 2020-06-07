@@ -1,18 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_printf_modulo.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/04 18:18:55 by memartin          #+#    #+#             */
-/*   Updated: 2020/02/04 18:18:57 by memartin         ###   ########.fr       */
+/*   Created: 2020/02/04 18:18:18 by memartin          #+#    #+#             */
+/*   Updated: 2020/02/04 18:18:19 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
-void	ft_putchar(char c)
+static void		ft_setflags(t_print *p)
 {
-	write(1, &c, 1);
+	if (p->f_moins)
+		p->f_zero = 0;
+	p->precision = 0;
+}
+
+void			ft_printf_modulo(t_print *p)
+{
+	char	*tmp;
+
+	tmp = ft_strnew(2);
+	if (tmp)
+	{
+		tmp[0] = '%';
+		ft_setflags(p);
+		ft_printf_flags(p, tmp, ft_strdup(""));
+	}
 }
