@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 12:50:47 by memartin          #+#    #+#             */
-/*   Updated: 2020/08/20 13:20:15 by memartin         ###   ########.fr       */
+/*   Updated: 2020/08/20 13:43:42 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,11 @@ Replace::checkArgsAndRead(){
 		std::cout << "s2 is empty\n";
 		return (1);
 	}
+	if (this->m_s1 == this->m_s2)
+	{
+		std::cout << "s1 and s2 are the same\n";
+		return (1);
+	}
 	inFlux.open(this->m_filePath);
 	if (inFlux)
 	{
@@ -47,7 +52,6 @@ Replace::checkArgsAndRead(){
 			this->m_text.append(line);
 			this->m_text.append("\n");
 		}
-		std::cout << "text : \n" << m_text << std::endl;
 	}
 	else
 	{
@@ -60,5 +64,20 @@ Replace::checkArgsAndRead(){
 void
 Replace::replaceText()
 {
+	std::ofstream		outFlux;
+	size_t				found;
+
+	found = this->m_text.find(m_s1, 0);
+	while (found != std::string::npos)
+	{
+		this->m_text.erase(found, this->m_s1.size());
+		this->m_text.insert(found, this->m_s2);
+		found = this->m_text.find(m_s1, found + this->m_s2.size());
+	}
+	outFlux.open(this->m_filePath.append(".replace"));
+	if (outFlux)
+		outFlux << this->m_text;
+	else
+		std::cout << "Error during file creation\n";
 	return ;
 }

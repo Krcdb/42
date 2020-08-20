@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 12:32:48 by memartin          #+#    #+#             */
-/*   Updated: 2020/08/20 13:12:38 by memartin         ###   ########.fr       */
+/*   Updated: 2020/08/20 13:37:08 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@ int			main(int ac, char **av)
 	Replace		rep(av[1], av[2], av[3]);
 	if (rep.checkArgsAndRead())
 		return (0);
+	rep.replaceText();
 	return (0);
 }
