@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 18:03:04 by memartin          #+#    #+#             */
-/*   Updated: 2020/10/18 18:12:06 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/21 16:40:08 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,14 +93,14 @@ void
 FragTrap::rangedAttack(std::string const &target)
 {
 	say() << "I'm a tornado of death and bullets! (" << target << " receive " << 
-		this->_rangedAttackDamage << " ranged  damages !" << std::endl;
+		this->_rangedAttackDamage << " ranged  damages !)" << std::endl;
 }
 
 void
 FragTrap::meleeAttack(std::string const &target)
 {
 	say() << "Take that! (" << target << " receive " << 
-		this->_meleeAttackDamage << " melee damages !" << std::endl;
+		this->_meleeAttackDamage << " melee damages !)" << std::endl;
 }
 
 void
@@ -110,7 +110,7 @@ FragTrap::takeDamage(unsigned int amount)
 	damage = amount - this->_armorDamageReduction;
 	
 	if (damage <= 0 && this->_hp != 0)
-		say("Nice try !");
+		say("Nice try !") << this->_name << " received 0 damages !" << std::endl;
 	else if (damage >= this->_hp)
 	{
 		say("Woah! Oh! Jeez!") << this->_name << " is dead ! See you space FR4G-TP" << std::endl;
@@ -166,10 +166,12 @@ FragTrap::vaultHunter_dot_exe(std::string const &target)
 	};
 
 	int	random = rand() % 5;
+	
+	this->_ep -= 25;
 
 	say() << "use " << attacks[random] << std::endl;
-	say() << "Take that! (" << target << " receive " << 
-		damages[random] << " damages !" << std::endl;
+	say() << "Eat my random attack ! (" << target << " receive " << 
+		damages[random] << " damages !)" << std::endl;
 }
 
 void
