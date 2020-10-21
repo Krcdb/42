@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 17:38:00 by memartin          #+#    #+#             */
-/*   Updated: 2020/10/18 18:00:44 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/21 17:11:23 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ class FragTrap
 {
 	private:
 		std::string		_name;
-		int				_hp = 100;
-		int				_hpMax = 100;
-		int				_ep = 100;
-		int				_epMax = 100;
-		int				_level = 1;
-		int				_meleeAttackDamage = 30;
-		int				_rangedAttackDamage = 20;
-		int				_armorDamageReduction = 5;
+		int				_hp;
+		int				_hpMax;
+		int				_ep;
+		int				_epMax;
+		int				_level;
+		int				_meleeAttackDamage;
+		int				_rangedAttackDamage;
+		int				_armorDamageReduction;
 	
 	protected:
 		std::ostream&	say(void);
