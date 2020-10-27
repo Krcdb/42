@@ -1,0 +1,9 @@
+colorscheme molokai
+set nu
+set mouse=a
+set shiftwidth=4
+set tabstop=4
+set autoindent
+set smartindent
+
+map <F6> :Stdheader <CR>
