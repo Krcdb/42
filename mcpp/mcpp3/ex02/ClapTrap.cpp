@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 17:55:03 by memartin          #+#    #+#             */
-/*   Updated: 2020/10/21 18:26:55 by memartin         ###   ########.fr       */
+/*   Updated: 2020/10/27 19:11:44 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,9 @@ ClapTrap::ClapTrap(const ClapTrap &other)
 	say("copied (claptrap)!");
 }
 
-
 ClapTrap::~ClapTrap(void)
 {
 	say("ClapTrap destroy !");
-	say("destroyed !");
 }
 
 ClapTrap&
@@ -141,4 +139,22 @@ void
 ClapTrap::displayStatus(void)
 {
 	say() << "current HP : " << this->_hp << " | current EP : " << this->_ep << std::endl;
+}
+
+int&
+ClapTrap::getHp(void)
+{
+	return (this->_hp);
+}
+
+int&
+ClapTrap::getEp(void)
+{
+	return (this->_ep);
+}
+
+const std::string&
+ClapTrap::getName(void)
+{
+	return (this->_name);
 }

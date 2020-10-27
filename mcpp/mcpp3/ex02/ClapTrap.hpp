@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 17:38:00 by memartin          #+#    #+#             */
-/*   Updated: 2020/10/21 18:26:14 by memartin         ###   ########.fr       */
+/*   Updated: 2020/10/27 19:08:49 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 class ClapTrap
 {
-	protected:
+	private:
 		std::string		_name;
 		int				_hp;
 		int				_hpMax;
@@ -30,6 +30,7 @@ class ClapTrap
 		int				_rangedAttackDamage;
 		int				_armorDamageReduction;
 	
+	protected:
 		std::ostream&	say(void);
 		std::ostream&	say(std::string output);
 
@@ -41,12 +42,15 @@ class ClapTrap
 
 		ClapTrap &operator =(const ClapTrap &other);
 
-		void			rangedAttack(std::string const &target);
-		void			meleeAttack(std::string const &target);
-		void			takeDamage(unsigned int amount);
-		void			beRepaired(unsigned int amount);
+		void				rangedAttack(std::string const &target);
+		void				meleeAttack(std::string const &target);
+		void				takeDamage(unsigned int amount);
+		void				beRepaired(unsigned int amount);
 
-		void			displayStatus(void);
+		void				displayStatus(void);
+		int					&getHp(void);
+		int					&getEp(void);
+		const std::string	&getName(void);
 };
 
 #endif

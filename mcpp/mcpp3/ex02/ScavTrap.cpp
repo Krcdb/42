@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 18:03:04 by memartin          #+#    #+#             */
-/*   Updated: 2020/10/21 18:18:26 by memartin         ###   ########.fr       */
+/*   Updated: 2020/10/27 19:08:03 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,8 @@ ScavTrap::~ScavTrap()
 ScavTrap&
 ScavTrap::operator =(const ScavTrap &other)
 {
-	if (this != &other)
-	{
-		this->_name = other._name;
-		this->_hp = other._hp;
-		this->_hpMax = other._hpMax;
-		this->_ep = other._ep;
-		this->_epMax = other._epMax;
-		this->_level = other._level;
-		this->_meleeAttackDamage = other._meleeAttackDamage;
-		this->_rangedAttackDamage = other._rangedAttackDamage;
-		this->_armorDamageReduction = other._armorDamageReduction;
-	}
+	ClapTrap::operator =(other);
+
 	say("assigned !");
 	say("This time it'll be awesome, I promise!");
 	return (*this);
@@ -63,7 +53,7 @@ ScavTrap::operator =(const ScavTrap &other)
 void
 ScavTrap::challengeNewcomer(std::string const &target)
 {
-	if (this->_ep < 25)
+	if (this->getEp() < 25)
 	{
 		say("Gime EP !");
 		return ;
@@ -77,7 +67,7 @@ ScavTrap::challengeNewcomer(std::string const &target)
 
 	int	random = rand() % 4;
 	
-	this->_ep -= 25;
+	this->getEp() -= 25;
 
-	say() << this->_name << " challenge " << target << attacks[random] << std::endl; 
+	say() << this->getName() << " challenge " << target << attacks[random] << std::endl; 
 }
