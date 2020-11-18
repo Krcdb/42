@@ -1,42 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PlasmaRifle.cpp                                    :+:      :+:    :+:   */
+/*   SuperMutant.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/18 16:30:21 by memartin          #+#    #+#             */
-/*   Updated: 2020/11/18 19:17:09 by memartin         ###   ########.fr       */
+/*   Created: 2020/11/18 17:12:03 by memartin          #+#    #+#             */
+/*   Updated: 2020/11/18 17:16:08 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PlasmaRifle.hpp"
+#ifndef SUPERMUTANT_HPP
+# define SUPERMUTANT_HPP
 
-PlasmaRifle::PlasmaRifle():
-	AWeapon("Plasma Rifle", 5, 21)
+# include "Enemy.hpp"
+
+class SuperMutant: public Enemy
 {
-}
+	public:
+		SuperMutant();
+		SuperMutant(const SuperMutant &other);
+		virtual ~SuperMutant();
 
-PlasmaRifle::PlasmaRifle(const PlasmaRifle &other):
-	AWeapon(other)
-{
-}
+		SuperMutant& operator=(const SuperMutant &other);
 
-PlasmaRifle::~PlasmaRifle()
-{
-}
+		virtual void	takeDamage(int dmg);
+};
 
-PlasmaRifle&
-PlasmaRifle::operator=(const PlasmaRifle &other)
-{
-	AWeapon::operator =(other);
-
-	return (*this);
-}
-
-void
-PlasmaRifle::attack() const
-{
-	std::cout << "* pew pew pew *" << std::endl;
-}
-
+#endif

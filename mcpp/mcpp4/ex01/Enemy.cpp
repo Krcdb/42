@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 16:45:16 by memartin          #+#    #+#             */
-/*   Updated: 2020/11/18 16:59:31 by memartin         ###   ########.fr       */
+/*   Updated: 2020/11/18 19:10:08 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ Enemy::Enemy()
 {
 }
 
-Enemy::Enemy(int hp, std:string const & type):
+Enemy::Enemy(int hp, std::string const & type):
 	_hp(hp),
 	_type(type)
 {

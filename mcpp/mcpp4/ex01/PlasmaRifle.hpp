@@ -6,11 +6,11 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 16:25:02 by memartin          #+#    #+#             */
-/*   Updated: 2020/11/18 16:30:02 by memartin         ###   ########.fr       */
+/*   Updated: 2020/11/18 19:16:07 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifdef PLASMARIFLE_HPP
+#ifndef PLASMARIFLE_HPP
 # define PLASMARIFLE_HPP
 
 # include "AWeapon.hpp"

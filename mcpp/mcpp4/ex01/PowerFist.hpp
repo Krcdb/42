@@ -6,11 +6,11 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 16:25:02 by memartin          #+#    #+#             */
-/*   Updated: 2020/11/18 16:40:06 by memartin         ###   ########.fr       */
+/*   Updated: 2020/11/18 19:16:19 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifdef POWERFIST_HPP
+#ifndef POWERFIST_HPP
 # define POWERFIST_HPP
 
 # include "AWeapon.hpp"

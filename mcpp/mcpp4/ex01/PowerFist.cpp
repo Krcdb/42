@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 16:30:21 by memartin          #+#    #+#             */
-/*   Updated: 2020/11/18 16:39:23 by memartin         ###   ########.fr       */
+/*   Updated: 2020/11/18 19:17:19 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ PowerFist::PowerFist():
 {
 }
 
-PowerFist::PowerFist(const PlasmeRifle &other):
+PowerFist::PowerFist(const PowerFist &other):
 	AWeapon(other)
 {
 }
@@ -35,7 +35,7 @@ PowerFist::operator=(const PowerFist &other)
 }
 
 void
-PowerFist::attack()
+PowerFist::attack() const
 {
 	std::cout << "* Et ca fait BIM BAM BOUM *" << std::endl;
 }

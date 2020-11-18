@@ -6,7 +6,7 @@
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 15:48:53 by memartin          #+#    #+#             */
-/*   Updated: 2020/11/18 16:55:21 by memartin         ###   ########.fr       */
+/*   Updated: 2020/11/18 19:13:18 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 
 # include <iostream>
 
-class Aweapon
+class AWeapon
 {
 	private:
 		int				_apcost;
 		int				_dmg;
 		std::string		_name;
-		AWeapon(void);
 
 	public:
-		AWeapon(std::string const & name, int, apcost, int dmg);
+		AWeapon(void);
+		AWeapon(std::string const & name, int apcost, int dmg);
 		AWeapon(const AWeapon &other);
 
 		AWeapon& operator=(const AWeapon &other);

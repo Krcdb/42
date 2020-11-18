@@ -1,42 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PlasmaRifle.cpp                                    :+:      :+:    :+:   */
+/*   RadScorpion.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/18 16:30:21 by memartin          #+#    #+#             */
-/*   Updated: 2020/11/18 19:17:09 by memartin         ###   ########.fr       */
+/*   Created: 2020/11/18 17:12:03 by memartin          #+#    #+#             */
+/*   Updated: 2020/11/18 17:27:47 by memartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PlasmaRifle.hpp"
+#ifndef RADSCORPION_HPP
+# define RADSCORPION_HPP
 
-PlasmaRifle::PlasmaRifle():
-	AWeapon("Plasma Rifle", 5, 21)
+# include "Enemy.hpp"
+
+class RadScorpion: public Enemy
 {
-}
+	public:
+		RadScorpion();
+		RadScorpion(const RadScorpion &other);
+		virtual ~RadScorpion();
 
-PlasmaRifle::PlasmaRifle(const PlasmaRifle &other):
-	AWeapon(other)
-{
-}
+		RadScorpion& operator=(const RadScorpion &other);
 
-PlasmaRifle::~PlasmaRifle()
-{
-}
+		virtual void	takeDamage(int dmg);
+};
 
-PlasmaRifle&
-PlasmaRifle::operator=(const PlasmaRifle &other)
-{
-	AWeapon::operator =(other);
-
-	return (*this);
-}
-
-void
-PlasmaRifle::attack() const
-{
-	std::cout << "* pew pew pew *" << std::endl;
-}
-
+#endif
