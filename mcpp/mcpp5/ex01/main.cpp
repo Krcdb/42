@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 17:22:32 by user42            #+#    #+#             */
-/*   Updated: 2020/11/23 18:14:10 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/23 18:17:55 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,20 @@ int main()
 		std::cerr << e.what() << std::endl;
 	}	
 	std::cout << form99;
+	try
+	{
+		michel.signForm(form99);
+	}
+	catch(std::exception const &e)	
+	{
+		std::cerr << e.what() << std::endl;
+	}
 	std::cout << "\n --increment grade and sign--\n" << std::endl;
 	michel.incrementGrade();
 	std::cout << michel;
 	try
 	{
-		form99.beSigned(michel);
+		michel.signForm(form99);
 	}
 	catch(std::exception const &e)	
 	{
