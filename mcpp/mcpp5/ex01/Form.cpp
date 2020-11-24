@@ -6,25 +6,25 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 17:04:37 by user42            #+#    #+#             */
-/*   Updated: 2020/11/23 18:00:32 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/24 12:20:03 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
 Form::Form(std::string const name, int signGrade, int execGrade):
+	_signed(false),
 	_name(name),
 	_signGrade(checkGrade(signGrade)),
-	_execGrade(checkGrade(execGrade)),
-	_signed(false)
+	_execGrade(checkGrade(execGrade))
 {
 }
 
 Form::Form(const Form &other):
+	_signed(other._signed),
 	_name(other._name),
-	_execGrade(other._execGrade),
 	_signGrade(other._signGrade),
-	_signed(other._signed)
+	_execGrade(other._execGrade)
 {
 }
 
