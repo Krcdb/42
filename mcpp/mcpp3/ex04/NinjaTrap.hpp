@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   NinjaTrap.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 19:26:12 by memartin          #+#    #+#             */
-/*   Updated: 2020/10/28 11:43:38 by memartin         ###   ########.fr       */
+/*   Updated: 2020/11/24 15:52:11 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ class NinjaTrap : public virtual ClapTrap
 
 		NinjaTrap &operator =(const NinjaTrap &other);
 
+		void	rangedAttack(std::string const &target);
+		void	meleeAttack(std::string const &target);
 		void	ninjaShoebox(ClapTrap &target);
 		void	ninjaShoebox(FragTrap &target);
 		void	ninjaShoebox(ScavTrap &target);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 17:55:03 by memartin          #+#    #+#             */
-/*   Updated: 2020/10/27 19:11:44 by memartin         ###   ########.fr       */
+/*   Updated: 2020/11/24 15:33:06 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ ClapTrap::ClapTrap(void):
 	_ep(1),
 	_epMax(1),
 	_level(1),
+	_armorDamageReduction(5),
 	_meleeAttackDamage(3),
-	_rangedAttackDamage(2),
-	_armorDamageReduction(5)
+	_rangedAttackDamage(2)
 {
 	say("base ClapTrap created !");
 
@@ -33,9 +33,9 @@ ClapTrap::ClapTrap(std::string name, int hp, int hpMax, int ep, int epMax, int l
 	_ep(ep),
 	_epMax(epMax),
 	_level(level),
+	_armorDamageReduction(armorDamageReduction),
 	_meleeAttackDamage(meleeAttackDamage),
-	_rangedAttackDamage(rangedAttackDamage),
-	_armorDamageReduction(armorDamageReduction)
+	_rangedAttackDamage(rangedAttackDamage)
 	
 {
 	say("base ClapTrap created !");
@@ -84,20 +84,6 @@ ClapTrap::say(std::string output)
 }
 
 void
-ClapTrap::rangedAttack(std::string const &target)
-{
-	say() << "I'm a tornado of death and bullets! (" << target << " receive " << 
-		this->_rangedAttackDamage << " ranged  damages !)" << std::endl;
-}
-
-void
-ClapTrap::meleeAttack(std::string const &target)
-{
-	say() << "Take that! (" << target << " receive " << 
-		this->_meleeAttackDamage << " melee damages !)" << std::endl;
-}
-
-void
 ClapTrap::takeDamage(unsigned int amount)
 {
 	int	damage;
@@ -122,7 +108,7 @@ ClapTrap::beRepaired(unsigned int amount)
 {
 	int heal;
 
-	if (amount > (this->_hpMax - this->_hp))
+	if (amount > (unsigned int)(this->_hpMax - this->_hp))
 		heal = this->_hpMax - this->_hp;
 	else
 		heal = amount;

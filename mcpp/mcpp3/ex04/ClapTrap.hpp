@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 17:38:00 by memartin          #+#    #+#             */
-/*   Updated: 2020/10/27 19:08:49 by memartin         ###   ########.fr       */
+/*   Updated: 2020/11/24 15:42:47 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ class ClapTrap
 		int				_ep;
 		int				_epMax;
 		int				_level;
-		int				_meleeAttackDamage;
-		int				_rangedAttackDamage;
 		int				_armorDamageReduction;
 	
 	protected:
+		int				_meleeAttackDamage;
+		int				_rangedAttackDamage;
 		std::ostream&	say(void);
 		std::ostream&	say(std::string output);
 
@@ -42,8 +42,6 @@ class ClapTrap
 
 		ClapTrap &operator =(const ClapTrap &other);
 
-		void				rangedAttack(std::string const &target);
-		void				meleeAttack(std::string const &target);
 		void				takeDamage(unsigned int amount);
 		void				beRepaired(unsigned int amount);
 

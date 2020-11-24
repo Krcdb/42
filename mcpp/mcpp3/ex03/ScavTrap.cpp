@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 18:03:04 by memartin          #+#    #+#             */
-/*   Updated: 2020/10/27 19:08:03 by memartin         ###   ########.fr       */
+/*   Updated: 2020/11/24 15:31:27 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,20 @@ ScavTrap::operator =(const ScavTrap &other)
 	say("assigned !");
 	say("This time it'll be awesome, I promise!");
 	return (*this);
+}
+
+void
+ScavTrap::rangedAttack(std::string const &target)
+{
+	say() << "I'm a tornado of death and bullets! (" << target << " receive " << 
+		this->_rangedAttackDamage << " ranged  damages !)(ScavTrap)" << std::endl;
+}
+
+void
+ScavTrap::meleeAttack(std::string const &target)
+{
+	say() << "Take that! (" << target << " receive " << 
+		this->_meleeAttackDamage << " melee damages !)(ScavTrap)" << std::endl;
 }
 
 void

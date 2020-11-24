@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   SuperTrap.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 11:45:56 by memartin          #+#    #+#             */
-/*   Updated: 2020/10/28 11:57:22 by memartin         ###   ########.fr       */
+/*   Updated: 2020/11/24 15:44:46 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,16 @@ SuperTrap::operator =(const SuperTrap &other)
 	say("assigned !");
 	say("Recompiling my combat code!");
 	return (*this);
+}
+
+void
+SuperTrap::rangedAttack(std::string const &target)
+{
+	FragTrap::rangedAttack(target);
+}
+
+void
+SuperTrap::meleeAttack(std::string const &target)
+{
+	NinjaTrap::meleeAttack(target);
 }

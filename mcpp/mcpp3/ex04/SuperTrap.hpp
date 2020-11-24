@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   SuperTrap.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 11:50:18 by memartin          #+#    #+#             */
-/*   Updated: 2020/10/28 11:51:22 by memartin         ###   ########.fr       */
+/*   Updated: 2020/11/24 15:52:00 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ class SuperTrap : public FragTrap, public NinjaTrap
 		virtual ~SuperTrap(void);
 
 		SuperTrap &operator =(const SuperTrap &other);
+		void				rangedAttack(std::string const &target);
+		void				meleeAttack(std::string const &target);
 };
 
 #endif

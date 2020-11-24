@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 18:03:04 by memartin          #+#    #+#             */
-/*   Updated: 2020/10/28 11:58:08 by memartin         ###   ########.fr       */
+/*   Updated: 2020/11/24 15:41:43 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,20 @@ FragTrap::operator =(const FragTrap &other)
 	say("assigned !");
 	say("Recompiling my combat code!");
 	return (*this);
+}
+
+void
+FragTrap::rangedAttack(std::string const &target)
+{
+	say() << "I'm a tornado of death and bullets! (" << target << " receive " << 
+		this->_rangedAttackDamage << " ranged  damages !)(FragTrap)" << std::endl;
+}
+
+void
+FragTrap::meleeAttack(std::string const &target)
+{
+	say() << "Take that! (" << target << " receive " << 
+		this->_meleeAttackDamage << " melee damages !)(FragTrap)" << std::endl;
 }
 
 void

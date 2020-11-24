@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 17:25:35 by memartin          #+#    #+#             */
-/*   Updated: 2020/10/28 12:00:38 by memartin         ###   ########.fr       */
+/*   Updated: 2020/11/24 15:48:57 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int		main(void)
 	SuperTrap	st("superboy");
 	FragTrap	ft("fragboy");
 	std::cout << "\n\n\n";
+	st.rangedAttack("FragBoy");
+	st.meleeAttack("FragBoy");
 	st.vaultHunter_dot_exe("FragBoy");
 	st.vaultHunter_dot_exe("FragBoy");
 	st.vaultHunter_dot_exe("FragBoy");

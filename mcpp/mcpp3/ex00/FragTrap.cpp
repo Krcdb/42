@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 18:03:04 by memartin          #+#    #+#             */
-/*   Updated: 2020/10/21 16:40:08 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/24 15:19:08 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ FragTrap::beRepaired(unsigned int amount)
 {
 	int heal;
 
-	if (amount > (this->_hpMax - this->_hp))
+	if (amount > (unsigned int)(this->_hpMax - this->_hp))
 		heal = this->_hpMax - this->_hp;
 	else
 		heal = amount;

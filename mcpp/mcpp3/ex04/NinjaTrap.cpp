@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   NinjaTrap.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 19:25:50 by memartin          #+#    #+#             */
-/*   Updated: 2020/10/28 11:58:44 by memartin         ###   ########.fr       */
+/*   Updated: 2020/11/24 15:51:57 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,25 +48,39 @@ NinjaTrap::operator =(const NinjaTrap &other)
 }
 
 void
+NinjaTrap::rangedAttack(std::string const &target)
+{
+	say() << "I'm a tornado of death and bullets! (" << target << " receive " << 
+		this->_rangedAttackDamage << " ranged  damages !)(NinjaTrap)" << std::endl;
+}
+
+void
+NinjaTrap::meleeAttack(std::string const &target)
+{
+	say() << "Take that! (" << target << " receive " << 
+		this->_meleeAttackDamage << " melee damages !)(NinjaTrap)" << std::endl;
+}
+
+void
 NinjaTrap::ninjaShoebox(ClapTrap &target)
 {
-	say() << "attack a ClapTrap named " << target.getName() << " !" << std::endl;
+	say() << "do somthing funny to a ClapTrap named " << target.getName() << " !" << std::endl;
 }
 
 void
 NinjaTrap::ninjaShoebox(FragTrap &target)
 {
-	say() << "attack a FragTrap named " << target.getName() << " !" << std::endl;
+	say() << "do somthing funny to a FragTrap named " << target.getName() << " !" << std::endl;
 }
 
 void
 NinjaTrap::ninjaShoebox(ScavTrap &target)
 {
-	say() << "attack a ScavTrap named " << target.getName() << " !" << std::endl;
+	say() << "do somthing funny to a ScavTrap named " << target.getName() << " !" << std::endl;
 }
 
 void
 NinjaTrap::ninjaShoebox(NinjaTrap &target)
 {
-	say() << "attack a NinjaTrap named " << target.getName() << " !" << std::endl;
+	say() << "do somthing funny to a NinjaTrap named " << target.getName() << " !" << std::endl;
 }

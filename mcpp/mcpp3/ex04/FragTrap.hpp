@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 17:38:00 by memartin          #+#    #+#             */
-/*   Updated: 2020/10/28 11:43:24 by memartin         ###   ########.fr       */
+/*   Updated: 2020/11/24 15:42:59 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ class FragTrap : public virtual ClapTrap
 		virtual ~FragTrap(void);
 
 		FragTrap &operator =(const FragTrap &other);
+		void			rangedAttack(std::string const &target);
+		void			meleeAttack(std::string const &target);
 		void			vaultHunter_dot_exe(std::string const &target);
 };
 
