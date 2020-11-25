@@ -12,11 +12,13 @@ Zombie::Zombie(std::string name, std::string type):
 
 Zombie::~Zombie()
 {
+	std::cout << this->m_name << " (" << this->m_type << ") : ";
+	std::cout << "killed\n";
 }
 
 void	
 Zombie::announce()
 {
-	std::cout << "<" << this->m_name << " (" << this->m_type << ")>";
+	std::cout << this->m_name << " (" << this->m_type << ") : ";
 	std::cout << " Braaaaaiiiiiiiiiinnnnnnnnssss.....\n";
 }

@@ -1,6 +1,6 @@
-NAME			= pony
+NAME			= serial
 
-SRCS			= main.cpp Pony.cpp
+SRCS			= main.cpp Serial.cpp
 
 OBJS			= $(SRCS:.cpp=.o)
 
@@ -24,4 +24,4 @@ fclean:			clean
 
 re:				fclean $(NAME)
 
-.PHONY:			all clean fclean re test
+.PHONY:			all clean fclean re

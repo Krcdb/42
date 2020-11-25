@@ -21,7 +21,7 @@ ZombieHorde::~ZombieHorde()
 void
 ZombieHorde::announce()
 {
-	std::cout << "Presentation de la horde\n";
+	std::cout << "Here comes the Zombies\n";
 	for (int i = 0; i < this->m_nb; i++)
 		horde[i].announce();
 }

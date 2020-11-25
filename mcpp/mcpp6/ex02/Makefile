@@ -1,6 +1,6 @@
-NAME			= pony
+NAME			= identify
 
-SRCS			= main.cpp Pony.cpp
+SRCS			= main.cpp Identify.cpp
 
 OBJS			= $(SRCS:.cpp=.o)
 
@@ -24,4 +24,4 @@ fclean:			clean
 
 re:				fclean $(NAME)
 
-.PHONY:			all clean fclean re test
+.PHONY:			all clean fclean re
