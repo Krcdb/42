@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 19:24:54 by user42            #+#    #+#             */
-/*   Updated: 2020/11/24 15:13:15 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/27 15:48:30 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,5 @@ int main(void)
 	{
 		std::cerr << e.what() << std::endl;
 	}
-//
-//	delete shrub;
-//	delete pres;
-//	delete robot;
-//
 	return (0);
 }
