@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AWeapon.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: memartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 15:58:56 by memartin          #+#    #+#             */
-/*   Updated: 2020/11/18 19:14:16 by memartin         ###   ########.fr       */
+/*   Updated: 2020/11/27 12:48:34 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ AWeapon::AWeapon():
 }
 
 AWeapon::AWeapon(std::string const & name, int apcost, int dmg):
-	_name(name),
 	_apcost(apcost),
-	_dmg(dmg)
+	_dmg(dmg),
+	_name(name)
 {
 }
 
 AWeapon::AWeapon(const AWeapon &other):
-	_name(other._name),
 	_apcost(other._apcost),
-	_dmg(other._dmg)
+	_dmg(other._dmg),
+	_name(other._name)
 {
 }
 

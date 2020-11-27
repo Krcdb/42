@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 14:10:02 by user42            #+#    #+#             */
-/*   Updated: 2020/11/20 14:30:42 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/27 12:51:24 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ AMateria::AMateria()
 }
 
 AMateria::AMateria(std::string const & type):
-    _type(type),
-    _xp(0)
+    _xp(0),
+    _type(type)
 {
 }
 
 AMateria::AMateria(const AMateria &other):
-    _type(other._type),
-    _xp(other._xp)
+    _xp(other._xp),
+    _type(other._type)
 {
 }
 
