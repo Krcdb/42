@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 15:20:32 by user42            #+#    #+#             */
-/*   Updated: 2020/11/29 15:54:38 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/29 17:03:24 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,16 @@ Span::longestSpan()
 void
 Span::display()
 {
+	std::cout << "display : ";
 	for (unsigned long i = 0; i < this->_vector.size(); i++)
-		std::cout << this->_vector[i] << " " << std::endl;
+		std::cout << this->_vector[i] << " ";
+	std::cout << std::endl;
+
+	std::cout << "sort display : ";
+	std::vector<int> tmp = std::vector<int>(this->_vector);
+	std::sort(tmp.begin(), tmp.end());
+	for (unsigned long i = 0; i < tmp.size(); i++)
+		std::cout << tmp[i] << " ";
 	std::cout << std::endl;
 }
 
