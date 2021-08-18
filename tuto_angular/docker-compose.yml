@@ -1,0 +1,57 @@
+version: "3.5"
+
+volumes:
+  db_data:
+    driver: local
+
+services:
+  postgres:
+    image: postgres
+    restart: always
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+
+  pgAdmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.fr
+      - PGADMIN_DEFAULT_PASSWORD=admin
+      - PGADMIN_LISTEN_PORT=5050
+    logging:
+      driver: "none"
+    depends_on:
+      - postgres
+    ports:
+      - 5050:5050
+
+  api:
+    build: ./back
+    environment:
+      - _42_CLIENT_ID=43b0f907be8f2cb2d3457db63d24d2892ae35012fdd64e72cc2bd06f22fd7a8a
+      - _42_CLIENT_SECRET=45b7284ad69397a63148f88cac69f861a8b36a4acdda368bc26d7499ebaf64ba
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    env_file:
+      - ./back/.env
+      - ./.env
+    ports:
+      - 3000:3000
+    volumes:
+      - ./back:/app
+    depends_on:
+      - postgres
+
+  web:
+    build: ./front
+    env_file:
+      - ./.env
+    ports:
+      - 4200:4200
+    volumes:
+      - ./front:/app
