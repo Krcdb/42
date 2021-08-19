@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { AppareilService } from '../services/appareil.service';
 
 @Component({
   	selector: 'app-appareil',
@@ -11,7 +12,16 @@ export class AppareilComponent implements OnInit {
 
 	@Input() appareilName: string;
 	@Input() appareilStatus: string;
+	@Input() index: number;
+	@Input() id: number;
 
+
+  	constructor(private appareilService: AppareilService){
+	}
+		
+  	ngOnInit(): void {
+	}
+	  
 	getColor() {
 		if(this.appareilStatus === 'allumé') {
 		  	return 'green';
@@ -22,13 +32,17 @@ export class AppareilComponent implements OnInit {
 		else
 			return 'black'
 	}
-  	constructor() { }
 
 	getStatus() {
 		return this.appareilStatus;
 	  }
-	
-  	ngOnInit(): void {
-  	}
 
+	onSwitch() {
+		if(this.appareilStatus === 'allumé') {
+		  	this.appareilService.switchOffOne(this.index);
+		} 
+		else if(this.appareilStatus === 'éteint') {
+		  	this.appareilService.switchOnOne(this.index);
+		}
+	}
 }

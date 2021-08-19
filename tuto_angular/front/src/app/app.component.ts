@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AppareilService } from './services/appareil.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-root',
@@ -7,35 +10,5 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class AppComponent {
-	isAuth = false;
-
-	appareils = [
-	  {
-		name: 'Machine à laver',
-		status: 'éteint'
-	  },
-	  {
-		name: 'Frigo',
-		status: 'allumé'
-	  },
-	  {
-		name: 'Ordinateur',
-		status: 'éteint'
-	  }
-	];
-
-	constructor() {
-		setTimeout(
-		  () => {
-			this.isAuth = true;
-		  }, 1000
-		);
-	  }
-
-	onAllumer() {
-		console.log('On allume tout !');
-	}
-
-	ngOnInit(): void {
-	}
+	constructor(private router: Router) {}
 }
