@@ -8,6 +8,8 @@ COPY . /app
 
 RUN npm install
 
-EXPOSE 4200
+RUN npm install -g @nestjs/cli
 
-CMD ["npm", "run", "dev"]
+EXPOSE 3000
+
+CMD ["nest", "start", "--watch"]
