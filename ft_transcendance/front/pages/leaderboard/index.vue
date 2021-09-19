@@ -1,5 +1,5 @@
 <template>
-  <div>leaderboard</div>
+	  <h1 class="d-flex justify-content-center font=bold"> Leaderboard </h1>
 </template>
 
 <script lang="ts">
